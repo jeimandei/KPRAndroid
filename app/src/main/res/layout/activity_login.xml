@@ -66,6 +66,7 @@
         android:layout_marginTop="14dp"
         android:textStyle="bold"
         android:textColorHint="@color/black"
+        android:backgroundTint="#856b0c"
         />
 
 </RelativeLayout>
