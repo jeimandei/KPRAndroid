@@ -35,22 +35,17 @@ public class MainActivity extends AppCompatActivity {
         initView();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.navbar_menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
 
     private void initView() {
         setSupportActionBar(binding.toolbar);
 
-//        getSupportActionBar().setTitle("Account");
-//        getSupportFragmentManager().beginTransaction().replace(R.id.framelayout, new AccountFragment()).commit();
-//        binding.navbarView.setCheckedItem(R.id.nav_account);
+        getSupportActionBar().setTitle("Meeting Schedule");
+        getSupportFragmentManager().beginTransaction().replace(R.id.framelayout, new ScheduleFragment()).commit();
+        binding.navbarView.setCheckedItem(R.id.nav_agenda);
 
         toggle = new ActionBarDrawerToggle(this, binding.navDrawer, binding.toolbar, R.string.open, R.string.close);
 
-        toggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.white));
+        toggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.black));
 
         toggle.syncState();
 
@@ -60,18 +55,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
-//                    case R.id.nav_account:
-//                        fragments[0] = new AccountFragment();
-//                        getSupportActionBar().setTitle("Account");
-//                        mainBinding.navDrawer.closeDrawer(GravityCompat.START);
-//                        callFragment(fragments[0]);
-//                        break;
-//                    case R.id.nav_participant:
-//                        fragments[0] = new ParticipantFragment();
-//                        getSupportActionBar().setTitle("Participant");
-//                        mainBinding.navDrawer.closeDrawer(GravityCompat.START);
-//                        callFragment(fragments[0]);
-//                        break;
+                    case R.id.nav_agenda:
+                        fragments[0] = new ScheduleFragment();
+                        getSupportActionBar().setTitle("Schedule");
+                        binding.navDrawer.closeDrawer(GravityCompat.START);
+                        callFragment(fragments[0]);
+                        break;
+                    case R.id.nav_nasabah:
+                        fragments[0] = new CustomerFragment();
+                        getSupportActionBar().setTitle("Customer");
+                        binding.navDrawer.closeDrawer(GravityCompat.START);
+                        callFragment(fragments[0]);
+                        break;
                 }
                 return true;
             }
