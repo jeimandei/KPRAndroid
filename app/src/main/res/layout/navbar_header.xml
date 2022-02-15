@@ -14,7 +14,7 @@
         android:layout_width="96dp"
         android:layout_height="96dp"
         android:paddingBottom="8dp"
-        android:src="@mipmap/ic_launcher_round"
+        android:src="@drawable/emp"
         app:civ_border_color="@color/white"
         app:civ_border_width="2dp" />
 

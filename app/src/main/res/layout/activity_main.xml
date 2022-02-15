@@ -23,7 +23,7 @@
                 android:background="#fed000"
                 android:minHeight="?attr/actionBarSize"
                 app:title="Project One"
-                app:titleTextColor="@color/white" />
+                app:titleTextColor="@color/black" />
 
             <FrameLayout
                 android:id="@+id/framelayout"
