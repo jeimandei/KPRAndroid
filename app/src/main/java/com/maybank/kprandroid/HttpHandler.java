@@ -108,12 +108,12 @@ public class HttpHandler {
         return sb.toString();
     }
 
-    public String sendGetRespDate(String responseUrl, String start, String end) {
+    public String sendGetResp2(String responseUrl, String var1, String var2) {
         StringBuilder sb = new StringBuilder();
         try {
             Uri.Builder builder = new Uri.Builder();
-            builder.appendQueryParameter("start", start).
-                    appendQueryParameter("end", end);
+            builder.appendQueryParameter("id", var1).
+                    appendQueryParameter("pass_emp", var2);
             URL url = new URL(responseUrl + builder);
             Log.d("url:", String.valueOf(builder));
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();

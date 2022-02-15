@@ -37,6 +37,7 @@ public class CustomerFragment extends Fragment {
     private ViewGroup viewGroup;
     private ListView listView;
     private FloatingActionButton floatingActionButton;
+    String id_emp;
 
     public CustomerFragment() {
         // Required empty public constructor
@@ -55,6 +56,9 @@ public class CustomerFragment extends Fragment {
 
         floatingActionButton = viewGroup.findViewById(R.id.customer_add);
         listView = viewGroup.findViewById(R.id.lv_customer);
+
+        id_emp = this.getArguments().getString("id_emp");
+
 
         getJSON();
 
@@ -75,7 +79,7 @@ public class CustomerFragment extends Fragment {
             @Override
             protected String doInBackground(Void... voids) {
                 HttpHandler handler = new HttpHandler();
-                String result = handler.sendGetResp(ConfigCustomer.URL_GET_ALL_CUSTOMER);
+                String result = handler.sendGetResp(ConfigCustomer.URL_GET_ALL_CUSTOMER, id_emp);
                 Log.d("GetData", result);
                 return result;
             }

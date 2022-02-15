@@ -10,10 +10,13 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
+import com.maybank.kprandroid.Configuration.ConfigLogin;
 import com.maybank.kprandroid.Customer.CustomerFragment;
 import com.maybank.kprandroid.Schedule.ScheduleFragment;
 import com.maybank.kprandroid.databinding.ActivityMainBinding;
@@ -22,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private ActionBarDrawerToggle toggle;
     Toolbar toolbar;
+    String id;
 
 
     @Override
@@ -32,6 +36,11 @@ public class MainActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(MainActivity.this, R.layout.activity_main);
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        Intent receiveIntent = getIntent();
+        id = receiveIntent.getStringExtra(ConfigLogin.EMP_ID);
+        Log.d("id_main:", id);
+
 
         initView();
     }
@@ -60,12 +69,16 @@ public class MainActivity extends AppCompatActivity {
                         fragments[0] = new ScheduleFragment();
                         getSupportActionBar().setTitle("Schedule");
                         binding.navDrawer.closeDrawer(GravityCompat.START);
+
                         callFragment(fragments[0]);
                         break;
                     case R.id.nav_nasabah:
                         fragments[0] = new CustomerFragment();
                         getSupportActionBar().setTitle("Customer");
                         binding.navDrawer.closeDrawer(GravityCompat.START);
+                        Bundle arg = new Bundle();
+                        arg.putString("id_emp", id);
+                        fragments[0].setArguments(arg);
                         callFragment(fragments[0]);
                         break;
                 }

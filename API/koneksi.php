@@ -4,7 +4,7 @@
  define('HOST','localhost');
  define('USER','root');
  define('PASS','');
- define('DB','kpr_android');
+ define('DB','db_kpr');
  
  //membuat koneksi dengan database
  $con = mysqli_connect(HOST,USER,PASS,DB) or die('Unable to Connect');

@@ -1,9 +1,11 @@
 <?php 
+	$id = $_GET['id_emp'];
+
 	//Import File Koneksi Database
 	require_once('../koneksi.php');
 	
 	//Membuat SQL Query
-	$sql = "SELECT * FROM tb_nasabah";
+	$sql = "SELECT * FROM tb_nasabah WHERE id_emp=$id";
 	
 	//Mendapatkan Hasil
 	$r = mysqli_query($con,$sql);
