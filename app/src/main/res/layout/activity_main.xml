@@ -20,7 +20,7 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#94DAFF"
+                android:background="#fed000"
                 android:minHeight="?attr/actionBarSize"
                 app:title="Project One"
                 app:titleTextColor="@color/white" />
@@ -44,7 +44,8 @@
             app:itemHorizontalPadding="36dp"
             app:itemIconPadding="32dp"
             app:itemIconSize="24dp"
-            app:menu="@menu/navbar_menu" />
+            app:menu="@menu/navbar_menu"
+            android:shadowColor="@color/black"/>
 
     </androidx.drawerlayout.widget.DrawerLayout>
 
