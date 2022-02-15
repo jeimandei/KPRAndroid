@@ -14,7 +14,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="33dp"
         android:padding="12dp"
-        android:src="@drawable/Maybank" />
+        android:src="@drawable/maybank_logo" />
 
     <TextView
         android:id="@+id/textView"
