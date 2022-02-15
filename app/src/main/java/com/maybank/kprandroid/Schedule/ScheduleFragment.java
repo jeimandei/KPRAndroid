@@ -167,6 +167,8 @@ public class ScheduleFragment extends Fragment {
 //        });
     }
 
+
+
     public void callFragment(Fragment fragment) {
         FragmentManager man = getActivity().getSupportFragmentManager();
         FragmentTransaction trans = man.beginTransaction();
