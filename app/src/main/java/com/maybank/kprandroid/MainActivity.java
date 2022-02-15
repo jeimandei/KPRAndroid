@@ -11,10 +11,11 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
+import com.maybank.kprandroid.Customer.CustomerFragment;
+import com.maybank.kprandroid.Schedule.ScheduleFragment;
 import com.maybank.kprandroid.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
