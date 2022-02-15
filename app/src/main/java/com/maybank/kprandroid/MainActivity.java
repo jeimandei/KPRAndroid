@@ -57,16 +57,16 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId()){
                     case R.id.nav_agenda:
                         fragments[0] = new ScheduleFragment();
-                        getSupportActionBar().setTitle("Account");
+                        getSupportActionBar().setTitle("Schedule");
                         binding.navDrawer.closeDrawer(GravityCompat.START);
                         callFragment(fragments[0]);
                         break;
-//                    case R.id.nav_participant:
-//                        fragments[0] = new ParticipantFragment();
-//                        getSupportActionBar().setTitle("Participant");
-//                        mainBinding.navDrawer.closeDrawer(GravityCompat.START);
-//                        callFragment(fragments[0]);
-//                        break;
+                    case R.id.nav_nasabah:
+                        fragments[0] = new CustomerFragment();
+                        getSupportActionBar().setTitle("Customer");
+                        binding.navDrawer.closeDrawer(GravityCompat.START);
+                        callFragment(fragments[0]);
+                        break;
                 }
                 return true;
             }

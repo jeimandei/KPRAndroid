@@ -3,14 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Android-Maybank/KPRAndroid/app/src/main/res/layout/activity_login.xml" value="0.27447916666666666" />
-        <entry key="..\:/Android-Maybank/KPRAndroid/app/src/main/res/layout/navbar_header.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/jerma/AndroidStudioProjects/KPRAndroid/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.26" />
         <entry key="..\:/Users/jerma/AndroidStudioProjects/KPRAndroid/app/src/main/res/drawable-v24/item_checked.xml" value="0.3045" />
         <entry key="..\:/Users/jerma/AndroidStudioProjects/KPRAndroid/app/src/main/res/drawable-v24/navbar_header_bg.xml" value="0.3045" />
         <entry key="..\:/Users/jerma/AndroidStudioProjects/KPRAndroid/app/src/main/res/drawable/ic_launcher_background.xml" value="0.26" />
         <entry key="..\:/Users/jerma/AndroidStudioProjects/KPRAndroid/app/src/main/res/layout/activity_login.xml" value="0.3484375" />
         <entry key="..\:/Users/jerma/AndroidStudioProjects/KPRAndroid/app/src/main/res/layout/activity_main.xml" value="0.3625" />
+        <entry key="..\:/Users/jerma/AndroidStudioProjects/KPRAndroid/app/src/main/res/layout/fragment_customer.xml" value="0.3625" />
+        <entry key="..\:/Users/jerma/AndroidStudioProjects/KPRAndroid/app/src/main/res/layout/fragment_schedule.xml" value="0.3625" />
         <entry key="..\:/Users/jerma/AndroidStudioProjects/KPRAndroid/app/src/main/res/layout/navbar_header.xml" value="0.5" />
         <entry key="..\:/Users/jerma/AndroidStudioProjects/KPRAndroid/app/src/main/res/menu/navbar_menu.xml" value="0.3625" />
       </map>
