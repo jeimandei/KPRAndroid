@@ -4,18 +4,31 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bggradient"
 >
 
-    <TextView
-        android:text="Login Form"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <ImageView
+       android:id="@+id/imageView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="33dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:src="@drawable/Maybank"
+
+        />
+    <TextView
+        android:text="Login Form"
         android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:textStyle="bold"
         android:textAlignment="center"
-        android:textSize="30sp"
-        android:textStyle="normal|bold" />
+        android:textColor="@color/black"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="30dp"
+       />
 
     <EditText
         android:layout_width="match_parent"
@@ -23,7 +36,7 @@
         android:inputType="textPersonName"
         android:ems="10"
         android:id="@+id/username"
-        android:hint="Username"
+        android:hint="ID Employee"
         android:layout_below="@+id/textView"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -39,14 +52,19 @@
         android:id="@+id/password"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:hint="Password" />
+        android:hint="Password"
+        android:layout_marginTop="10dp"/>
 
     <Button
         android:id="@+id/btnLogin"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/password"
         android:layout_centerHorizontal="true"
-        android:text="Log In" />
+        android:text="Log In"
+        android:layout_marginTop="14dp"
+        android:textStyle="bold"
+        android:textColorHint="@color/black"
+        />
 
 </RelativeLayout>
