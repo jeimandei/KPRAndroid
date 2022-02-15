@@ -3,7 +3,8 @@
 	require_once('../koneksi.php');
 	
 	//Membuat SQL Query
-	$sql = "SELECT * FROM tb_employee";
+	$sql = "SELECT j.id_jantem, n.id_nsb, n.nama_nsb, j.pesan_jantem, j.tgl_jantem FROM tb_janji_temu j
+		JOIN tb_nasabah n ON j.id_nsb = n.id_nsb";
 	
 	//Mendapatkan Hasil
 	$r = mysqli_query($con,$sql);
@@ -15,9 +16,11 @@
 		
 		//Memasukkan Nama dan ID kedalam Array Kosong yang telah dibuat 
 		array_push($result,array(
-			"id_emp"=>$row['id_emp'],
-			"nama_emp"=>$row['nama_emp'],
-			"role_emp"=>$row['role_emp'],
+			"id_jantem"=>$row['id_jantem'],
+			"id_nsb"=>$row['id_nsb'],
+			"nama_nsb"=>$row['nama_nsb'],
+            "pesan_jantem"=>$row['pesan_jantem'],
+            "tgl_jantem"=>$row['tgl_jantem']
 		));
 	}
 	
