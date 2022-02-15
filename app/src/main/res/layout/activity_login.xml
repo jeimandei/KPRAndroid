@@ -4,57 +4,54 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bggradient"
->
+    android:background="@drawable/bggradient">
 
     <ImageView
-       android:id="@+id/imageView"
+        android:id="@+id/imageView"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginTop="33dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/Maybank"
+        android:layout_marginTop="33dp"
+        android:padding="12dp"
+        android:src="@drawable/Maybank" />
 
-
-        />
     <TextView
-        android:text="Login Form"
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:textAlignment="center"
-        android:textColor="@color/black"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="30dp"
-       />
+        android:text="Login Form"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold" />
 
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
         android:id="@+id/username"
-        android:hint="ID Employee"
-        android:layout_below="@+id/textView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="37dp" />
-
-    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPassword"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="37dp"
         android:ems="10"
+        android:hint="ID Employee"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/username"
         android:layout_alignParentLeft="true"
-        android:id="@+id/password"
-        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="10dp"
+        android:ems="10"
         android:hint="Password"
-        android:layout_marginTop="10dp"/>
+        android:inputType="textPassword" />
 
     <Button
         android:id="@+id/btnLogin"
@@ -62,11 +59,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/password"
         android:layout_centerHorizontal="true"
-        android:text="Log In"
         android:layout_marginTop="14dp"
-        android:textStyle="bold"
-        android:textColorHint="@color/black"
         android:backgroundTint="#856b0c"
-        />
+        android:text="Log In"
+        android:textColorHint="@color/black"
+        android:textStyle="bold" />
 
 </RelativeLayout>
