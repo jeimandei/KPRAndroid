@@ -219,7 +219,7 @@ public class AddCustomerFragment extends Fragment implements View.OnClickListene
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.framelayout,customerFragment);
                 Bundle arg = new Bundle();
-                arg.putString("id_emp_1", id_emp);
+                arg.putString("id_emp", id_emp);
                 customerFragment.setArguments(arg);
                 fragmentTransaction.commit();
             }
