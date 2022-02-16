@@ -47,6 +47,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
                     android:ems="13"
+                    android:focusable="false"
                     android:textColor="#320202"
                     android:textSize="16sp"
                     android:textStyle="bold" />

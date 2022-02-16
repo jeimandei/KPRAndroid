@@ -62,7 +62,7 @@ public class DetailCustomerFragment extends Fragment implements View.OnClickList
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         viewGroup = (ViewGroup) inflater.inflate(R.layout.fragment_detail_customer, container, false);
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Detail Schedule Customer");
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Detail Customer");
         id_cust = this.getArguments().getString("id");
         cust_name = viewGroup.findViewById(R.id.edit_nama_nsb);
         cust_ktp = viewGroup.findViewById(R.id.edit_ktp_nsb);
