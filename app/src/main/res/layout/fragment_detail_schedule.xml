@@ -11,20 +11,23 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:background="@drawable/bggradient_list"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#fed000"
                 android:minHeight="?attr/actionBarSize"
-                app:title="Detail Jadwal Bertemu"
-                app:titleTextColor="@color/white" />
+                app:title="DETAIL JADWAL BERTEMU"
+                app:titleTextColor="@color/black"
+                />
 
         </LinearLayout>
 
@@ -62,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="6dp"
                 android:layout_weight="1"
-                android:text="Tanggal Bertemu"
+                android:text="Tanggal Bertemu :"
                 android:textAllCaps="false"
                 android:textColor="#050505"
                 android:textSize="20sp"
@@ -91,6 +94,7 @@
                 android:text="Memo:"
                 android:textSize="20sp"
                 android:textStyle="bold"
+                android:layout_marginRight="6dp"
                 android:textColor="#050505"/>
             <EditText
                 android:id="@+id/edit_isi_memo"
@@ -120,8 +124,8 @@
                 android:layout_weight="1"
                 android:paddingRight="10dp"
                 android:text="Update"
+                android:backgroundTint="#6B8E23"
                 />
-
             <Button
                 android:id="@+id/btn_delete_sch"
                 android:layout_width="wrap_content"
@@ -130,12 +134,8 @@
                 android:layout_marginTop="50dp"
                 android:layout_weight="1"
                 android:paddingLeft="10dp"
-                android:text="Delete" />
+                android:text="Delete"
+                android:backgroundTint="#CD5C5C"/>
         </LinearLayout>
-
-
     </LinearLayout>
-
-
-
 </FrameLayout>
