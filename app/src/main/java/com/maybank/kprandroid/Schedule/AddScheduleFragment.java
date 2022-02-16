@@ -68,7 +68,7 @@ public class AddScheduleFragment extends Fragment {
         message = viewGroup.findViewById(R.id.isimemo);
         tambah_schedule = viewGroup.findViewById(R.id.btn_tambah_Schedule);
 
-        id_emp = this.getArguments().getString("id_emp");
+        id_emp = this.getArguments().getString("id_emp_1");
 
         spin_nsb = viewGroup.findViewById(R.id.spinner_id_cust);
 
