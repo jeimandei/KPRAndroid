@@ -9,11 +9,6 @@
 		$fileName_rekDoc = $_FILES['rek_doc']['name'];
 		$fileName_slipGajiDoc = $_FILES['slip_gaji_doc']['name'];
 		
-		// $fileExt = explode('.', $fileName);
-		// $fileActExt = strtolower(end($fileExt));
-		// $allowImg = array('png','jpeg','jpg');
-
-		// $fileNew = rand() . "." . $fileActExt;
 
         //Upload KTP
         if (move_uploaded_file($_FILES['ktp_doc']['tmp_name'], '../../image/'.$fileName_ktpDoc)) {
@@ -57,7 +52,7 @@
         echo "<div class='row' style = 'margin-left : 2px'>
         <h4>".$row['tipe_dok']."</h4> &nbsp | | &nbsp<span style = 'color:red'>".$row['status_dok']."</span>
         </div>";
-        // echo "<h4>".$row['tipe_dok']."</h4><span>".$row['status_dok']."</span>";
+        
         echo '<img src="../../image/'.$row['nama_dok'].'" style="max-width: 100%;
   height: auto;"/>';
         echo '<hr>';

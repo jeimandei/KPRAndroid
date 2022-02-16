@@ -121,7 +121,7 @@
                                         
                                     <div class="form-actions" style = "margin-top: 30px">
                                         <div class="text-right">
-                                            <button type="submit" onclick="uploadImage()" class="btn btn-info">Submit</button>
+                                            <button type="submit" class="btn btn-info">Submit</button>
                                             <!-- <button class = "btn btn-danger"><a href=<?=$link . "/individual_task/peserta/tabelPeserta.php"?> style ="color:white">Batal</a></button> -->
                                             <button class = "btn btn-danger" onclick = "showAndroidToast('Hello Android')">Batal</button>
                                             <script>
@@ -138,22 +138,20 @@
                 </div>
                 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal" >
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header btn-danger">
-        <h5 class="modal-title " id="exampleModalLabel">Hapus Data</h5>
+      <div class="modal-header btn-success">
+        <h5 class="modal-title " id="exampleModalLabel">Berhasil Tambah Data Dokumen Nasabah</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <h3 id = "delete_name"></h3>
+        <h3 id = "delete_name">Berhasil Tambah Data Dokumen Nasabah</h3>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <a id="link_delete"><button class="btn btn-danger">Delete</button></a>
-        
+        <button type="button" class="btn btn-success" data-dismiss="modal">Yes</button>
       </div>
     </div>
   </div>
@@ -229,6 +227,7 @@
           success:function(response){
             $("#imageView").html(response);
             $("#image").val('');
+            
           }
         });
       $("#frmImage").on("submit", function(e){
@@ -244,6 +243,7 @@
           success:function(response){
             $("#imageView").html(response);
             $("#image").val('');
+            $('#exampleModal').modal('show');
           }
         });
       });
