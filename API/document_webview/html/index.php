@@ -244,6 +244,7 @@
             $("#imageView").html(response);
             $("#image").val('');
             $('#exampleModal').modal('show');
+            $("#frmImage").get(0).reset();
           }
         });
       });
