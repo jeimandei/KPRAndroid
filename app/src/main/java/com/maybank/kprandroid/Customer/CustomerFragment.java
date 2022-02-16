@@ -22,6 +22,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.maybank.kprandroid.Configuration.ConfigCustomer;
 import com.maybank.kprandroid.HttpHandler;
 import com.maybank.kprandroid.R;
+import com.maybank.kprandroid.Schedule.AddScheduleFragment;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -57,7 +58,17 @@ public class CustomerFragment extends Fragment {
 
 
         getJSON();
-
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AddCustomerFragment addCustomerFragment = new AddCustomerFragment();
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.framelayout,addCustomerFragment);
+                callFragment(addCustomerFragment);
+                fragmentTransaction.commit();
+            }
+        });
 
         return viewGroup;
     }

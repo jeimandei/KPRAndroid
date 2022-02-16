@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -129,6 +130,12 @@ public class LoginActivity extends AppCompatActivity {
             Log.d("id_em:", String.valueOf(result));
 
             String id_emp = object.getString(ConfigLogin.TAG_LOGIN_EMP_ID);
+
+            // SHARED PREFERENCED
+
+            SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref",MODE_PRIVATE);
+            SharedPreferences.Editor myEdit = sharedPreferences.edit();
+            myEdit.putString("id_emp", id_emp);
 
             Intent intent = new Intent(LoginActivity.this, MainActivity.class );
             intent.putExtra(ConfigLogin.TAG_LOGIN_EMP_ID, id_emp);
