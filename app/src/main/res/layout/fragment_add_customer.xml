@@ -15,23 +15,7 @@
         android:orientation="vertical"
         android:background="@drawable/bggradient_list">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#fed000"
-                android:minHeight="40dp"
-                app:title="TAMBAH DATA NASABAH"
-                app:titleTextColor="@color/black"
-
-                />
-
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
