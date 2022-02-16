@@ -208,29 +208,7 @@
                     android:textStyle="bold" />
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Upload KTP"
-                    android:layout_marginStart="100dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="100dp"
-                    android:id="@+id/upload_ktp"
-                    android:backgroundTint="#DAA520"
-                    android:drawableRight="@android:drawable/ic_menu_gallery"/>
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:id="@+id/imageView" />
-
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -241,15 +219,17 @@
                 android:paddingRight="20dp">
 
                 <Button
-                    android:id="@+id/btn_update_nsb"
+                    android:id="@+id/btn_upload"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="50dp"
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
-                    android:backgroundTint="#6B8E23"
                     android:paddingRight="10dp"
-                    android:text="Update" />
+                    android:backgroundTint="#DAA520"
+                    android:drawableRight="@android:drawable/ic_menu_gallery"
+                    android:text="Upload FIle"
+                    />
 
                 <Button
                     android:id="@+id/btn_delete_nsb"
@@ -257,7 +237,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="50dp"
-                    android:layout_weight="1"
+                    android:layout_weight="10"
                     android:backgroundTint="#CD5C5C"
                     android:paddingLeft="10dp"
                     android:text="Delete" />
