@@ -25,7 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#fed000"
-                android:minHeight="?attr/actionBarSize"
+                android:minHeight="40dp"
                 app:title="TAMBAH DATA NASABAH"
                 app:titleTextColor="@color/black"
 
@@ -36,7 +36,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
 
             <TextView
                 android:id="@+id/textView3"
@@ -44,10 +46,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="6dp"
                 android:layout_weight="1"
-                android:text="Nama Nasabah :"
+                android:text="Nama Nasabah"
                 android:textAllCaps="false"
                 android:textColor="#050505"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <EditText
@@ -55,15 +57,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:ems="10"
+                android:ems="13"
                 android:textColor="#320202"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            >
 
             <TextView
                 android:id="@+id/textView4"
@@ -71,10 +76,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="6dp"
                 android:layout_weight="1"
-                android:text="KTP Nasabah :"
+                android:text="KTP Nasabah"
                 android:textAllCaps="false"
                 android:textColor="#050505"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <EditText
@@ -82,16 +87,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:ems="10"
+                android:ems="13"
                 android:textColor="#320202"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
 
             <TextView
                 android:id="@+id/textView5"
@@ -99,10 +106,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="6dp"
                 android:layout_weight="1"
-                android:text="Tempat Lahir  :"
+                android:text="Tempat Lahir"
                 android:textAllCaps="false"
                 android:textColor="#050505"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <EditText
@@ -110,15 +117,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:ems="10"
+                android:ems="13"
                 android:textColor="#320202"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
 
             <TextView
                 android:id="@+id/textView7"
@@ -126,10 +135,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="6dp"
                 android:layout_weight="1"
-                android:text="Tanggal Lahir :"
+                android:text="Tanggal Lahir"
                 android:textAllCaps="false"
                 android:textColor="#050505"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 android:focusable="false"/>
 
@@ -138,16 +147,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:ems="10"
+                android:ems="13"
                 android:textColor="#320202"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
 
             <TextView
                 android:id="@+id/textView8"
@@ -155,10 +166,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="6dp"
                 android:layout_weight="1"
-                android:text="Nomor HP :"
+                android:text="Nomor HP"
                 android:textAllCaps="false"
                 android:textColor="#050505"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <EditText
@@ -166,15 +177,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:ems="10"
+                android:ems="13"
                 android:textColor="#320202"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
 
             <TextView
                 android:id="@+id/textView10"
@@ -182,10 +195,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="6dp"
                 android:layout_weight="1"
-                android:text="Alamat Nasabah :"
+                android:text="Alamat Nasabah"
                 android:textAllCaps="false"
                 android:textColor="#050505"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <EditText
@@ -193,9 +206,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:ems="10"
+                android:ems="13"
                 android:textColor="#320202"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
