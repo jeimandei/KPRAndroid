@@ -1,6 +1,6 @@
 <?php 
 	//Mendapatkan Nilai Dari Variable ID Pegawai yang ingin ditampilkan
-	$id_emp = $_GET['id_emp'];
+	
 	$id_nsb = $_GET['id_nsb'];
 	
 	//Importing database
@@ -8,7 +8,7 @@
 	
 	//Membuat SQL Query dengan pegawai yang ditentukan secara spesifik sesuai ID
 	// revisi get data by id_emp dan id_janji temu
-	$sql = "SELECT * FROM tb_nasabah WHERE id_emp=$id_emp and id_nsb = $id_nsb";
+	$sql = "SELECT * FROM tb_nasabah WHERE id_nsb = $id_nsb";
 	
 	//Mendapatkan Hasil 
 	$r = mysqli_query($con,$sql);
