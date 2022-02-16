@@ -229,8 +229,6 @@
                     android:backgroundTint="#DAA520"
                     android:drawableRight="@android:drawable/ic_menu_gallery"
                     android:text="Upload FIle"
-
-
                     />
 
                 <Button
