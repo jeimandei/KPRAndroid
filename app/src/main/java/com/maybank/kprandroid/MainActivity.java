@@ -13,20 +13,24 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.maybank.kprandroid.Configuration.ConfigLogin;
 import com.maybank.kprandroid.Customer.CustomerFragment;
+import com.maybank.kprandroid.Manager.ManagerFragment;
 import com.maybank.kprandroid.Schedule.ScheduleFragment;
 import com.maybank.kprandroid.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private ActionBarDrawerToggle toggle;
+    MenuItem manager;
     Toolbar toolbar;
-    String id, id1;
+    String id, role;
 
 
     @Override
@@ -36,18 +40,35 @@ public class MainActivity extends AppCompatActivity {
 
         binding = DataBindingUtil.setContentView(MainActivity.this, R.layout.activity_main);
         toolbar = findViewById(R.id.toolbar);
+
         setSupportActionBar(toolbar);
 
         Intent receiveIntent = getIntent();
         id = receiveIntent.getStringExtra(ConfigLogin.EMP_ID);
-        Log.d("id_main:", id);
+        role = receiveIntent.getStringExtra(ConfigLogin.EMP_ROLE);
 
+        Log.d("id_main:", role);
 
+        invalidateOptionsMenu();
         initView();
     }
 
+//    @Override
+//    public boolean onPrepareOptionsMenu(Menu menu) {
+//        final MenuInflater inflater = getMenuInflater();
+//        inflater.inflate(R.menu.navbar_menu, menu);
+//        manager = menu.findItem(R.id.nav_manager);
+//        Log.d("id_man:", String.valueOf(manager));
+//
+//        if (role.equals("kpr")){
+//            manager.setEnabled(false);
+//        }
+//
+//        return true;
+//    }
 
     private void initView() {
+
         setSupportActionBar(binding.toolbar);
 
         getSupportActionBar().setTitle("Schedule");
@@ -61,6 +82,9 @@ public class MainActivity extends AppCompatActivity {
 
 //        getSupportFragmentManager().beginTransaction().replace(R.id.framelayout, new ScheduleFragment()).commit();
         binding.navbarView.setCheckedItem(R.id.nav_agenda);
+        if (role.equals("kpr")){
+            binding.navbarView.getMenu().removeItem(R.id.nav_manager);
+        }
 
         toggle = new ActionBarDrawerToggle(this, binding.navDrawer, binding.toolbar, R.string.open, R.string.close);
 
@@ -93,6 +117,17 @@ public class MainActivity extends AppCompatActivity {
                         Log.d("cekID:", id);
                         fragments[0].setArguments(arg1);
                         callFragment(fragments[0]);
+                        break;
+                    case R.id.nav_manager:
+                        fragments[0] = new ManagerFragment();
+                        getSupportActionBar().setTitle("Approval");
+                        binding.navDrawer.closeDrawer(GravityCompat.START);
+                        Bundle argw = new Bundle();
+                        argw.putString("id_emp", id);
+                        Log.d("cekID:", id);
+                        fragments[0].setArguments(argw);
+                        callFragment(fragments[0]);
+
                         break;
                 }
                 return true;

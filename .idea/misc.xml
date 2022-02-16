@@ -9,6 +9,7 @@
         <entry key="..\:/Users/jerma/AndroidStudioProjects/KPRAndroid/app/src/main/res/drawable/ic_launcher_background.xml" value="0.26" />
         <entry key="..\:/Users/jerma/AndroidStudioProjects/KPRAndroid/app/src/main/res/layout/activity_login.xml" value="0.3484375" />
         <entry key="..\:/Users/jerma/AndroidStudioProjects/KPRAndroid/app/src/main/res/layout/activity_main.xml" value="0.3625" />
+        <entry key="..\:/Users/jerma/AndroidStudioProjects/KPRAndroid/app/src/main/res/layout/activity_main_manager.xml" value="0.2546875" />
         <entry key="..\:/Users/jerma/AndroidStudioProjects/KPRAndroid/app/src/main/res/layout/fragement_detail_schedule.xml" value="0.19537037037037036" />
         <entry key="..\:/Users/jerma/AndroidStudioProjects/KPRAndroid/app/src/main/res/layout/fragment_add_customer.xml" value="0.25" />
         <entry key="..\:/Users/jerma/AndroidStudioProjects/KPRAndroid/app/src/main/res/layout/fragment_add_schedule.xml" value="0.19537037037037036" />
@@ -18,6 +19,7 @@
         <entry key="..\:/Users/jerma/AndroidStudioProjects/KPRAndroid/app/src/main/res/layout/fragment_schedule.xml" value="0.3625" />
         <entry key="..\:/Users/jerma/AndroidStudioProjects/KPRAndroid/app/src/main/res/layout/lv_customer.xml" value="0.25" />
         <entry key="..\:/Users/jerma/AndroidStudioProjects/KPRAndroid/app/src/main/res/layout/navbar_header.xml" value="0.40160642570281124" />
+        <entry key="..\:/Users/jerma/AndroidStudioProjects/KPRAndroid/app/src/main/res/menu/navbar_manager.xml" value="0.2546875" />
         <entry key="..\:/Users/jerma/AndroidStudioProjects/KPRAndroid/app/src/main/res/menu/navbar_menu.xml" value="0.3625" />
       </map>
     </option>

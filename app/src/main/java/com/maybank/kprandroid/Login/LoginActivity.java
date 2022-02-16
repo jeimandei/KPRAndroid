@@ -130,6 +130,7 @@ public class LoginActivity extends AppCompatActivity {
             Log.d("id_em:", String.valueOf(result));
 
             String id_emp = object.getString(ConfigLogin.TAG_LOGIN_EMP_ID);
+            String role_emp = object.getString(ConfigLogin.TAG_LOGIN_EMP_ROLE);
 
             // SHARED PREFERENCED
 
@@ -139,6 +140,8 @@ public class LoginActivity extends AppCompatActivity {
 
             Intent intent = new Intent(LoginActivity.this, MainActivity.class );
             intent.putExtra(ConfigLogin.TAG_LOGIN_EMP_ID, id_emp);
+            intent.putExtra(ConfigLogin.TAG_LOGIN_EMP_ID, id_emp);
+            intent.putExtra(ConfigLogin.TAG_LOGIN_EMP_ROLE, role_emp);
             startActivity(intent);
 
         } catch (Exception ex){

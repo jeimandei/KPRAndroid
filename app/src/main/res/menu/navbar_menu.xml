@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <group
         android:id="@+id/group_menu"
         android:checkableBehavior="single">
@@ -11,5 +12,10 @@
             android:id="@+id/nav_nasabah"
             android:icon="@drawable/ic_baseline_people_outline_24"
             android:title="Data Customer" />
+        <item
+            android:id="@+id/nav_manager"
+            android:icon="@drawable/ic_baseline_checklist_24"
+            android:title="Approval"
+            />
     </group>
 </menu>
