@@ -1,7 +1,6 @@
 package com.maybank.kprandroid.Schedule;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -35,10 +34,14 @@ public class ScheduleFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private String JSON_STRING;
-    private View viewGroup;
+    private ViewGroup viewGroup;
     private ListView listView;
     private FloatingActionButton floatingActionButton;
     String id_emp;
+
+    public ScheduleFragment() {
+        // Required empty public constructor
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -56,7 +59,6 @@ public class ScheduleFragment extends Fragment {
 
         id_emp = this.getArguments().getString("id_emp_1");
 
-        //Log.d("cekSF:", this.getArguments().getString("id_emp_1"));
         getJSON();
 
 

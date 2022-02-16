@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private ActionBarDrawerToggle toggle;
     Toolbar toolbar;
-    String id;
+    String id, id1;
 
 
     @Override
@@ -41,6 +41,11 @@ public class MainActivity extends AppCompatActivity {
         Intent receiveIntent = getIntent();
         id = receiveIntent.getStringExtra(ConfigLogin.EMP_ID);
         Log.d("id_main:", id);
+
+        Intent receiveIntent1 = getIntent();
+        id1 = receiveIntent1.getStringExtra(ConfigLogin.EMP_ID);
+        Log.d("id_main:", id1);
+
 
         initView();
     }
@@ -58,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d("cekIDS:", id);
         callFragment(scheduleFragment);
 
+//        getSupportFragmentManager().beginTransaction().replace(R.id.framelayout, new ScheduleFragment()).commit();
         binding.navbarView.setCheckedItem(R.id.nav_agenda);
 
         toggle = new ActionBarDrawerToggle(this, binding.navDrawer, binding.toolbar, R.string.open, R.string.close);
