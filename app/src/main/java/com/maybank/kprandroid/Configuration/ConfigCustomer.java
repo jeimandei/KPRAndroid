@@ -4,10 +4,10 @@ public class ConfigCustomer {
     public static final String IP = "https://kprandroid.000webhostapp.com/";
     // url dimana web API berada
     public static final String URL_GET_ALL_CUSTOMER = IP + "kpr/customer/lihat_customer.php?id_emp=";
-    public static final String URL_GET_DETAIL_CUSTOMER = "http://192.168.30.26/training/peserta/tr_detail_peserta.php?id_pst=";
+    public static final String URL_GET_DETAIL_CUSTOMER = IP + "kpr/customer/tampilCustomer.php?id_nsb=";
     public static final String URL_ADD_CUSTOMER = IP + "kpr/customer/tambahCustomer.php";
-    public static final String URL_UPDATE_CUSTOMER = "http://192.168.30.26/training/peserta/tr_update_peserta.php";
-    public static final String URL_DELETE_CUSTOMER = "http://192.168.30.26/training/peserta/tr_delete_peserta.php?id_pst=";
+    public static final String URL_UPDATE_CUSTOMER = IP + "kpr/customer/updateCustomer.php";
+    public static final String URL_DELETE_CUSTOMER = IP + "kpr/customer/hapusCustomer.php?id=";
 
     // key and value JSON yang muncul di browser
     public static final String KEY_CST_ID = "id_nsb";

@@ -73,7 +73,6 @@ public class ScheduleFragment extends Fragment {
                 addScheduleFragment.setArguments(arg);
                 callFragment(addScheduleFragment);
 
-
                 fragmentTransaction.commit();
             }
         });
@@ -183,8 +182,6 @@ public class ScheduleFragment extends Fragment {
             }
         });
     }
-
-
 
     public void callFragment(Fragment fragment) {
         FragmentManager man = getActivity().getSupportFragmentManager();

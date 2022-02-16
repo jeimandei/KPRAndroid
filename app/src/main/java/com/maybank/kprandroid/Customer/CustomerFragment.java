@@ -155,28 +155,28 @@ public class CustomerFragment extends Fragment {
         listView.setAdapter(adapter);
 
 
-//        lv_part.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                Bundle bundle = new Bundle();
-//                CompanyDetailFragment companyDetailFragment = new CompanyDetailFragment();
-//                FragmentManager fragmentManager = getFragmentManager();
-//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//                fragmentTransaction.replace(R.id.framelayout,companyDetailFragment);
-//
-//
-//                HashMap<String, String> map = (HashMap) adapterView.getItemAtPosition(i);
-//                String companyid = map.get(Config.TAG_JSON_ID_COMPANY).toString();
-//                Bundle args = new Bundle();
-//                args.putString("id", companyid);
-//                companyDetailFragment.setArguments(args);
-//
-//
-//
-//                Log.d("Par: ", String.valueOf(args));
-//                fragmentTransaction.commit();
-//            }
-//        });
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Bundle bundle = new Bundle();
+                DetailCustomerFragment detailCustomerFragment = new DetailCustomerFragment();
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.framelayout,detailCustomerFragment);
+
+
+                HashMap<String, String> map = (HashMap) adapterView.getItemAtPosition(i);
+                String nsbid = map.get(ConfigCustomer.TAG_JSON_CST_ID).toString();
+                Bundle args = new Bundle();
+                args.putString("id", nsbid);
+                detailCustomerFragment.setArguments(args);
+
+
+
+                Log.d("Par: ", String.valueOf(args));
+                fragmentTransaction.commit();
+            }
+        });
     }
 
     public void callFragment(Fragment fragment) {
