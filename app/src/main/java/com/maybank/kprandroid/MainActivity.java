@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.maybank.kprandroid.Configuration.ConfigLogin;
@@ -25,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private ActionBarDrawerToggle toggle;
     Toolbar toolbar;
-    String id;
+    String id, id1;
 
 
     @Override
@@ -40,6 +41,10 @@ public class MainActivity extends AppCompatActivity {
         Intent receiveIntent = getIntent();
         id = receiveIntent.getStringExtra(ConfigLogin.EMP_ID);
         Log.d("id_main:", id);
+
+        Intent receiveIntent1 = getIntent();
+        id1 = receiveIntent1.getStringExtra(ConfigLogin.EMP_ID);
+        Log.d("id_main:", id1);
 
 
         initView();
@@ -69,16 +74,20 @@ public class MainActivity extends AppCompatActivity {
                         fragments[0] = new ScheduleFragment();
                         getSupportActionBar().setTitle("Schedule");
                         binding.navDrawer.closeDrawer(GravityCompat.START);
-
+                        Bundle arg = new Bundle();
+                        arg.putString("id_emp_1", id);
+                        fragments[0].setArguments(arg);
+                        Log.d("cekIDS:", id);
                         callFragment(fragments[0]);
                         break;
                     case R.id.nav_nasabah:
                         fragments[0] = new CustomerFragment();
                         getSupportActionBar().setTitle("Customer");
                         binding.navDrawer.closeDrawer(GravityCompat.START);
-                        Bundle arg = new Bundle();
-                        arg.putString("id_emp", id);
-                        fragments[0].setArguments(arg);
+                        Bundle arg1 = new Bundle();
+                        arg1.putString("id_emp", id);
+                        Log.d("cekID:", id);
+                        fragments[0].setArguments(arg1);
                         callFragment(fragments[0]);
                         break;
                 }
