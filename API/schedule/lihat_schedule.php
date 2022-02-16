@@ -4,10 +4,10 @@
 	
 	//Membuat SQL Query
 
-	$id = $_GET['id'];
+	$id = $_GET['id_emp'];
 
 	// perlu revisi dari shared preferenced, get daya by id_emp
-	$sql = "SELECT j.id_jantem, n.id_nsb, n.nama_nsb, j.pesan_jantem, j.tgl_jantem FROM tb_janji_temu j
+	$sql = "SELECT * FROM tb_janji_temu j
 		JOIN tb_nasabah n ON j.id_nsb = n.id_nsb
 		JOIN tb_employee e ON n.id_emp = e.id_emp
 		WHERE e.id_emp = '$id'";
@@ -26,7 +26,8 @@
 			"id_nsb"=>$row['id_nsb'],
 			"nama_nsb"=>$row['nama_nsb'],
             "pesan_jantem"=>$row['pesan_jantem'],
-            "tgl_jantem"=>$row['tgl_jantem']
+            "tgl_jantem"=>$row['tgl_jantem'],
+			"id_emp" => $row['id_emp']
 		));
 	}
 	
