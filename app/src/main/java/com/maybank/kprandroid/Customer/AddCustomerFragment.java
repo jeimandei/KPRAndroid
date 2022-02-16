@@ -37,7 +37,7 @@ import java.util.Locale;
 
 
 public class AddCustomerFragment extends Fragment {
-    private String JSON_STRING;
+    private String JSON_STRING, id_emp;
     private ViewGroup viewGroup;
     private Button tambah_customer;
     private EditText tambah_nama_nsb, tambah_ktp_nsb, tambah_tlahir_nsb, tambah_dob_nsb,
@@ -51,6 +51,8 @@ public class AddCustomerFragment extends Fragment {
         // Inflate the layout for this fragment
 
         viewGroup = (ViewGroup) inflater.inflate(R.layout.fragment_add_customer, container, false);
+
+        id_emp = this.getArguments().getString("id_emp_1");
 
         floatingActionButton = viewGroup.findViewById(R.id.customer_add);
         listView = viewGroup.findViewById(R.id.lv_customer);
@@ -66,9 +68,6 @@ public class AddCustomerFragment extends Fragment {
 
         //GET DATA SHARED
 
-        SharedPreferences sh =  this.getActivity().getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
-        String s1 = sh.getString("id_emp", "");
-        String id_emp = s1;
         DatePickerDialog.OnDateSetListener date_start = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int y, int m, int d) {
@@ -117,6 +116,7 @@ public class AddCustomerFragment extends Fragment {
                             params.put(ConfigCustomer.KEY_CST_HP, hp_nsb);
                             params.put(ConfigCustomer.KEY_CST_ALAMAT, alamat_nsb);
                             params.put(ConfigCustomer.KEY_CST_ID_EMP, id_emp);
+                            Log.d("cost: ", String.valueOf(params));
 
                             HttpHandler handler = new HttpHandler();
                             String res = handler.sendPostReq(ConfigCustomer.URL_ADD_CUSTOMER, params);
@@ -129,7 +129,7 @@ public class AddCustomerFragment extends Fragment {
                             loading.dismiss();
                             Toast.makeText(getContext(), messsage, Toast.LENGTH_LONG).show();
                             Log.d("m:", messsage);
-                            clearText();
+                            //clearText();
 
 //                            ScheduleFragment scheduleFragment = new ScheduleFragment();
 //                            FragmentManager fragmentManager = getFragmentManager();
