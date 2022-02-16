@@ -288,6 +288,7 @@ public class DetailScheduleFragment extends Fragment implements View.OnClickList
                     Toast.makeText(getContext(), "" + s,
                             Toast.LENGTH_SHORT).show();
 
+
                 }
 
             }
