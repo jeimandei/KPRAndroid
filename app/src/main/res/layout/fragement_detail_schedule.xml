@@ -83,7 +83,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btn_update_peserta"
+            android:id="@+id/btn_update_sch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
@@ -94,7 +94,7 @@
             />
 
         <Button
-            android:id="@+id/btn_delete_peserta"
+            android:id="@+id/btn_delete_sch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
