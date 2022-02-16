@@ -36,7 +36,7 @@ public class ScheduleFragment extends Fragment {
     private String JSON_STRING;
     private ViewGroup viewGroup;
     private ListView listView;
-    private FloatingActionButton schedule_add;
+    private FloatingActionButton floatingActionButton;
     String id_emp;
 
     public ScheduleFragment() {
@@ -54,30 +54,12 @@ public class ScheduleFragment extends Fragment {
         // Inflate the layout for this fragment
         viewGroup = (ViewGroup) inflater.inflate(R.layout.fragment_schedule, container, false);
 
-        schedule_add = viewGroup.findViewById(R.id.schedule_add);
+        floatingActionButton = viewGroup.findViewById(R.id.schedule_add);
         listView = viewGroup.findViewById(R.id.lv_schedule);
 
         id_emp = this.getArguments().getString("id_emp_1");
 
         getJSON();
-
-        schedule_add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AddScheduleFragment addScheduleFragment = new AddScheduleFragment();
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.framelayout, addScheduleFragment);
-                Bundle arg = new Bundle();
-                arg.putString("id_emp", id_emp);
-                addScheduleFragment.setArguments(arg);
-                callFragment(addScheduleFragment);
-                fragmentTransaction.commit();
-
-
-            }
-        });
-
 
 
         return viewGroup;

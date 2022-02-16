@@ -42,10 +42,6 @@ public class MainActivity extends AppCompatActivity {
         id = receiveIntent.getStringExtra(ConfigLogin.EMP_ID);
         Log.d("id_main:", id);
 
-        Intent receiveIntent1 = getIntent();
-        id1 = receiveIntent1.getStringExtra(ConfigLogin.EMP_ID);
-        Log.d("id_main:", id1);
-
 
         initView();
     }
