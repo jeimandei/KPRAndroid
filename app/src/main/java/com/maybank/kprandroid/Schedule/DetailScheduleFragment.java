@@ -31,6 +31,7 @@ import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Locale;
 
 
@@ -150,10 +151,87 @@ public class DetailScheduleFragment extends Fragment implements View.OnClickList
     @Override
     public void onClick(View view) {
         if (view == update){
-//            confirmUpdate();
+            confirmUpdate();
         }else if (view == delete){
             confirmDelete();
         }
+    }
+
+    private void confirmUpdate() {
+
+        final String tanggal = sch_date.getText().toString().trim();
+        final String memo = sch_msg.getText().toString().trim();
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
+        alertDialogBuilder.setMessage("Are you sure want to update this data? " +
+                "\n Tanggal Bertemu: " + tanggal +
+                "\n Pesan: " + memo);
+
+        alertDialogBuilder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                updateSch();
+            }
+        });
+
+        alertDialogBuilder.setNegativeButton("Tidak",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Tidak ngapa-ngapain
+                    }
+                });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+
+
+    }
+
+    private void updateSch() {
+
+        final String tanggal_temu = sch_date.getText().toString().trim();
+        final String memo = sch_msg.getText().toString().trim();
+
+        class UpdateSch extends AsyncTask<Void, Void, String>{
+            ProgressDialog loading;
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                loading = ProgressDialog.show(getContext(),
+                        "Updating...", "Wait...", false, false);
+
+            }
+
+            @Override
+            protected String doInBackground(Void... voids) {
+                HashMap<String, String> hashMap = new HashMap<>();
+                hashMap.put(ConfigSchedule.KEY_SCH_ID, id_sch);
+                hashMap.put(ConfigSchedule.KEY_SCH_TGL, tanggal_temu);
+                hashMap.put(ConfigSchedule.KEY_SCH_PESAN, memo);
+
+                HttpHandler handler = new HttpHandler();
+                String s = handler.sendPostReq(ConfigSchedule.URL_UPDATE_SCHEDULE , hashMap);
+                Log.d("Cek_Hasil", String.valueOf(hashMap));
+
+                return s;
+            }
+
+
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+                loading.dismiss();
+//                Intent myIntent = new Intent(LihatDetailDataActivityInstruktur.this, MainActivity.class);
+//                myIntent.putExtra("keyName", "instruktur");
+//                startActivity(myIntent);
+            }
+        }
+
+        UpdateSch ue = new UpdateSch();
+        ue.execute();
+
     }
 
     private void confirmDelete() {
