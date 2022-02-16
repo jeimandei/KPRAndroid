@@ -86,7 +86,9 @@ public class AddCustomerFragment extends Fragment implements View.OnClickListene
         tambah_dob_nsb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new DatePickerDialog(view.getContext(), date_start, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
+                DatePickerDialog datePickerDialog = new DatePickerDialog(view.getContext(), date_start, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+                datePickerDialog.show();
+                datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis()-1000);
             }
         });
 
