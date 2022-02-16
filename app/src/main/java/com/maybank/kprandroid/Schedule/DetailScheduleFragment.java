@@ -214,7 +214,7 @@ public class DetailScheduleFragment extends Fragment implements View.OnClickList
                 HttpHandler handler = new HttpHandler();
                 String s = handler.sendPostReq(ConfigSchedule.URL_UPDATE_SCHEDULE , hashMap);
                 Log.d("Cek_Hasil", String.valueOf(hashMap));
-
+                Log.d("Cek_Hasil", s);
                 return s;
             }
 

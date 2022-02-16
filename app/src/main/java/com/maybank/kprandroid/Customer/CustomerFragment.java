@@ -65,6 +65,9 @@ public class CustomerFragment extends Fragment {
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.framelayout,addCustomerFragment);
+                Bundle arg = new Bundle();
+                arg.putString("id_emp_1", id_emp);
+                addCustomerFragment.setArguments(arg);
                 callFragment(addCustomerFragment);
                 fragmentTransaction.commit();
             }

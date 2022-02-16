@@ -1,7 +1,7 @@
 <?php 
  //Mendapatkan Nilai ID
  session_start();
- $id = $_GET['id'];
+ $id = $_GET['id_sch'];
  
  //Import File Koneksi Database
  require_once('../koneksi.php');
