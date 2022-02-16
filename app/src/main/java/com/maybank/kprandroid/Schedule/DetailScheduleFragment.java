@@ -2,9 +2,12 @@ package com.maybank.kprandroid.Schedule;
 
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -15,10 +18,12 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.maybank.kprandroid.Configuration.ConfigSchedule;
 import com.maybank.kprandroid.HttpHandler;
+import com.maybank.kprandroid.MainActivity;
 import com.maybank.kprandroid.R;
 
 import org.json.JSONArray;
@@ -29,7 +34,7 @@ import java.util.Calendar;
 import java.util.Locale;
 
 
-public class DetailScheduleFragment extends Fragment {
+public class DetailScheduleFragment extends Fragment implements View.OnClickListener {
     private String JSON_STRING;
     private ViewGroup viewGroup;
     private FloatingActionButton floatingActionButton;
@@ -62,6 +67,9 @@ public class DetailScheduleFragment extends Fragment {
 
         getJSON();
 
+        update.setOnClickListener(this);
+        delete.setOnClickListener(this);
+
         DatePickerDialog.OnDateSetListener date_start = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int y, int m, int d) {
@@ -78,9 +86,6 @@ public class DetailScheduleFragment extends Fragment {
                 new DatePickerDialog(view.getContext(), date_start, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
-
-
-
         return viewGroup;
     }
 
@@ -140,5 +145,78 @@ public class DetailScheduleFragment extends Fragment {
         SimpleDateFormat dateFormat = new SimpleDateFormat(date, Locale.ENGLISH);
         sch_date.setText(dateFormat.format(calendar.getTime()));
         dates = dateFormat.format(calendar.getTime());
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view == update){
+//            confirmUpdate();
+        }else if (view == delete){
+            confirmDelete();
+        }
+    }
+
+    private void confirmDelete() {
+
+        final String tanggal_temu = sch_date.getText().toString().trim();
+        final String memo = sch_msg.getText().toString().trim();
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
+        alertDialogBuilder.setMessage("Are you sure want to delete this data? " +
+                "\n Tanggal Temu: " + tanggal_temu +
+                "\n Pesan: " + memo );
+
+        alertDialogBuilder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                deleteMemo();
+
+            }
+        });
+
+        alertDialogBuilder.setNegativeButton("Tidak",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Tidak ngapa-ngapain
+                    }
+                });
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
+    private void deleteMemo() {
+
+            class DeleteSch extends AsyncTask<Void, Void, String>{
+                ProgressDialog loading;
+
+                @Override
+                protected void onPreExecute() {
+                    super.onPreExecute();
+                    loading = ProgressDialog.show(getContext(),
+                            "Updating...", "Tunggu...",
+                            false, false);
+                }
+
+                @Override
+                protected String doInBackground(Void... voids) {
+                    HttpHandler handler = new HttpHandler();
+                    String s = handler.sendGetResp(ConfigSchedule.URL_DELETE_SCHEDULE, id_sch);
+                    return s;
+                }
+
+                @Override
+                protected void onPostExecute(String s) {
+                    super.onPostExecute(s);
+                    loading.dismiss();
+                    Toast.makeText(getContext(), "" + s,
+                            Toast.LENGTH_SHORT).show();
+
+                }
+
+            }
+
+        DeleteSch deleteSch = new DeleteSch();
+            deleteSch.execute();
+
     }
 }

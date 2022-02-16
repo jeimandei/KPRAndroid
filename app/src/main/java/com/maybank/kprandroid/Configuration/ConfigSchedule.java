@@ -3,11 +3,11 @@ package com.maybank.kprandroid.Configuration;
 public class ConfigSchedule {
 
     // url dimana web API berada
-    public static final String URL_GET_ALL_SCHEDULE = "http://192.168.30.26/kpr/schedule/lihat_schedule.php?id_emp=";
-    public static final String URL_GET_DETAIL_SCHEDULE = "http://192.168.30.26/kpr/schedule/tampilSchedule.php?id_jantem=";
+    public static final String URL_GET_ALL_SCHEDULE = "http://192.168.31.103/kpr/schedule/lihat_schedule.php?id_emp=";
+    public static final String URL_GET_DETAIL_SCHEDULE = "http://192.168.31.103/kpr/schedule/tampilSchedule.php?id_jantem=";
     public static final String URL_ADD_SCHEDULE = "http://127.0.0.1/training/peserta/tr_add_peserta.php";
     public static final String URL_UPDATE_SCHEDULE = "http://127.0.0.1/training/peserta/tr_update_peserta.php";
-    public static final String URL_DELETE_SCHEDULE = "http://127.0.0.1/training/peserta/tr_delete_peserta.php?id_pst=";
+    public static final String URL_DELETE_SCHEDULE = "http://192.168.31.103/kpr/schedule/hapusSchedule.php?id_sch=";
 
     // key and value JSON yang muncul di browser
     public static final String KEY_SCH_ID = "id_jantem";

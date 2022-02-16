@@ -1,6 +1,6 @@
 <?php 
 	//Mendapatkan Nilai Dari Variable ID Pegawai yang ingin ditampilkan
-	$id_emp = $_GET['id_emp'];
+	
 	$id_jantem = $_GET['id_jantem'];
 	
 	//Importing database
@@ -11,7 +11,7 @@
 	$sql = "SELECT * FROM tb_janji_temu j
 		JOIN tb_nasabah n ON j.id_nsb = n.id_nsb
         JOIN tb_employee e ON n.id_emp = e.id_emp
-        WHERE e.id_emp = $id_emp AND id_jantem = $id_jantem";
+        WHERE id_jantem = $id_jantem";
 	
 	//Mendapatkan Hasil 
 	$r = mysqli_query($con,$sql);
