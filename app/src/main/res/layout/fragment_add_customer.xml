@@ -226,8 +226,8 @@
 
         </LinearLayout>
 
-
     </ScrollView>
+
 
 
     </LinearLayout>
@@ -251,4 +251,5 @@
             android:backgroundTint="#CD853F"
             android:text="Tambah Nasabah" />
     </LinearLayout>
+
 </FrameLayout>
