@@ -2,9 +2,11 @@ package com.maybank.kprandroid.Configuration;
 
 public class ConfigCustomer {
     // url dimana web API berada
-    public static final String URL_GET_ALL_CUSTOMER = "http://192.168.31.103/kpr/customer/lihat_customer.php?id_emp=";
+    public static final String IP = "http://192.168.1.152/";
+
+    public static final String URL_GET_ALL_CUSTOMER = IP+"/kpr/customer/lihat_customer.php?id_emp=";
     public static final String URL_GET_DETAIL_CUSTOMER = "http://127.0.0.1/training/peserta/tr_detail_peserta.php?id_pst=";
-    public static final String URL_ADD_CUSTOMER = "http://127.0.0.1/training/peserta/tr_add_peserta.php";
+    public static final String URL_ADD_CUSTOMER = IP+"/kpr/customer/tambahCustomer.php";
     public static final String URL_UPDATE_CUSTOMER = "http://127.0.0.1/training/peserta/tr_update_peserta.php";
     public static final String URL_DELETE_CUSTOMER = "http://127.0.0.1/training/peserta/tr_delete_peserta.php?id_pst=";
 
@@ -12,7 +14,7 @@ public class ConfigCustomer {
     public static final String KEY_CST_ID = "id_nsb";
     public static final String KEY_CST_NAME = "nama_nsb";
     public static final String KEY_CST_KTP = "ktp_nsb";
-    public static final String KEY_CST_TMPT_LAHIR = "tmpt_lahir_nsb";
+    public static final String KEY_CST_TMPT_LAHIR = "tmp_lahir_nsb";
     public static final String KEY_CST_TGL_LAHIR = "tgl_lahir_nsb";
     public static final String KEY_CST_ALAMAT = "alamat_nsb";
     public static final String KEY_CST_HP = "hp_nsb";
