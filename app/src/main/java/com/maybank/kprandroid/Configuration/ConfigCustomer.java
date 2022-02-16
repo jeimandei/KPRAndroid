@@ -1,7 +1,7 @@
 package com.maybank.kprandroid.Configuration;
 
 public class ConfigCustomer {
-    public static final String IP = "http://192.168.30.26/";
+    public static final String IP = "https://kprandroid.000webhostapp.com/";
     // url dimana web API berada
     public static final String URL_GET_ALL_CUSTOMER = IP + "kpr/customer/lihat_customer.php?id_emp=";
     public static final String URL_GET_DETAIL_CUSTOMER = "http://192.168.30.26/training/peserta/tr_detail_peserta.php?id_pst=";

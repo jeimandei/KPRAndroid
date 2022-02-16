@@ -8,6 +8,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -49,8 +50,8 @@ public class DetailScheduleFragment extends Fragment implements View.OnClickList
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -58,6 +59,8 @@ public class DetailScheduleFragment extends Fragment implements View.OnClickList
         // Inflate the layout for this fragment
         viewGroup = (ViewGroup) inflater.inflate(R.layout.fragment_detail_schedule, container, false);
         id_sch = this.getArguments().getString("id");
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Detail Schedule Customer");
+
 
         sch_date = viewGroup.findViewById(R.id.edit_tgl_bertemu);
         sch_msg = viewGroup.findViewById(R.id.edit_isi_memo);

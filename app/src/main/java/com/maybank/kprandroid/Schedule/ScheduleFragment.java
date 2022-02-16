@@ -72,6 +72,8 @@ public class ScheduleFragment extends Fragment {
                 arg.putString("id_emp_1", id_emp);
                 addScheduleFragment.setArguments(arg);
                 callFragment(addScheduleFragment);
+
+
                 fragmentTransaction.commit();
             }
         });
