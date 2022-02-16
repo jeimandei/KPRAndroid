@@ -146,7 +146,6 @@ public class AddScheduleFragment extends Fragment {
                         Bundle arg = new Bundle();
                         arg.putString("id_emp_1", id_emp);
                         scheduleFragment.setArguments(arg);
-
                         fragmentTransaction.commit();
                     }
                 }
