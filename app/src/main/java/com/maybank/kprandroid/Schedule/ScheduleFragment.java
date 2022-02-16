@@ -61,6 +61,17 @@ public class ScheduleFragment extends Fragment {
 
         getJSON();
 
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AddScheduleFragment addScheduleFragment = new AddScheduleFragment();
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.framelayout,addScheduleFragment);
+                callFragment(addScheduleFragment);
+                fragmentTransaction.commit();
+            }
+        });
 
         return viewGroup;
     }
@@ -146,28 +157,26 @@ public class ScheduleFragment extends Fragment {
         listView.setAdapter(adapter);
 
 
-//        lv_part.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                Bundle bundle = new Bundle();
-//                CompanyDetailFragment companyDetailFragment = new CompanyDetailFragment();
-//                FragmentManager fragmentManager = getFragmentManager();
-//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//                fragmentTransaction.replace(R.id.framelayout,companyDetailFragment);
-//
-//
-//                HashMap<String, String> map = (HashMap) adapterView.getItemAtPosition(i);
-//                String companyid = map.get(Config.TAG_JSON_ID_COMPANY).toString();
-//                Bundle args = new Bundle();
-//                args.putString("id", companyid);
-//                companyDetailFragment.setArguments(args);
-//
-//
-//
-//                Log.d("Par: ", String.valueOf(args));
-//                fragmentTransaction.commit();
-//            }
-//        });
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Bundle bundle = new Bundle();
+                DetailScheduleFragment detailScheduleFragment = new DetailScheduleFragment();
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.framelayout,detailScheduleFragment);
+
+
+                HashMap<String, String> map = (HashMap) adapterView.getItemAtPosition(i);
+                String schid = map.get(ConfigSchedule.TAG_JSON_SCH_ID).toString();
+                Bundle args = new Bundle();
+                args.putString("id", schid);
+                detailScheduleFragment.setArguments(args);
+
+                Log.d("Par: ", String.valueOf(args));
+                fragmentTransaction.commit();
+            }
+        });
     }
 
 
