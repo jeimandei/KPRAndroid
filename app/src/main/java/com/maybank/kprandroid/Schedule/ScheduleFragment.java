@@ -68,6 +68,9 @@ public class ScheduleFragment extends Fragment {
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.framelayout,addScheduleFragment);
+                Bundle arg = new Bundle();
+                arg.putString("id_emp_1", id_emp);
+                addScheduleFragment.setArguments(arg);
                 callFragment(addScheduleFragment);
                 fragmentTransaction.commit();
             }

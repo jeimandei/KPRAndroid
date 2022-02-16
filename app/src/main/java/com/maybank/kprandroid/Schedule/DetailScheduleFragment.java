@@ -169,7 +169,6 @@ public class DetailScheduleFragment extends Fragment implements View.OnClickList
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 deleteMemo();
-
             }
         });
 
