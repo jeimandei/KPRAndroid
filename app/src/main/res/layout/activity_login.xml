@@ -51,7 +51,8 @@
             android:layout_below="@+id/password"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="14dp"
-            android:backgroundTint="#856b0c"
+            android:backgroundTint="#CD853F"
+
             android:text="Log In"
             android:textColorHint="@color/black"
             android:textStyle="bold" />
