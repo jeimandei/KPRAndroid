@@ -1,6 +1,6 @@
 <?php 
 	//Mendapatkan Nilai Dari Variable ID Pegawai yang ingin ditampilkan
-	$id = $_GET['id'];
+	$id = $_GET['id_emp'];
 	
 	//Importing database
 	require_once('../koneksi.php');
