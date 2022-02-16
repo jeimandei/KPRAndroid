@@ -28,6 +28,7 @@
                 android:minHeight="?attr/actionBarSize"
                 app:title="TAMBAH DATA NASABAH"
                 app:titleTextColor="@color/black"
+
                 />
 
         </LinearLayout>
