@@ -2,7 +2,7 @@ package com.maybank.kprandroid.Configuration;
 
 public class ConfigCustomer {
     // url dimana web API berada
-    public static final String URL_GET_ALL_CUSTOMER = "http://192.168.43.157/kpr/customer/lihat_customer.php?id_emp=";
+    public static final String URL_GET_ALL_CUSTOMER = "http://192.168.30.26/kpr/customer/lihat_customer.php?id_emp=";
     public static final String URL_GET_DETAIL_CUSTOMER = "http://127.0.0.1/training/peserta/tr_detail_peserta.php?id_pst=";
     public static final String URL_ADD_CUSTOMER = "http://127.0.0.1/training/peserta/tr_add_peserta.php";
     public static final String URL_UPDATE_CUSTOMER = "http://127.0.0.1/training/peserta/tr_update_peserta.php";
