@@ -61,6 +61,17 @@ public class ScheduleFragment extends Fragment {
 
         getJSON();
 
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AddScheduleFragment addScheduleFragment = new AddScheduleFragment();
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.framelayout,addScheduleFragment);
+                callFragment(addScheduleFragment);
+                fragmentTransaction.commit();
+            }
+        });
 
         return viewGroup;
     }
