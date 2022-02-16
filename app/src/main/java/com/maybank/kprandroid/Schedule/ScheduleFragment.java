@@ -54,9 +54,9 @@ public class ScheduleFragment extends Fragment {
         floatingActionButton = viewGroup.findViewById(R.id.schedule_add);
         listView = viewGroup.findViewById(R.id.lv_schedule);
 
-        //id_emp = this.getArguments().getString("id_emp_1");
+        id_emp = this.getArguments().getString("id_emp_1");
 
-        Log.d("cekSF:", this.getArguments().getString("id_emp_1"));
+        //Log.d("cekSF:", this.getArguments().getString("id_emp_1"));
         getJSON();
 
 

@@ -54,8 +54,16 @@ public class MainActivity extends AppCompatActivity {
     private void initView() {
         setSupportActionBar(binding.toolbar);
 
-        getSupportActionBar().setTitle("Meeting Schedule");
-        getSupportFragmentManager().beginTransaction().replace(R.id.framelayout, new ScheduleFragment()).commit();
+        getSupportActionBar().setTitle("Schedule");
+
+        ScheduleFragment scheduleFragment = new ScheduleFragment();
+        Bundle arg = new Bundle();
+        arg.putString("id_emp_1", id);
+        scheduleFragment.setArguments(arg);
+        Log.d("cekIDS:", id);
+        callFragment(scheduleFragment);
+
+//        getSupportFragmentManager().beginTransaction().replace(R.id.framelayout, new ScheduleFragment()).commit();
         binding.navbarView.setCheckedItem(R.id.nav_agenda);
 
         toggle = new ActionBarDrawerToggle(this, binding.navDrawer, binding.toolbar, R.string.open, R.string.close);
@@ -71,14 +79,14 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.nav_agenda:
-                        fragments[0] = new ScheduleFragment();
+                        ScheduleFragment scheduleFragment = new ScheduleFragment();
                         getSupportActionBar().setTitle("Schedule");
                         binding.navDrawer.closeDrawer(GravityCompat.START);
                         Bundle arg = new Bundle();
                         arg.putString("id_emp_1", id);
-                        fragments[0].setArguments(arg);
+                        scheduleFragment.setArguments(arg);
                         Log.d("cekIDS:", id);
-                        callFragment(fragments[0]);
+                        callFragment(scheduleFragment);
                         break;
                     case R.id.nav_nasabah:
                         fragments[0] = new CustomerFragment();

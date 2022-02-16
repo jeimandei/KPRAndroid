@@ -4,7 +4,7 @@
 	
 	//Membuat SQL Query
 
-	$id = $_GET['id'];
+	$id = $_GET['id_emp'];
 
 	// perlu revisi dari shared preferenced, get daya by id_emp
 	$sql = "SELECT j.id_jantem, n.id_nsb, n.nama_nsb, j.pesan_jantem, j.tgl_jantem FROM tb_janji_temu j

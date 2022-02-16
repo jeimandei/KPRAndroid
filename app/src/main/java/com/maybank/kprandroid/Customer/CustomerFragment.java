@@ -39,10 +39,6 @@ public class CustomerFragment extends Fragment {
     private FloatingActionButton floatingActionButton;
     String id_emp;
 
-    public CustomerFragment() {
-        // Required empty public constructor
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
