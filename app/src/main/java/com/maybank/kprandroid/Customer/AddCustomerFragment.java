@@ -2,14 +2,12 @@ package com.maybank.kprandroid.Customer;
 
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -23,15 +21,11 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.maybank.kprandroid.Configuration.ConfigCustomer;
-import com.maybank.kprandroid.Configuration.ConfigSchedule;
 import com.maybank.kprandroid.HttpHandler;
 import com.maybank.kprandroid.R;
-import com.maybank.kprandroid.Schedule.AddScheduleFragment;
-import com.maybank.kprandroid.Schedule.ScheduleFragment;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -49,6 +43,8 @@ public class AddCustomerFragment extends Fragment implements View.OnClickListene
     private FloatingActionButton floatingActionButton;
     final Calendar calendar = Calendar.getInstance();
     boolean isAllFieldsChecked = false;
+    AlertDialog.Builder builderDialog;
+    AlertDialog alertDialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -102,6 +98,34 @@ public class AddCustomerFragment extends Fragment implements View.OnClickListene
         if (view == tambah_customer) {
             isAllFieldsChecked = CheckAllFields();
         }
+
+
+    }
+
+    private void showAlertDialog(int coba) {
+
+        builderDialog = new AlertDialog.Builder(getContext());
+        View layoutView = getLayoutInflater().inflate(coba, null);
+
+        AppCompatButton dialogButton = layoutView.findViewById(R.id.buttonOk);
+        builderDialog.setView(layoutView);
+        alertDialog = builderDialog.create();
+        alertDialog.show();
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                alertDialog.dismiss();
+            }
+        }, 2000);
+
+        dialogButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // dismis
+
+            }
+        });
 
 
     }
@@ -211,18 +235,25 @@ public class AddCustomerFragment extends Fragment implements View.OnClickListene
             protected void onPostExecute(String messsage) {
                 super.onPostExecute(messsage);
                 loading.dismiss();
-                Toast.makeText(getContext(), messsage, Toast.LENGTH_LONG).show();
-                Log.d("m:", messsage);
+//                Toast.makeText(getContext(), messsage, Toast.LENGTH_LONG).show();
+//                Log.d("m:", messsage);
                 clearText();
+
+                if (messsage.equals("Berhasil Menambahkan Data Nasabah")){
+                    showAlertDialog(R.layout.alert_succes);
+                } else {
+
+                }
 
                 CustomerFragment customerFragment = new CustomerFragment();
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.framelayout,customerFragment);
+                fragmentTransaction.replace(R.id.framelayout, customerFragment);
                 Bundle arg = new Bundle();
                 arg.putString("id_emp", id_emp);
                 customerFragment.setArguments(arg);
                 fragmentTransaction.commit();
+
             }
         }
 
