@@ -91,7 +91,7 @@ public class LoginActivity extends AppCompatActivity {
             protected void onPreExecute() {
                 super.onPreExecute();
                 loading = ProgressDialog.show(LoginActivity.this,
-                        "Mengambil Data", "Harap Menunggu",
+                        "Getting Data", "Please Wait",
                         false, false);
             }
 

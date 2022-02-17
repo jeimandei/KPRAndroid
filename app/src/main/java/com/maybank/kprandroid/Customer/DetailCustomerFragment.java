@@ -20,7 +20,6 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.maybank.kprandroid.Configuration.ConfigCustomer;
@@ -69,7 +68,6 @@ public class DetailCustomerFragment extends Fragment implements View.OnClickList
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Detail Customer");
         id_cust = this.getArguments().getString("id");
         id_emp = this.getArguments().getString("id_emp_1");
-        Toast.makeText(getContext(), ""+id_emp, Toast.LENGTH_SHORT).show();
         cust_name = viewGroup.findViewById(R.id.edit_nama_nsb);
         cust_ktp = viewGroup.findViewById(R.id.edit_ktp_nsb);
         cust_bp = viewGroup.findViewById(R.id.edit_tlahir_nsb);
@@ -356,8 +354,6 @@ public class DetailCustomerFragment extends Fragment implements View.OnClickList
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
                 loading.dismiss();
-                Toast.makeText(getContext(), "" + s,
-                        Toast.LENGTH_SHORT).show();
 
                 CustomerFragment customerFragment = new CustomerFragment();
                 FragmentManager fragmentManager = getFragmentManager();
