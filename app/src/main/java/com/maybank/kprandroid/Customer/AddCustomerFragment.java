@@ -101,7 +101,7 @@ public class AddCustomerFragment extends Fragment implements View.OnClickListene
     @Override
     public void onClick(View view) {
         if (view == tambah_customer) {
-            confirmAdd();
+            isAllFieldsChecked = CheckAllFields();
         }
 
 
@@ -130,7 +130,7 @@ public class AddCustomerFragment extends Fragment implements View.OnClickListene
         alertDialogBuilder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                isAllFieldsChecked = CheckAllFields();
+                addCustomer();
             }
         });
 
@@ -165,7 +165,7 @@ public class AddCustomerFragment extends Fragment implements View.OnClickListene
             tambah_alamat_nsb.setError("This field is required");
             return false;
         } else {
-            addCustomer();
+            confirmAdd();
         }
 
         // after all validation return true.
