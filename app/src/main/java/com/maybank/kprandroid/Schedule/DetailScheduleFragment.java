@@ -10,6 +10,8 @@ import android.os.Bundle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,6 +25,7 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.maybank.kprandroid.Configuration.ConfigSchedule;
+import com.maybank.kprandroid.Customer.CustomerFragment;
 import com.maybank.kprandroid.HttpHandler;
 import com.maybank.kprandroid.MainActivity;
 import com.maybank.kprandroid.R;
@@ -40,7 +43,7 @@ public class DetailScheduleFragment extends Fragment implements View.OnClickList
     private String JSON_STRING;
     private ViewGroup viewGroup;
     private FloatingActionButton floatingActionButton;
-    String id_sch, dates;
+    String id_sch, dates, id_emp;
     EditText sch_date, sch_msg;
     Button update, delete;
     TextView sch_name;
@@ -59,6 +62,7 @@ public class DetailScheduleFragment extends Fragment implements View.OnClickList
         // Inflate the layout for this fragment
         viewGroup = (ViewGroup) inflater.inflate(R.layout.fragment_detail_schedule, container, false);
         id_sch = this.getArguments().getString("id");
+        id_emp = this.getArguments().getString("id_emp_1");
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Detail Schedule Customer");
 
 
@@ -169,8 +173,8 @@ public class DetailScheduleFragment extends Fragment implements View.OnClickList
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
         alertDialogBuilder.setMessage("Are you sure want to update this data? " +
-                "\n Tanggal Bertemu: " + tanggal +
-                "\n Pesan: " + memo);
+                "\n Tanggal Temu      :  " + tanggal +
+                "\n Pesan                     :  " + memo );
 
         alertDialogBuilder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
             @Override
@@ -228,9 +232,15 @@ public class DetailScheduleFragment extends Fragment implements View.OnClickList
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
                 loading.dismiss();
-//                Intent myIntent = new Intent(LihatDetailDataActivityInstruktur.this, MainActivity.class);
-//                myIntent.putExtra("keyName", "instruktur");
-//                startActivity(myIntent);
+
+                ScheduleFragment scheduleFragment = new ScheduleFragment();
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.framelayout, scheduleFragment);
+                Bundle arg = new Bundle();
+                arg.putString("id_emp_1", id_emp);
+                scheduleFragment.setArguments(arg);
+                fragmentTransaction.commit();
             }
         }
 
@@ -245,8 +255,8 @@ public class DetailScheduleFragment extends Fragment implements View.OnClickList
         final String memo = sch_msg.getText().toString().trim();
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
         alertDialogBuilder.setMessage("Are you sure want to delete this data? " +
-                "\n Tanggal Temu: " + tanggal_temu +
-                "\n Pesan: " + memo );
+                "\n Tanggal Temu      :  " + tanggal_temu +
+                "\n Pesan                     :  " + memo );
 
         alertDialogBuilder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
             @Override
@@ -292,6 +302,15 @@ public class DetailScheduleFragment extends Fragment implements View.OnClickList
                     loading.dismiss();
                     Toast.makeText(getContext(), "" + s,
                             Toast.LENGTH_SHORT).show();
+
+                    ScheduleFragment scheduleFragment = new ScheduleFragment();
+                    FragmentManager fragmentManager = getFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.framelayout, scheduleFragment);
+                    Bundle arg = new Bundle();
+                    arg.putString("id_emp_1", id_emp);
+                    scheduleFragment.setArguments(arg);
+                    fragmentTransaction.commit();
 
 
                 }
