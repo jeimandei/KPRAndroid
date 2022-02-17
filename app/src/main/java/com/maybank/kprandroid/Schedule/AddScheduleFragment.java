@@ -126,7 +126,7 @@ public class AddScheduleFragment extends Fragment {
                         HashMap<String, String> params = new HashMap<>();
                         params.put(ConfigSchedule.KEY_SCH_TGL, tgl_jantem);
                         params.put(ConfigSchedule.KEY_SCH_PESAN, pesan);
-                        params.put(ConfigSchedule.KEY_SCH_ID_NSB, String.valueOf(Integer.parseInt(c_nsb_id+1)));
+                        params.put(ConfigSchedule.KEY_SCH_ID_NSB, c_nsb_id);
                         Log.d("inputss", String.valueOf(params));
                         HttpHandler handler = new HttpHandler();
                         String res = handler.sendPostReq(ConfigSchedule.URL_ADD_SCHEDULE, params);

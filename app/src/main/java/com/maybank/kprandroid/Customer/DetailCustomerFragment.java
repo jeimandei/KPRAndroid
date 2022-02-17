@@ -9,6 +9,8 @@ import android.os.Bundle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,6 +25,7 @@ import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.maybank.kprandroid.Configuration.ConfigCustomer;
 import com.maybank.kprandroid.Configuration.ConfigSchedule;
+import com.maybank.kprandroid.Document.DocumentFragment;
 import com.maybank.kprandroid.HttpHandler;
 import com.maybank.kprandroid.R;
 
@@ -73,6 +76,21 @@ public class DetailCustomerFragment extends Fragment implements View.OnClickList
         update = viewGroup.findViewById(R.id.btn_update_nsb);
         delete = viewGroup.findViewById(R.id.btn_delete_nsb);
         doc = viewGroup.findViewById(R.id.upload_doc);
+
+        doc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DocumentFragment documentFragment = new DocumentFragment();
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.framelayout,documentFragment);
+                Bundle arg = new Bundle();
+                arg.putString("id_nsb", id_cust);
+                documentFragment.setArguments(arg);
+                callFragment(documentFragment);
+                fragmentTransaction.commit();
+            }
+        });
 
         DatePickerDialog.OnDateSetListener datedob = new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -327,5 +345,17 @@ public class DetailCustomerFragment extends Fragment implements View.OnClickList
         DeleteSch deleteSch = new DeleteSch();
         deleteSch.execute();
 
+    }
+
+    public void callFragment(Fragment fragment) {
+        FragmentManager man = getActivity().getSupportFragmentManager();
+        FragmentTransaction trans = man.beginTransaction();
+        trans.setCustomAnimations(
+                android.R.anim.slide_in_left,
+                android.R.anim.slide_out_right
+        );
+        trans.replace(R.id.framelayout, fragment);
+        trans.addToBackStack(null);
+        trans.commit();
     }
 }
