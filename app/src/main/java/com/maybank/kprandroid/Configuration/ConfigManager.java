@@ -21,7 +21,7 @@ public class ConfigManager {
 
     // flag JSON
     public static final String TAG_JSON_ARRAY = "result";
-    public static final String TAG_JSON_CST_ID = "id_nsb";
+    public static final String TAG_JSON_MNG_NSB_ID = "id_nsb";
     public static final String TAG_JSON_MNG_NAME = "nama_nsb";
     public static final String TAG_JSON_CST_KTP = "ktp_nsb";
     public static final String TAG_JSON_CST_HP = "hp_nsb";

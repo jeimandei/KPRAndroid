@@ -22,6 +22,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.maybank.kprandroid.Configuration.ConfigCustomer;
 import com.maybank.kprandroid.Configuration.ConfigManager;
 import com.maybank.kprandroid.Customer.DetailCustomerFragment;
+import com.maybank.kprandroid.Document.DetailDocumentFragment;
 import com.maybank.kprandroid.HttpHandler;
 import com.maybank.kprandroid.R;
 
@@ -120,10 +121,12 @@ public class ManagerFragment extends Fragment {
 
             for (int i=0;i<jsonArray.length(); i++){
                 JSONObject object = jsonArray.getJSONObject(i);
+                String id = object.getString(ConfigManager.TAG_JSON_MNG_NSB_ID);
                 String name = object.getString(ConfigManager.TAG_JSON_MNG_NAME);
                 String emp = object.getString(ConfigManager.TAG_JSON_MNG_NAME_EMP);
 
                 HashMap<String, String> customer = new HashMap<>();
+                customer.put(ConfigManager.TAG_JSON_MNG_NSB_ID, id);
                 customer.put(ConfigManager.TAG_JSON_MNG_NAME, name);
                 customer.put(ConfigManager.TAG_JSON_MNG_NAME_EMP, emp);
 
@@ -144,28 +147,26 @@ public class ManagerFragment extends Fragment {
         listView.setAdapter(adapter);
 
 
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                Bundle bundle = new Bundle();
-//                DetailCustomerFragment detailCustomerFragment = new DetailCustomerFragment();
-//                FragmentManager fragmentManager = getFragmentManager();
-//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//                fragmentTransaction.replace(R.id.framelayout,detailCustomerFragment);
-//
-//
-//                HashMap<String, String> map = (HashMap) adapterView.getItemAtPosition(i);
-//                String nsbid = map.get(ConfigCustomer.TAG_JSON_CST_ID).toString();
-//                Bundle args = new Bundle();
-//                args.putString("id", nsbid);
-//                detailCustomerFragment.setArguments(args);
-//
-//
-//
-//                Log.d("Par: ", String.valueOf(args));
-//                fragmentTransaction.commit();
-//            }
-//        });
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Bundle bundle = new Bundle();
+                DetailDocumentFragment detailDocumentFragment = new DetailDocumentFragment();
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.framelayout,detailDocumentFragment);
+
+
+                HashMap<String, String> map = (HashMap) adapterView.getItemAtPosition(i);
+                String nsbid = map.get(ConfigManager.TAG_JSON_MNG_NSB_ID).toString();
+                Bundle args = new Bundle();
+                args.putString("id_nsb", nsbid);
+                detailDocumentFragment.setArguments(args);
+
+                Log.d("Par: ", String.valueOf(args));
+                fragmentTransaction.commit();
+            }
+        });
     }
 
     public void callFragment(Fragment fragment) {
