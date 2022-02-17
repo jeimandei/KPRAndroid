@@ -49,7 +49,8 @@ public class AddScheduleFragment extends Fragment {
     private Spinner spin_nsb;
     private Button tambah_schedule;
     private ViewGroup viewGroup;
-    private String JSON_STRING, c_nsb_id;
+    private String JSON_STRING;
+    private int c_nsb_id;
     String id_emp;
 
     final Calendar calendar = Calendar.getInstance();
@@ -92,24 +93,13 @@ public class AddScheduleFragment extends Fragment {
         });
         getJSON();
 
-        spin_nsb.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                c_nsb_id = String.valueOf(spin_nsb.getSelectedItemId());
-                Log.d("qwe:", c_nsb_id);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
 
         tambah_schedule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String tgl_jantem = tgl.getText().toString().trim();
                 String pesan = message.getText().toString().trim();
+                String id_nsb = String.valueOf(c_nsb_id);
 
 
                 class SaveData extends AsyncTask<Void, Void, String> {
@@ -126,7 +116,7 @@ public class AddScheduleFragment extends Fragment {
                         HashMap<String, String> params = new HashMap<>();
                         params.put(ConfigSchedule.KEY_SCH_TGL, tgl_jantem);
                         params.put(ConfigSchedule.KEY_SCH_PESAN, pesan);
-                        params.put(ConfigSchedule.KEY_SCH_ID_NSB, c_nsb_id);
+                        params.put(ConfigSchedule.KEY_SCH_ID_NSB, id_nsb);
                         Log.d("inputss", String.valueOf(params));
                         HttpHandler handler = new HttpHandler();
                         String res = handler.sendPostReq(ConfigSchedule.URL_ADD_SCHEDULE, params);
@@ -193,6 +183,7 @@ public class AddScheduleFragment extends Fragment {
                 Log.d("Data_JSON", JSON_STRING);
 
                 JSONObject jsonObject = null;
+                ArrayList<String> arrayList1 = new ArrayList<>();
                 ArrayList<String> arrayList = new ArrayList<>();
 
                 try {
@@ -207,6 +198,7 @@ public class AddScheduleFragment extends Fragment {
                         String id = object.getString(ConfigCustomer.TAG_JSON_CST_ID);
                         String name = object.getString(ConfigCustomer.TAG_JSON_CST_NAME);
 
+                        arrayList1.add(id);
                         arrayList.add(name);
                         Log.d("DataArr: ", String.valueOf(name));
                     }
@@ -220,6 +212,18 @@ public class AddScheduleFragment extends Fragment {
 
                 spin_nsb.setAdapter(adapter);
                 Log.d("spin", String.valueOf(arrayList));
+
+                spin_nsb.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                        c_nsb_id = Integer.parseInt(arrayList1.get(i));
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> adapterView) {
+
+                    }
+                });
 
             }
         }
