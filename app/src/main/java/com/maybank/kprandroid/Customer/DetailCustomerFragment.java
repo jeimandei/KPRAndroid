@@ -28,6 +28,7 @@ import com.maybank.kprandroid.Configuration.ConfigSchedule;
 import com.maybank.kprandroid.Document.DocumentFragment;
 import com.maybank.kprandroid.HttpHandler;
 import com.maybank.kprandroid.R;
+import com.maybank.kprandroid.Schedule.ScheduleFragment;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -41,7 +42,7 @@ import java.util.Locale;
 public class DetailCustomerFragment extends Fragment implements View.OnClickListener {
     private String JSON_STRING;
     private ViewGroup viewGroup;
-    String id_cust, dates;
+    String id_cust, dates, id_emp;
     EditText cust_name, cust_dob, cust_bp, cust_ph, cust_addr;
     Button update, delete, doc;
     TextView cust_ktp;
@@ -65,8 +66,10 @@ public class DetailCustomerFragment extends Fragment implements View.OnClickList
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         viewGroup = (ViewGroup) inflater.inflate(R.layout.fragment_detail_customer, container, false);
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Detail Customer");
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Detail Customer");
         id_cust = this.getArguments().getString("id");
+        id_emp = this.getArguments().getString("id_emp_1");
+        Toast.makeText(getContext(), "" + id_emp, Toast.LENGTH_SHORT).show();
         cust_name = viewGroup.findViewById(R.id.edit_nama_nsb);
         cust_ktp = viewGroup.findViewById(R.id.edit_ktp_nsb);
         cust_bp = viewGroup.findViewById(R.id.edit_tlahir_nsb);
@@ -83,7 +86,7 @@ public class DetailCustomerFragment extends Fragment implements View.OnClickList
                 DocumentFragment documentFragment = new DocumentFragment();
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.framelayout,documentFragment);
+                fragmentTransaction.replace(R.id.framelayout, documentFragment);
                 Bundle arg = new Bundle();
                 arg.putString("id_nsb", id_cust);
                 documentFragment.setArguments(arg);
@@ -153,7 +156,7 @@ public class DetailCustomerFragment extends Fragment implements View.OnClickList
     }
 
     private void displayDetailData(String json) {
-        try{
+        try {
             JSONObject jsonObject = new JSONObject(json);
             JSONArray jsonArray = jsonObject.getJSONArray(ConfigCustomer.TAG_JSON_ARRAY);
             JSONObject object = jsonArray.getJSONObject(0);
@@ -173,7 +176,7 @@ public class DetailCustomerFragment extends Fragment implements View.OnClickList
             cust_addr.setText(addr);
 
             Log.d("CekNama", json);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -187,9 +190,9 @@ public class DetailCustomerFragment extends Fragment implements View.OnClickList
 
     @Override
     public void onClick(View view) {
-        if (view == update){
+        if (view == update) {
             confirmUpdate();
-        }else if (view == delete){
+        } else if (view == delete) {
             confirmDelete();
         }
     }
@@ -203,9 +206,13 @@ public class DetailCustomerFragment extends Fragment implements View.OnClickList
         final String addr = cust_addr.getText().toString().trim();
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
-//        alertDialogBuilder.setMessage("Are you sure want to update this data? " +
-//                "\n Tanggal Bertemu: " + tanggal +
-//                "\n Pesan: " + memo);
+        alertDialogBuilder.setMessage("Are you sure want to update this data? " +
+                "\n Nam                   :  " + name +
+                "\n E - KTP               :  " + ktp +
+                "\n Tempat Lahir    :  " + pb +
+                "\n Tanggal Lahir   :  " + dob +
+                "\n No Telephone   :  " + ph +
+                "\n Alamat               :  " + addr);
 
         alertDialogBuilder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
             @Override
@@ -236,7 +243,7 @@ public class DetailCustomerFragment extends Fragment implements View.OnClickList
         final String ph = cust_ph.getText().toString().trim();
         final String addr = cust_addr.getText().toString().trim();
 
-        class Updatensb extends AsyncTask<Void, Void, String>{
+        class Updatensb extends AsyncTask<Void, Void, String> {
             ProgressDialog loading;
 
             @Override
@@ -259,7 +266,7 @@ public class DetailCustomerFragment extends Fragment implements View.OnClickList
                 hashMap.put(ConfigCustomer.KEY_CST_ALAMAT, addr);
 
                 HttpHandler handler = new HttpHandler();
-                String s = handler.sendPostReq(ConfigCustomer.URL_UPDATE_CUSTOMER , hashMap);
+                String s = handler.sendPostReq(ConfigCustomer.URL_UPDATE_CUSTOMER, hashMap);
                 Log.d("Cek_Hasil", String.valueOf(hashMap));
                 Log.d("Cek_Hasil", s);
                 return s;
@@ -270,6 +277,16 @@ public class DetailCustomerFragment extends Fragment implements View.OnClickList
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
                 loading.dismiss();
+
+                CustomerFragment customerFragment = new CustomerFragment();
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.framelayout, customerFragment);
+                Bundle arg = new Bundle();
+                arg.putString("id_emp", id_emp);
+                customerFragment.setArguments(arg);
+                callFragment(customerFragment);
+                fragmentTransaction.commit();
 
             }
         }
@@ -289,9 +306,13 @@ public class DetailCustomerFragment extends Fragment implements View.OnClickList
         final String addr = cust_addr.getText().toString().trim();
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
-//        alertDialogBuilder.setMessage("Are you sure want to delete this data? " +
-//                "\n Tanggal Temu: " + tanggal_temu +
-//                "\n Pesan: " + memo );
+        alertDialogBuilder.setMessage("Are you sure want to delete this data? " +
+                "\n Nam                   :  " + name +
+                "\n E - KTP               :  " + ktp +
+                "\n Tempat Lahir    :  " + pb +
+                "\n Tanggal Lahir   :  " + dob +
+                "\n No Telephone   :  " + ph +
+                "\n Alamat               :  " + addr);
 
         alertDialogBuilder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
             @Override
@@ -313,7 +334,7 @@ public class DetailCustomerFragment extends Fragment implements View.OnClickList
 
     private void deleteMemo() {
 
-        class DeleteSch extends AsyncTask<Void, Void, String>{
+        class DeleteSch extends AsyncTask<Void, Void, String> {
             ProgressDialog loading;
 
             @Override
@@ -337,6 +358,17 @@ public class DetailCustomerFragment extends Fragment implements View.OnClickList
                 loading.dismiss();
                 Toast.makeText(getContext(), "" + s,
                         Toast.LENGTH_SHORT).show();
+
+                CustomerFragment customerFragment = new CustomerFragment();
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.framelayout, customerFragment);
+                Bundle arg = new Bundle();
+                arg.putString("id_emp", id_emp);
+                customerFragment.setArguments(arg);
+                callFragment(customerFragment);
+                fragmentTransaction.commit();
+
 
             }
 

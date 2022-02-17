@@ -17,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.maybank.kprandroid.Configuration.ConfigCustomer;
@@ -158,7 +159,6 @@ public class CustomerFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Bundle bundle = new Bundle();
                 DetailCustomerFragment detailCustomerFragment = new DetailCustomerFragment();
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -169,6 +169,8 @@ public class CustomerFragment extends Fragment {
                 String nsbid = map.get(ConfigCustomer.TAG_JSON_CST_ID).toString();
                 Bundle args = new Bundle();
                 args.putString("id", nsbid);
+                args.putString("id_emp_1", id_emp);
+                Toast.makeText(getContext(), ""+args, Toast.LENGTH_SHORT).show();
                 detailCustomerFragment.setArguments(args);
 
 
