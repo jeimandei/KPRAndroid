@@ -9,12 +9,15 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity"
         tools:openDrawer="start"
+
         >
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+
+            >
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -26,6 +29,7 @@
                 app:titleTextColor="@color/black" />
 
             <FrameLayout
+
                 android:id="@+id/framelayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
@@ -37,8 +41,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            android:background="@color/white"
+
             android:fitsSystemWindows="true"
+            android:background="@drawable/bggradient_list"
             app:headerLayout="@layout/navbar_header"
             app:itemBackground="@drawable/item_checked"
             app:itemHorizontalPadding="36dp"

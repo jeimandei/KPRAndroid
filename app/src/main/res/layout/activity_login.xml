@@ -22,7 +22,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="33dp"
             android:padding="12dp"
-            android:src="@drawable/maybank_logo_2" />
+            android:src="@drawable/myamos_1" />
 
 
         <EditText
@@ -52,7 +52,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="14dp"
             android:backgroundTint="#CD853F"
-            android:text="Log In"
+            android:text="Login"
             android:textColorHint="@color/black"
             android:textStyle="bold" />
     </LinearLayout>
