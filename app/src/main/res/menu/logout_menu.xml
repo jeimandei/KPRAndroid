@@ -1,9 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <item
-        android:id="@+id/id_logout"
-        android:title="Logout"
-        app:showAsAction="never"
-        />
+        android:id="@+id/id_option"
+        android:icon="@android:drawable/ic_menu_more"
+        android:title=""
+        app:showAsAction="always">
+        <menu>
+            <item
+                android:id="@+id/id_search"
+                android:icon="@drawable/loupe"
+                android:title="Search"
+                app:showAsAction="ifRoom">
+
+            </item>
+
+            <item
+                android:id="@+id/id_logout"
+                android:icon="@drawable/logout_2"
+                android:title="Logout"
+                app:showAsAction="ifRoom"
+
+                />
+
+        </menu>
+    </item>
 </menu>
