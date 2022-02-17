@@ -2,6 +2,7 @@ package com.maybank.kprandroid;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -10,17 +11,21 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.maybank.kprandroid.Configuration.ConfigLogin;
 import com.maybank.kprandroid.Customer.CustomerFragment;
+import com.maybank.kprandroid.Login.LoginActivity;
 import com.maybank.kprandroid.Manager.ManagerFragment;
 import com.maybank.kprandroid.Schedule.ScheduleFragment;
 import com.maybank.kprandroid.databinding.ActivityMainBinding;
@@ -31,15 +36,21 @@ public class MainActivity extends AppCompatActivity {
     MenuItem manager;
     Toolbar toolbar;
     String id, role;
+    EditText id_login,pass_login;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
 
         binding = DataBindingUtil.setContentView(MainActivity.this, R.layout.activity_main);
         toolbar = findViewById(R.id.toolbar);
+
+        id_login = findViewById(R.id.id_emp);
+        pass_login = findViewById(R.id.password);
+
 
         setSupportActionBar(toolbar);
 
@@ -51,6 +62,41 @@ public class MainActivity extends AppCompatActivity {
 
         invalidateOptionsMenu();
         initView();
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.logout_menu, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.id_logout:
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
+                alertDialogBuilder.setMessage("Are you sure want to logout ? "
+                );
+                alertDialogBuilder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        System.exit(1);
+                    }
+                });
+
+                alertDialogBuilder.setNegativeButton("Tidak",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // Tidak ngapa-ngapain
+                            }
+                        });
+
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
+//                clearText();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 //    @Override
@@ -145,4 +191,8 @@ public class MainActivity extends AppCompatActivity {
         trans.addToBackStack(null);
         trans.commit();
     }
+//    private void clearText() {
+//        id_emp.setText("");
+//        password.setText("");
+//    }
 }
