@@ -28,6 +28,7 @@ import com.maybank.kprandroid.Customer.CustomerFragment;
 import com.maybank.kprandroid.Login.LoginActivity;
 import com.maybank.kprandroid.Manager.ManagerFragment;
 import com.maybank.kprandroid.Schedule.ScheduleFragment;
+import com.maybank.kprandroid.Search.SearchCustomerFragment;
 import com.maybank.kprandroid.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
@@ -94,6 +95,18 @@ public class MainActivity extends AppCompatActivity {
                 AlertDialog alertDialog = alertDialogBuilder.create();
                 alertDialog.show();
 //                clearText();
+                break;
+            case R.id.id_search_cus:
+                SearchCustomerFragment searchCustomerFragment = new SearchCustomerFragment();
+                getSupportActionBar().setTitle("Search Customer");
+                binding.navDrawer.closeDrawer(GravityCompat.START);
+                Bundle arg = new Bundle();
+                arg.putString("id_emp_1", id);
+                searchCustomerFragment.setArguments(arg);
+                Log.d("cekIDS:", id);
+                callFragment(searchCustomerFragment);
+                break;
+
         }
 
         return super.onOptionsItemSelected(item);

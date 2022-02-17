@@ -10,7 +10,7 @@
                 android:title="Search Customer"
                 app:showAsAction="never" />
             <item
-                android:id="@+id/id_serach_sch"
+                android:id="@+id/id_search_sch"
                 android:icon="@android:drawable/ic_menu_search"
                 android:title="Search Schedule"
                 app:showAsAction="never" />

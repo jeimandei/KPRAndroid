@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import com.maybank.kprandroid.Configuration.ConfigLogin;
+import com.maybank.kprandroid.Configuration.ConfigManager;
 import com.maybank.kprandroid.R;
 
 /**
@@ -69,7 +71,7 @@ public class DetailDocumentFragment extends Fragment {
 
         webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
         webView.setWebViewClient(new WebViewClient());
-        webView.loadUrl("https://kprandroid.000webhostapp.com/kpr/document_webview/html/approval_manager.php?id_nsb=" + id_cust);
+        webView.loadUrl(ConfigManager.IP + "kpr/document_webview/html/approval_manager.php?id_nsb=" + id_cust);
 
         return viewGroup;
     }

@@ -19,6 +19,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
+import com.maybank.kprandroid.Configuration.ConfigManager;
 import com.maybank.kprandroid.R;
 
 import java.util.ArrayList;
@@ -123,7 +124,7 @@ public class DocumentFragment extends Fragment {
                 return true;
             }
         });
-        webView.loadUrl("https://kprandroid.000webhostapp.com/kpr/document_webview/html/?id_nsb=" + id_cust);
+        webView.loadUrl(ConfigManager.IP + "kpr/document_webview/html/?id_nsb=" + id_cust);
         webView.setWebChromeClient(new WebChromeClient(){
 
             @Override

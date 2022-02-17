@@ -1,7 +1,7 @@
 package com.maybank.kprandroid.Configuration;
 
 public class ConfigSchedule {
-    public static final String IP = "https://kprandroid.000webhostapp.com/";
+    public static final String IP = "https://jeimandei.com/";
 
     // url dimana web API berada
     public static final String URL_GET_ALL_SCHEDULE = IP + "kpr/schedule/lihat_schedule.php?id_emp=";
