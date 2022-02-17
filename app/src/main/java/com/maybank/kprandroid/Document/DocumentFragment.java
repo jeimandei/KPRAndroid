@@ -2,6 +2,7 @@ package com.maybank.kprandroid.Document;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -42,6 +43,8 @@ public class DocumentFragment extends Fragment {
         // Inflate the layout for this fragment
         viewGroup = (ViewGroup) inflater.inflate(R.layout.fragment_document, container, false);
         id_cust = this.getArguments().getString("id_nsb");
+
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Customer Documents");
 
         WebView webView = (WebView) viewGroup.findViewById(R.id.webViewDocument);
         webView.getSettings().setLoadsImagesAutomatically(true);
