@@ -111,6 +111,7 @@ public class LoginActivity extends AppCompatActivity {
                 super.onPostExecute(s);
                 loading.dismiss();
                 displayDetailLogin(s);
+                clearText();
             }
 
         }
@@ -118,6 +119,11 @@ public class LoginActivity extends AppCompatActivity {
         GetJson getJson= new GetJson();
         getJson.execute();
 
+    }
+
+    private void clearText() {
+        id_emp.setText("");
+        password.setText("");
     }
 
     private void displayDetailLogin(String s) {

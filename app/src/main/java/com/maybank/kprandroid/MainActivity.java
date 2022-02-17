@@ -191,8 +191,5 @@ public class MainActivity extends AppCompatActivity {
         trans.addToBackStack(null);
         trans.commit();
     }
-//    private void clearText() {
-//        id_emp.setText("");
-//        password.setText("");
-//    }
+
 }
