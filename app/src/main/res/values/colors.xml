@@ -10,4 +10,6 @@
     <color name="maybank">#fed000</color>
     <color name="selected">#262630</color>
     <color name="reuired">#91a8b8</color>
+    <color name="success">#006b3c</color>
+    <color name="cancel">#d62d20</color>
 </resources>
