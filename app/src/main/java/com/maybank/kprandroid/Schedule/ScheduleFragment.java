@@ -175,6 +175,7 @@ public class ScheduleFragment extends Fragment {
                 String schid = map.get(ConfigSchedule.TAG_JSON_SCH_ID).toString();
                 Bundle args = new Bundle();
                 args.putString("id", schid);
+                args.putString("id_emp_1", id_emp);
                 detailScheduleFragment.setArguments(args);
 
                 Log.d("Par: ", String.valueOf(args));

@@ -69,7 +69,7 @@ public class DetailCustomerFragment extends Fragment implements View.OnClickList
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Detail Customer");
         id_cust = this.getArguments().getString("id");
         id_emp = this.getArguments().getString("id_emp_1");
-        Toast.makeText(getContext(), "" + id_emp, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), ""+id_emp, Toast.LENGTH_SHORT).show();
         cust_name = viewGroup.findViewById(R.id.edit_nama_nsb);
         cust_ktp = viewGroup.findViewById(R.id.edit_ktp_nsb);
         cust_bp = viewGroup.findViewById(R.id.edit_tlahir_nsb);

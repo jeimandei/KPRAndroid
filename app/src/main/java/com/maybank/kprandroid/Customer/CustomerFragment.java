@@ -170,7 +170,6 @@ public class CustomerFragment extends Fragment {
                 Bundle args = new Bundle();
                 args.putString("id", nsbid);
                 args.putString("id_emp_1", id_emp);
-                Toast.makeText(getContext(), ""+args, Toast.LENGTH_SHORT).show();
                 detailCustomerFragment.setArguments(args);
 
 
