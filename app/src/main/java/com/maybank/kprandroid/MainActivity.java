@@ -76,14 +76,14 @@ public class MainActivity extends AppCompatActivity {
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
                 alertDialogBuilder.setMessage("Are you sure want to logout ? "
                 );
-                alertDialogBuilder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         System.exit(1);
                     }
                 });
 
-                alertDialogBuilder.setNegativeButton("Tidak",
+                alertDialogBuilder.setNegativeButton("No",
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {

@@ -207,21 +207,21 @@ public class DetailCustomerFragment extends Fragment implements View.OnClickList
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
         alertDialogBuilder.setMessage("Are you sure want to update this data? " +
-                "\n Nam                   :  " + name +
-                "\n E - KTP               :  " + ktp +
-                "\n Tempat Lahir    :  " + pb +
-                "\n Tanggal Lahir   :  " + dob +
-                "\n No Telephone   :  " + ph +
-                "\n Alamat               :  " + addr);
+                "\n Name           :  " + name +
+                "\n ID Card        :  " + ktp +
+                "\n Place of Birth :  " + pb +
+                "\n Date of Birth  :  " + dob +
+                "\n Phone          :  " + ph +
+                "\n Addres         :  " + addr);
 
-        alertDialogBuilder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+        alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 updatensb();
             }
         });
 
-        alertDialogBuilder.setNegativeButton("Tidak",
+        alertDialogBuilder.setNegativeButton("Cancel",
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -307,21 +307,21 @@ public class DetailCustomerFragment extends Fragment implements View.OnClickList
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
         alertDialogBuilder.setMessage("Are you sure want to delete this data? " +
-                "\n Nam                   :  " + name +
-                "\n E - KTP               :  " + ktp +
-                "\n Tempat Lahir    :  " + pb +
-                "\n Tanggal Lahir   :  " + dob +
-                "\n No Telephone   :  " + ph +
-                "\n Alamat               :  " + addr);
+                "\n Name           :  " + name +
+                "\n ID Card        :  " + ktp +
+                "\n Place of Birth :  " + pb +
+                "\n Date of Birth  :  " + dob +
+                "\n Phone          :  " + ph +
+                "\n Addres         :  " + addr);
 
-        alertDialogBuilder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+        alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 deleteMemo();
             }
         });
 
-        alertDialogBuilder.setNegativeButton("Tidak",
+        alertDialogBuilder.setNegativeButton("Cancel",
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

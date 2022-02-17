@@ -173,17 +173,17 @@ public class DetailScheduleFragment extends Fragment implements View.OnClickList
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
         alertDialogBuilder.setMessage("Are you sure want to update this data? " +
-                "\n Tanggal Temu      :  " + tanggal +
-                "\n Pesan                     :  " + memo );
+                "\n Meeting Date :  " + tanggal +
+                "\n Message      :  " + memo );
 
-        alertDialogBuilder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+        alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 updateSch();
             }
         });
 
-        alertDialogBuilder.setNegativeButton("Tidak",
+        alertDialogBuilder.setNegativeButton("Cancel",
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -255,17 +255,17 @@ public class DetailScheduleFragment extends Fragment implements View.OnClickList
         final String memo = sch_msg.getText().toString().trim();
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
         alertDialogBuilder.setMessage("Are you sure want to delete this data? " +
-                "\n Tanggal Temu      :  " + tanggal_temu +
-                "\n Pesan                     :  " + memo );
+                "\n Meeting Date :  " + tanggal_temu +
+                "\n Message      :  " + memo );
 
-        alertDialogBuilder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+        alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 deleteMemo();
             }
         });
 
-        alertDialogBuilder.setNegativeButton("Tidak",
+        alertDialogBuilder.setNegativeButton("Cancel",
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -300,8 +300,6 @@ public class DetailScheduleFragment extends Fragment implements View.OnClickList
                 protected void onPostExecute(String s) {
                     super.onPostExecute(s);
                     loading.dismiss();
-                    Toast.makeText(getContext(), "" + s,
-                            Toast.LENGTH_SHORT).show();
 
                     ScheduleFragment scheduleFragment = new ScheduleFragment();
                     FragmentManager fragmentManager = getFragmentManager();

@@ -118,22 +118,22 @@ public class AddCustomerFragment extends Fragment implements View.OnClickListene
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
         alertDialogBuilder.setMessage("Are you sure want to add this data? " +
-                "\n Nama: " + nama +
-                "\n No E-KTP: " + ktp +
-                "\n Tempat Lahir: " + tempat_lahir +
-                "\n Tanggal Lahir: " + tgl_lahir +
-                "\n No Telephone: " + hp +
-                "\n Alamat: " + alamat
+                "\n Name          : " + nama +
+                "\n ID Card       : " + ktp +
+                "\n Place of Birth: " + tempat_lahir +
+                "\n Date of Birth : " + tgl_lahir +
+                "\n Phone         : " + hp +
+                "\n Address       : " + alamat
         );
 
-        alertDialogBuilder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+        alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 addCustomer();
             }
         });
 
-        alertDialogBuilder.setNegativeButton("Tidak",
+        alertDialogBuilder.setNegativeButton("Cancel",
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
