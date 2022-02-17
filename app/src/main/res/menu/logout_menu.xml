@@ -2,28 +2,32 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item
-        android:id="@+id/id_option"
-        android:icon="@drawable/ic_baseline_more_vert_24"
-        android:title=""
-        app:showAsAction="always">
+    <item android:title="Search">
         <menu>
             <item
-                android:id="@+id/id_search"
-                android:icon="@drawable/loupe"
-                android:title="Search"
-                app:showAsAction="ifRoom">
-
-            </item>
-
+                android:id="@+id/id_search_cus"
+                android:icon="@android:drawable/ic_menu_search"
+                android:title="Search Customer"
+                app:showAsAction="never" />
             <item
-                android:id="@+id/id_logout"
-                android:icon="@drawable/logout_2"
-                android:title="Logout"
-                app:showAsAction="ifRoom"
-
-                />
+                android:id="@+id/id_serach_sch"
+                android:icon="@android:drawable/ic_menu_search"
+                android:title="Search Schedule"
+                app:showAsAction="never" />
 
         </menu>
+
     </item>
+
+    <item
+        android:id="@+id/id_logout"
+        android:icon="@drawable/logout_2"
+        android:title="Logout"
+        app:showAsAction="never"
+
+        />
+
+
+
+
 </menu>
