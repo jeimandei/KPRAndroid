@@ -219,7 +219,7 @@ public class AddScheduleFragment extends Fragment implements View.OnClickListene
         String pesan = message.getText().toString().trim();
         String id_nsb = String.valueOf(c_nsb_id);
 
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext(), R.style.AlertDialogTheme);
         alertDialogBuilder.setMessage("Are you sure want to add this data? " +
                 "\n Meeting Date : " + tgl_jantem +
                 "\n Message      : " + pesan +

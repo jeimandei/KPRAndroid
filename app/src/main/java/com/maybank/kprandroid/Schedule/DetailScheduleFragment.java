@@ -171,7 +171,7 @@ public class DetailScheduleFragment extends Fragment implements View.OnClickList
         final String tanggal = sch_date.getText().toString().trim();
         final String memo = sch_msg.getText().toString().trim();
 
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext(), R.style.AlertDialogTheme);
         alertDialogBuilder.setMessage("Are you sure want to update this data? " +
                 "\n Meeting Date :  " + tanggal +
                 "\n Message      :  " + memo );
@@ -253,7 +253,7 @@ public class DetailScheduleFragment extends Fragment implements View.OnClickList
 
         final String tanggal_temu = sch_date.getText().toString().trim();
         final String memo = sch_msg.getText().toString().trim();
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext(), R.style.AlertDialogTheme);
         alertDialogBuilder.setMessage("Are you sure want to delete this data? " +
                 "\n Meeting Date :  " + tanggal_temu +
                 "\n Message      :  " + memo );

@@ -203,7 +203,7 @@ public class DetailCustomerFragment extends Fragment implements View.OnClickList
         final String ph = cust_ph.getText().toString().trim();
         final String addr = cust_addr.getText().toString().trim();
 
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext(), R.style.AlertDialogTheme);
         alertDialogBuilder.setMessage("Are you sure want to update this data? " +
                 "\n Name           :  " + name +
                 "\n ID Card        :  " + ktp +
@@ -303,7 +303,7 @@ public class DetailCustomerFragment extends Fragment implements View.OnClickList
         final String ph = cust_ph.getText().toString().trim();
         final String addr = cust_addr.getText().toString().trim();
 
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext(), R.style.AlertDialogTheme);
         alertDialogBuilder.setMessage("Are you sure want to delete this data? " +
                 "\n Name           :  " + name +
                 "\n ID Card        :  " + ktp +

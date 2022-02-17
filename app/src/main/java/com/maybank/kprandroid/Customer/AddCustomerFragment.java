@@ -116,7 +116,7 @@ public class AddCustomerFragment extends Fragment implements View.OnClickListene
         final String ktp = tambah_ktp_nsb.getText().toString().trim();
 
 
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext(), R.style.AlertDialogTheme);
         alertDialogBuilder.setMessage("Are you sure want to add this data? " +
                 "\n Name          : " + nama +
                 "\n ID Card       : " + ktp +

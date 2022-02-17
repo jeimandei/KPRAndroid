@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.id_logout:
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this, R.style.AlertDialogTheme);
                 alertDialogBuilder.setMessage("Are you sure want to logout ? "
                 );
                 alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {

@@ -35,7 +35,7 @@
                     android:layout_marginRight="6dp"
                     android:layout_weight="1"
                     android:focusable="false"
-                    android:text="Tanggal Bertemu"
+                    android:text="Meet Date"
                     android:textAllCaps="false"
                     android:textColor="#050505"
                     android:textSize="16sp"
@@ -68,7 +68,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="6dp"
                     android:layout_weight="1"
-                    android:text="ID Nasabah "
+                    android:text="Customer ID"
                     android:textAllCaps="false"
                     android:textColor="#050505"
                     android:textSize="16sp"
@@ -128,7 +128,7 @@
                     android:layout_marginEnd="100dp"
                     android:layout_weight="1"
                     android:backgroundTint="#CD853F"
-                    android:text="Tambah Jadwal"
+                    android:text="Add Schedule"
 
                     />
             </LinearLayout>
