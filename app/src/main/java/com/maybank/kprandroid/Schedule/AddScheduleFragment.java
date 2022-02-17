@@ -2,9 +2,11 @@ package com.maybank.kprandroid.Schedule;
 
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -37,7 +39,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Locale;
 
-public class AddScheduleFragment extends Fragment {
+public class AddScheduleFragment extends Fragment implements View.OnClickListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -52,6 +54,7 @@ public class AddScheduleFragment extends Fragment {
     private String JSON_STRING;
     private int c_nsb_id;
     String id_emp;
+    boolean isAllFieldsChecked = false;
 
     final Calendar calendar = Calendar.getInstance();
 
@@ -93,59 +96,7 @@ public class AddScheduleFragment extends Fragment {
         });
         getJSON();
 
-
-        tambah_schedule.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String tgl_jantem = tgl.getText().toString().trim();
-                String pesan = message.getText().toString().trim();
-                String id_nsb = String.valueOf(c_nsb_id);
-
-
-                class SaveData extends AsyncTask<Void, Void, String> {
-                    ProgressDialog loading;
-
-                    @Override
-                    protected void onPreExecute() {
-                        super.onPreExecute();
-                        loading = ProgressDialog.show(getContext(), "Saving Data", "Please Wait...", false, false);
-                    }
-
-                    @Override
-                    protected String doInBackground(Void... voids) {
-                        HashMap<String, String> params = new HashMap<>();
-                        params.put(ConfigSchedule.KEY_SCH_TGL, tgl_jantem);
-                        params.put(ConfigSchedule.KEY_SCH_PESAN, pesan);
-                        params.put(ConfigSchedule.KEY_SCH_ID_NSB, id_nsb);
-                        Log.d("inputss", String.valueOf(params));
-                        HttpHandler handler = new HttpHandler();
-                        String res = handler.sendPostReq(ConfigSchedule.URL_ADD_SCHEDULE, params);
-                        return res;
-                    }
-
-                    @Override
-                    protected void onPostExecute(String messsage) {
-                        super.onPostExecute(messsage);
-                        loading.dismiss();
-                        Toast.makeText(getContext(), messsage, Toast.LENGTH_LONG).show();
-                        Log.d("m:", messsage);
-                        clearText();
-
-                        ScheduleFragment scheduleFragment = new ScheduleFragment();
-                        FragmentManager fragmentManager = getFragmentManager();
-                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                        fragmentTransaction.replace(R.id.framelayout,scheduleFragment);
-                        Bundle arg = new Bundle();
-                        arg.putString("id_emp_1", id_emp);
-                        scheduleFragment.setArguments(arg);
-                        fragmentTransaction.commit();
-                    }
-                }
-                SaveData saveData = new SaveData();
-                saveData.execute();
-
-            }
-        });
+        tambah_schedule.setOnClickListener(this);
 
         return viewGroup;
     }
@@ -241,5 +192,109 @@ public class AddScheduleFragment extends Fragment {
     private void clearText() {
         tgl.setText("");
         tgl.requestFocus();
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view == tambah_schedule){
+            isAllFieldsChecked = CheckAllFields();
+        }
+    }
+
+    private boolean CheckAllFields() {
+        if (message.length() == 0) {
+            message.setError("This field is required");
+            return false;
+        } else {
+            confirmAdd();
+        }
+
+        // after all validation return true.
+        return true;
+    }
+
+    private void confirmAdd() {
+
+        String tgl_jantem = tgl.getText().toString().trim();
+        String pesan = message.getText().toString().trim();
+        String id_nsb = String.valueOf(c_nsb_id);
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
+        alertDialogBuilder.setMessage("Are you sure want to add this data? " +
+                "\n Tanggal Ketemu: " + tgl_jantem +
+                "\n Pesan: " + pesan +
+                "\n ID Nasabah: " + id_nsb
+        );
+
+        alertDialogBuilder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                addSchedule();
+            }
+        });
+
+        alertDialogBuilder.setNegativeButton("Tidak",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Tidak ngapa-ngapain
+                    }
+                });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+
+    }
+
+    private void addSchedule() {
+
+        String tgl_jantem = tgl.getText().toString().trim();
+        String pesan = message.getText().toString().trim();
+        String id_nsb = String.valueOf(c_nsb_id);
+
+
+        class SaveData extends AsyncTask<Void, Void, String> {
+            ProgressDialog loading;
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                loading = ProgressDialog.show(getContext(), "Saving Data", "Please Wait...", false, false);
+            }
+
+            @Override
+            protected String doInBackground(Void... voids) {
+                HashMap<String, String> params = new HashMap<>();
+                params.put(ConfigSchedule.KEY_SCH_TGL, tgl_jantem);
+                params.put(ConfigSchedule.KEY_SCH_PESAN, pesan);
+                params.put(ConfigSchedule.KEY_SCH_ID_NSB, id_nsb);
+                Log.d("inputss", String.valueOf(params));
+                HttpHandler handler = new HttpHandler();
+                String res = handler.sendPostReq(ConfigSchedule.URL_ADD_SCHEDULE, params);
+                return res;
+            }
+
+            @Override
+            protected void onPostExecute(String messsage) {
+                super.onPostExecute(messsage);
+                loading.dismiss();
+                Toast.makeText(getContext(), messsage, Toast.LENGTH_LONG).show();
+                Log.d("m:", messsage);
+                clearText();
+
+                ScheduleFragment scheduleFragment = new ScheduleFragment();
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.framelayout,scheduleFragment);
+                Bundle arg = new Bundle();
+                arg.putString("id_emp_1", id_emp);
+                scheduleFragment.setArguments(arg);
+                fragmentTransaction.commit();
+            }
+        }
+        SaveData saveData = new SaveData();
+        saveData.execute();
+
+
     }
 }
