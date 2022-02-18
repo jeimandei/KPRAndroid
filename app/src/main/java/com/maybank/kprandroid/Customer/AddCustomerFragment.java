@@ -115,14 +115,14 @@ public class AddCustomerFragment extends Fragment implements View.OnClickListene
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             public void run() {
-                alertDialog.dismiss();
+
             }
         }, 4000);
 
         dialogButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                alertDialog.dismiss();
             }
         });
 

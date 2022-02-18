@@ -272,14 +272,14 @@ public class DetailScheduleFragment extends Fragment implements View.OnClickList
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             public void run() {
-                alertDialog.dismiss();
+
             }
         }, 4000);
 
         dialogButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                alertDialog.dismiss();
             }
         });
 
@@ -336,6 +336,12 @@ public class DetailScheduleFragment extends Fragment implements View.OnClickList
                 protected void onPostExecute(String s) {
                     super.onPostExecute(s);
                     loading.dismiss();
+
+                    if (s.equals("Berhasil Menghapus Data Janji Temu")){
+                        showAlertDialog(R.layout.alert_field);
+                    } else {
+                        showAlertDialog(R.layout.alert_delete);
+                    }
 
                     ScheduleFragment scheduleFragment = new ScheduleFragment();
                     FragmentManager fragmentManager = getFragmentManager();
