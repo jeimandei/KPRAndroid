@@ -48,6 +48,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class AdminDetailEmployeeFragment extends Fragment implements View.OnClickListener {
 
@@ -60,7 +61,7 @@ public class AdminDetailEmployeeFragment extends Fragment implements View.OnClic
     boolean isAllFieldsChecked = false;
     AlertDialog.Builder builderDialog;
     AlertDialog alertDialog;
-    private CheckBox showPass, showPassConf ;
+    private CheckBox showPass, showPassConf;
 
 
     @Override
@@ -88,9 +89,10 @@ public class AdminDetailEmployeeFragment extends Fragment implements View.OnClic
         showPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (showPass.isChecked()){
+                if (showPass.isChecked()) {
                     edit_pass_emp.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                }else {
+
+                } else {
                     edit_pass_emp.setTransformationMethod(PasswordTransformationMethod.getInstance());
                 }
 
@@ -100,9 +102,9 @@ public class AdminDetailEmployeeFragment extends Fragment implements View.OnClic
         showPassConf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (showPassConf.isChecked()){
+                if (showPassConf.isChecked()) {
                     edit_confpass_emp.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                }else {
+                } else {
                     edit_confpass_emp.setTransformationMethod(PasswordTransformationMethod.getInstance());
                 }
             }
@@ -119,7 +121,7 @@ public class AdminDetailEmployeeFragment extends Fragment implements View.OnClic
         edit_role_emp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                 role_save = String.valueOf(roleList.get(i));
+                role_save = String.valueOf(roleList.get(i));
             }
 
             @Override
@@ -179,9 +181,9 @@ public class AdminDetailEmployeeFragment extends Fragment implements View.OnClic
             edit_nama_emp.setText(name);
             edit_id.setText(id_emp);
 
-            if(role.equals("kpr")){
+            if (role.equals("kpr")) {
                 edit_role_emp.setSelection(0, true);
-            }else if(role.equals("manager")){
+            } else if (role.equals("manager")) {
                 edit_role_emp.setSelection(1, true);
             }
 
@@ -193,7 +195,7 @@ public class AdminDetailEmployeeFragment extends Fragment implements View.OnClic
 
     @Override
     public void onClick(View view) {
-        if (view == updateEmp){
+        if (view == updateEmp) {
             isAllFieldsChecked = CheckAllFields();
 //            confirmUpdate();
         } else {
@@ -209,7 +211,7 @@ public class AdminDetailEmployeeFragment extends Fragment implements View.OnClic
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext(), R.style.AlertDialogTheme);
         alertDialogBuilder.setMessage("Are you sure want to delete this data? " +
                 "\n Name\t\t\t:  " + nama +
-                "\n Role\t\t\t:  " + role1 );
+                "\n Role\t\t\t:  " + role1);
 
         alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
@@ -232,7 +234,7 @@ public class AdminDetailEmployeeFragment extends Fragment implements View.OnClic
 
     private void deleteEmpSys() {
 
-        class DeleteEmp extends AsyncTask<Void, Void, String>{
+        class DeleteEmp extends AsyncTask<Void, Void, String> {
             ProgressDialog loading;
 
             @Override
@@ -255,7 +257,7 @@ public class AdminDetailEmployeeFragment extends Fragment implements View.OnClic
                 super.onPostExecute(s);
                 loading.dismiss();
 
-                if (s.equals("Berhasil Menghapus Pegawai")){
+                if (s.equals("Berhasil Menghapus Pegawai")) {
                     showAlertDialog(R.layout.alert_field);
                 } else {
                     showAlertDialog(R.layout.alert_delete);
@@ -278,29 +280,44 @@ public class AdminDetailEmployeeFragment extends Fragment implements View.OnClic
         deleteEmp.execute();
     }
 
+    private static final Pattern PASSWORD_PATTERN =
+            Pattern.compile("^" +
+                    "(?=.*[@#$%^&+=])" +     // at least 1 special character
+                    "(?=\\S+$)" +            // no white spaces
+                    ".{4,}" +                // at least 4 characters
+                    "$");
+
 
     // UPDATE
     private boolean CheckAllFields() {
 
+        String pass = edit_pass_emp.getText().toString();
+        String passConf = edit_confpass_emp.getText().toString();
 
-       if (edit_pass_emp.length()==0){
-           edit_pass_emp.setError("Please insert this field");
-           return false;
-       } else if (edit_pass_emp.length()< 8){
-           edit_pass_emp.setError("Password minimum 8 characters");
-           return false;
-       } else if (edit_pass_emp.equals(edit_confpass_emp)){
-           Toast.makeText(getContext(), "Password matches", Toast.LENGTH_SHORT).show();
-           TextInputLayout cekLayout = viewGroup.findViewById(R.id.edit_pass_conf);
-           cekLayout.setEndIconMode(TextInputLayout.END_ICON_CUSTOM);
-           cekLayout.setEndIconDrawable(R.drawable.check);
-           return false;
-       } else if (edit_confpass_emp.length() == 0){
-           edit_confpass_emp.setError("Please confirm password ");
-           return false;
-       } else {
-           confirmUpdate();
-       }
+        if (edit_pass_emp.length() == 0) {
+            edit_pass_emp.setError("Please insert this field");
+            return false;
+        } else if (edit_pass_emp.length() < 8) {
+            edit_pass_emp.setError("Password minimum 8 characters");
+            return false;
+        } else if (edit_pass_emp.equals(edit_confpass_emp)) {
+            Toast.makeText(getContext(), "Password matches", Toast.LENGTH_SHORT).show();
+            TextInputLayout cekLayout = viewGroup.findViewById(R.id.edit_pass_conf);
+            cekLayout.setEndIconMode(TextInputLayout.END_ICON_CUSTOM);
+            cekLayout.setEndIconDrawable(R.drawable.check);
+            return false;
+        } else if (edit_confpass_emp.length() == 0) {
+            edit_confpass_emp.setError("Please confirm password ");
+            return false;
+        } else if (!passConf.equals(pass)) {
+            edit_confpass_emp.setError("Password don't match");
+            return false;
+        } else if (!PASSWORD_PATTERN.matcher(pass).matches()){
+            edit_pass_emp.setError("Password is too weak");
+            return false;
+        } else {
+            confirmUpdate();
+        }
         // after all validation return true.
         return true;
 
@@ -320,7 +337,7 @@ public class AdminDetailEmployeeFragment extends Fragment implements View.OnClic
         alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                    updateEmpSys();
+                updateEmpSys();
             }
         });
 
@@ -343,8 +360,7 @@ public class AdminDetailEmployeeFragment extends Fragment implements View.OnClic
         final String password = edit_pass_emp.getText().toString().trim();
 
 
-
-        class UpdateSch extends AsyncTask<Void, Void, String>{
+        class UpdateSch extends AsyncTask<Void, Void, String> {
             ProgressDialog loading;
 
             @Override
@@ -364,7 +380,7 @@ public class AdminDetailEmployeeFragment extends Fragment implements View.OnClic
                 hashMap.put(ConfigAdmin.KEY_EMP_PASS, password);
 
                 HttpHandler handler = new HttpHandler();
-                String s = handler.sendPostReq(ConfigAdmin.URL_UPDATE_EMPLOYEE , hashMap);
+                String s = handler.sendPostReq(ConfigAdmin.URL_UPDATE_EMPLOYEE, hashMap);
                 Log.d("Cek_Hasil", String.valueOf(hashMap));
                 Log.d("Cek_Hasil", s);
                 return s;
@@ -376,7 +392,7 @@ public class AdminDetailEmployeeFragment extends Fragment implements View.OnClic
                 super.onPostExecute(s);
                 loading.dismiss();
 
-                if (s.equals("Berhasil Update Data Pegawai")){
+                if (s.equals("Berhasil Update Data Pegawai")) {
                     showAlertDialog(R.layout.alert_update);
                 } else {
                     showAlertDialog(R.layout.alert_field);
