@@ -54,7 +54,7 @@ public class AdminDetailEmployeeFragment extends Fragment implements View.OnClic
     private String role_save, id_emp;
     private ViewGroup viewGroup;
     private Button updateEmp, deleteEmp;
-    private EditText edit_nama_emp, edit_confpass_emp, edit_pass_emp;
+    private EditText edit_nama_emp, edit_confpass_emp, edit_pass_emp, edit_id;
     Spinner edit_role_emp;
     private ListView listView;
     boolean isAllFieldsChecked = false;
@@ -80,6 +80,8 @@ public class AdminDetailEmployeeFragment extends Fragment implements View.OnClic
         edit_role_emp = viewGroup.findViewById(R.id.edit_spinner_emp_role);
         edit_confpass_emp = viewGroup.findViewById(R.id.edit_pass_conf);
         edit_pass_emp = viewGroup.findViewById(R.id.edit_pass_emp);
+        edit_id = viewGroup.findViewById(R.id.edit_id_emp);
+
         showPass = viewGroup.findViewById(R.id.showPass);
         showPassConf = viewGroup.findViewById(R.id.showPass1);
 
@@ -175,6 +177,7 @@ public class AdminDetailEmployeeFragment extends Fragment implements View.OnClic
             String role = object.getString(ConfigAdmin.TAG_JSON_EMP_ROLE);
 
             edit_nama_emp.setText(name);
+            edit_id.setText(id_emp);
 
             if(role.equals("kpr")){
                 edit_role_emp.setSelection(0, true);

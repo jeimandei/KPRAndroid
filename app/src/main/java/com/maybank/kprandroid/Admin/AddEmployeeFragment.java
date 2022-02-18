@@ -108,23 +108,28 @@ public class AddEmployeeFragment extends Fragment implements View.OnClickListene
 
     private boolean CheckAllFields() {
 
+        String pass = tambah_pass_emp.getText().toString();
+        String passConf = tambah_confpass_emp.getText().toString();
+
         if (tambah_nama_emp.length() == 0) {
             tambah_nama_emp.setError("Please insert this field");
             return false;
         } else if (tambah_pass_emp.length() < 8) {
             tambah_pass_emp.setError("Password minimum 8 characters");
             return false;
+        } else if (tambah_confpass_emp.length() == 0) {
+            tambah_confpass_emp.setError("Please confirm password ");
+            return false;
+        } else if (tambah_confpass_emp.length() == 0) {
+            tambah_confpass_emp.setError("Please insert this field");
+        } else if (!pass.equals(passConf)) {
+            tambah_confpass_emp.setError("Password don't match");
         } else if (tambah_pass_emp.equals(tambah_confpass_emp)) {
             Toast.makeText(getContext(), "Password matches", Toast.LENGTH_SHORT).show();
             TextInputLayout cekLayout = viewGroup.findViewById(R.id.edit_pass_conf);
             cekLayout.setEndIconMode(TextInputLayout.END_ICON_CUSTOM);
             cekLayout.setEndIconDrawable(R.drawable.check);
             return false;
-        } else if (tambah_confpass_emp.length() == 0) {
-            tambah_confpass_emp.setError("Please confirm password ");
-            return false;
-        } else if (tambah_confpass_emp.length() == 0) {
-            tambah_confpass_emp.setError("Please insert this field");
         } else {
             confirmAdd();
         }
@@ -139,9 +144,9 @@ public class AddEmployeeFragment extends Fragment implements View.OnClickListene
         final String role1 = String.valueOf(role_save);
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext(), R.style.AlertDialogTheme);
-        alertDialogBuilder.setMessage("Are you sure want to update this data? " +
-                "\n Nama Employe : " + nama +
-                "\n Role      : " + role1
+        alertDialogBuilder.setMessage("Are you sure want to add this data? " +
+                "\n Employee Name\t: " + nama +
+                "\n Role\t\t\t\t\t\t\t\t\t\t\t\t: " + role1
         );
 
         alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
@@ -210,11 +215,11 @@ public class AddEmployeeFragment extends Fragment implements View.OnClickListene
             protected void onPostExecute(String messsage) {
                 super.onPostExecute(messsage);
                 loading.dismiss();
-//                Toast.makeText(getContext(), messsage, Toast.LENGTH_LONG).show();
-//                Log.d("m:", messsage);
-                //clearText();
+////                Toast.makeText(getContext(), messsage, Toast.LENGTH_LONG).show();
+////                Log.d("m:", messsage);
+//                clearText();
 
-                if (messsage.equals("Berhasil Menambahkan Data Pegawai")){
+                if (messsage.equals("Berhasil Menambahkan Data Pegawai")) {
                     showAlertDialog(R.layout.alert_field);
                 } else {
                     showAlertDialog(R.layout.alert_succes);
