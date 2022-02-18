@@ -173,9 +173,6 @@ public class MainActivity extends AppCompatActivity {
         }else if (role.equals("manager")){
             binding.navbarView.getMenu().removeItem(R.id.nav_admin);
 
-            binding.navbarView.getMenu().removeItem(R.id.nav_manager);
-            binding.navbarView.getMenu().removeItem(R.id.nav_admin);
-
             getSupportActionBar().setTitle("Approval");
 
             ManagerFragment managerFragment = new ManagerFragment();
