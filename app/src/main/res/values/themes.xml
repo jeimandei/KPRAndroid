@@ -25,4 +25,16 @@
     <style name="PositiveButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
         <item name="android:textColor">#6B8E23</item>
     </style>
+
+    <style name="AlertCalendar" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@android:color/black</item>
+
+
+    </style>
+
+
+    <style name="negativDate" parent="Widget.Material3.MaterialCalendar">
+        <item name="android:textColor">#f00</item>
+    </style>
+
 </resources>
