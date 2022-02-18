@@ -6,7 +6,7 @@ public class ConfigAdmin {
     public static final String URL_GET_ALL_EMPLOYEE = IP + "kpr/employee/tampilSemuaEmp.php";
     public static final String URL_GET_DETAIL_EMPLOYEE = IP + "kpr/employee/tampilEmp.php?id_emp=";
     public static final String URL_ADD_EMPLOYEE = IP + "kpr/employee/tambahEmp.php";
-    public static final String URL_UPDATE_EMPLOYEE = IP + "kpr/employee/updateEmp.php";
+    public static final String URL_UPDATE_EMPLOYEE = IP + "kpr/employee/updateEmp.php?id_emp=";
     public static final String URL_DELETE_EMPLOYEE = IP + "kpr/employee/hapusEmp.php?id=";
 
     // key and value JSON yang muncul di browser
