@@ -286,7 +286,7 @@ public class AddScheduleFragment extends Fragment implements View.OnClickListene
                 if (messsage.equals("Berhasil Menambahkan Data Janji Temu")){
                     showAlertDialog(R.layout.alert_succes);
                 } else {
-                    showAlertDialog(R.layout.alert_succes);
+                    showAlertDialog(R.layout.alert_field);
                 }
 
                 ScheduleFragment scheduleFragment = new ScheduleFragment();
