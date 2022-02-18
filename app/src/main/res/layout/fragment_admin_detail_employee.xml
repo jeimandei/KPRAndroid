@@ -4,16 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@drawable/bggradient_list"
+    android:clickable="false"
+    android:orientation="vertical"
     tools:context=".Customer.AddCustomerFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="bottom"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -51,10 +52,12 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
                         android:ems="13"
+                        android:enabled="false"
                         android:textColor="#320202"
                         android:textSize="16sp"
                         android:textStyle="bold" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -110,7 +113,7 @@
                         android:id="@+id/edit_spinner_emp_role"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="4"/>
+                        android:layout_weight="4" />
 
                 </LinearLayout>
 
@@ -133,7 +136,7 @@
                         android:textColor="#050505"
                         android:textSize="16sp"
                         android:textStyle="bold"
-                        app:endIconMode="password_toggle"/>
+                        app:endIconMode="password_toggle" />
 
                     <EditText
                         android:id="@+id/edit_pass_emp"
@@ -178,8 +181,7 @@
                         android:textColor="#050505"
                         android:textSize="16sp"
                         android:textStyle="bold"
-                        app:endIconMode="password_toggle"
-                       />
+                        app:endIconMode="password_toggle" />
 
                     <EditText
                         android:id="@+id/edit_pass_conf"
@@ -189,8 +191,7 @@
                         android:ems="13"
                         android:textColor="#320202"
                         android:textSize="16sp"
-                        android:textStyle="bold"
-                        />
+                        android:textStyle="bold" />
 
                     <CheckBox
                         android:id="@+id/showPass1"
