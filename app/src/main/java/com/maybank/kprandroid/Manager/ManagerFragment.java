@@ -43,7 +43,7 @@ public class ManagerFragment extends Fragment {
     private ListView listView;
     String id_emp;
     EditText search;
-    ArrayAdapter<String> adapter1;
+    ArrayAdapter<String> adapter1, adapter2;
 
     public ManagerFragment() {
         // Required empty public constructor
