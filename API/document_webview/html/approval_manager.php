@@ -128,6 +128,32 @@
   </div>
 </div>
 <?php } unset($_SESSION['modal_reject']); ?>
+
+<div class="modal fade" id="exampleModal2" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style = "background: #CD5C5C ; color: white">
+        <h5 class="modal-title " id="exampleModalLabel">Anda Akan Reject Data Dokumen Nasabah</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action = "rejectDoc.php " method = "GET" id="formReject">
+      <div class="modal-body">
+        <h4>Pesan yang akan disampaikan</h4>
+        <input type="text" name="id_dok" id="id_dok" hidden>
+        <input type="text" name="id_nsb" id="id_nsb" value = "<?=$_GET['id_nsb']?>" hidden>
+        <textarea name="pesan_dok" id="pesan_dok" cols="30" rows="10" class="form-control" required></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <!-- <button type="button" class="btn btn-danger" >Yes</button> -->
+        <input type="submit" class="btn" style = "background: #CD5C5C ; color: white" value = "Submit">
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
             <div class="row">
                     <div class="col-12">
                         <div class="card">
@@ -181,7 +207,10 @@
     <script type="text/javascript">
         <?php $id_nsb = $_GET['id_nsb'] ?>
   $(document).ready(function(){
-      
+    //   $("#formReject").submit(function(event){
+    //     submitForm();
+    //     return false;
+    // });
       $.ajax({
           url  : "approval.php?id_nsb=<?=$id_nsb?>",
           type : "GET",
@@ -206,15 +235,21 @@
         });
     }
     function rejectDoc(id_dok) {
-        $.ajax({
-          url  : "rejectDoc.php?id_dok="+id_dok,
-          type : "GET",
-          success:function(response){       
-            //   $('#exampleModal').modal('show');
-              location.reload();     
-          }
-        });
+        $('#id_dok').val(id_dok);
+        $('#exampleModal2').modal('show');
     }
+    // function submitForm() {
+    //   $.ajax({
+    //       url  : "rejectDoc.php"
+    //       type : "GET",
+    //       cache: "false",
+    //       data : $('form#formReject').serialize(),
+    //       success:function(response){       
+    //         //   $('#exampleModal').modal('show');
+    //           location.reload();     
+    //       }
+    //     });
+    // }
 </script>
 
 

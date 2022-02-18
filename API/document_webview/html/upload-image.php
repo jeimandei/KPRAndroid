@@ -48,13 +48,22 @@
 	$r = mysqli_query($con,$sql);
 
     while($row = mysqli_fetch_array($r)){
-        // echo '<img src="'.$row['nama_dok'].'" style="width:320px;height:300px;"/>';
+        
+        if($row['status_dok']=='approved'){
+            $color = "green";
+        }
+        if($row['status_dok']=='rejected' || $row['status_dok']=='pending'){
+            $color = "red";
+        }
         echo "<div class='row' style = 'margin-left : 2px'>
-        <h4>".$row['tipe_dok']."</h4> &nbsp | | &nbsp<span style = 'color:red'>".$row['status_dok']."</span>
+        <h4>".$row['tipe_dok']."</h4> &nbsp | | &nbsp<span id='status_dok' style = 'color:".$color."'><b> ".strtoupper($row['status_dok'])."</b></span>
         </div>";
         
         echo '<img src="../../image/'.$row['nama_dok'].'" style="max-width: 100%;
   height: auto;"/>';
+        if($row['pesan_dok'] <> null){
+            echo 'Alasan Ditolak: '.$row['pesan_dok'];
+        }
         echo '<hr>';
     }
 

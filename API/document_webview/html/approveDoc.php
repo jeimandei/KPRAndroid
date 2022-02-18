@@ -7,7 +7,7 @@
 		require_once('../../koneksi.php');
 		
 		//Membuat SQL Query
-		$sql = "UPDATE `tb_dokumen` SET `status_dok` = 'approved' WHERE `tb_dokumen`.`id_dok` = $id_dok";
+		$sql = "UPDATE `tb_dokumen` SET `pesan_dok` = NULL,  `status_dok` = 'approved' WHERE `tb_dokumen`.`id_dok` = $id_dok";
 		mysqli_query($con,$sql);
 		$_SESSION['modal'] = TRUE;
 		
