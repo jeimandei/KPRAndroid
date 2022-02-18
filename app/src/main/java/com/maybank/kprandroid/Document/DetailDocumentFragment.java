@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,7 +25,7 @@ public class DetailDocumentFragment extends Fragment {
 
     private ViewGroup viewGroup;
     String id_cust;
-
+    SwipeRefreshLayout refresh;
     public DetailDocumentFragment() {
         // Required empty public constructor
     }
@@ -59,7 +60,7 @@ public class DetailDocumentFragment extends Fragment {
         viewGroup = (ViewGroup) inflater.inflate(R.layout.fragment_detail_document, container, false);
         id_cust = this.getArguments().getString("id_nsb");
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Documents Detail");
-
+        refresh = (SwipeRefreshLayout) viewGroup.findViewById(R.id.refresh);
         WebView webView = (WebView) viewGroup.findViewById(R.id.webViewDocumentDetail);
         webView.getSettings().setLoadsImagesAutomatically(true);
         webView.getSettings().setJavaScriptEnabled(true);
@@ -69,9 +70,17 @@ public class DetailDocumentFragment extends Fragment {
         webView.getSettings().setBuiltInZoomControls(true);
         webView.getSettings().setDisplayZoomControls(false);
 
+
         webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
         webView.setWebViewClient(new WebViewClient());
         webView.loadUrl(ConfigManager.IP + "kpr/document_webview/html/approval_manager.php?id_nsb=" + id_cust);
+
+        refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                webView.reload();
+            }
+        });
 
         return viewGroup;
     }
