@@ -1,11 +1,13 @@
 package com.maybank.kprandroid.Admin;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -21,8 +23,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.textfield.TextInputLayout;
 import com.maybank.kprandroid.Configuration.ConfigAdmin;
 import com.maybank.kprandroid.Configuration.ConfigCustomer;
 import com.maybank.kprandroid.Customer.CustomerFragment;
@@ -40,7 +44,7 @@ import java.util.List;
 
 public class AddEmployeeFragment extends Fragment implements View.OnClickListener {
 
-    private String JSON_STRING, id_emp;
+    private String role_save, id_emp;
     private ViewGroup viewGroup;
     private Button tambah_emp;
     private EditText tambah_nama_emp, tambah_confpass_emp, tambah_pass_emp;
@@ -72,11 +76,24 @@ public class AddEmployeeFragment extends Fragment implements View.OnClickListene
         tambah_emp = viewGroup.findViewById(R.id.btn_tambah_emp);
 
         String[] role = new String[]{"KPR", "MANAGER"};
-        List<String>  roleList = new ArrayList<>(Arrays.asList(role));
+        List<String> roleList = new ArrayList<>(Arrays.asList(role));
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, roleList);
         tambah_role_emp.setAdapter(adapter);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        tambah_role_emp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                role_save = String.valueOf(roleList.get(i));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
         tambah_emp.setOnClickListener(this);
+
 
         return viewGroup;
     }
@@ -84,11 +101,69 @@ public class AddEmployeeFragment extends Fragment implements View.OnClickListene
 
     @Override
     public void onClick(View view) {
-//        if (view == tambah_emp){
-//            isAllFieldsChecked = CheckAllFields();
-//        }
-        addEmployee();
+        if (view == tambah_emp) {
+            isAllFieldsChecked = CheckAllFields();
+        }
     }
+
+    private boolean CheckAllFields() {
+
+        if (tambah_nama_emp.length() == 0) {
+            tambah_nama_emp.setError("Please insert this field");
+            return false;
+        } else if (tambah_pass_emp.length() < 8) {
+            tambah_pass_emp.setError("Password minimum 8 characters");
+            return false;
+        } else if (tambah_pass_emp.equals(tambah_confpass_emp)) {
+            Toast.makeText(getContext(), "Password matches", Toast.LENGTH_SHORT).show();
+            TextInputLayout cekLayout = viewGroup.findViewById(R.id.edit_pass_conf);
+            cekLayout.setEndIconMode(TextInputLayout.END_ICON_CUSTOM);
+            cekLayout.setEndIconDrawable(R.drawable.check);
+            return false;
+        } else if (tambah_confpass_emp.length() == 0) {
+            tambah_confpass_emp.setError("Please confirm password ");
+            return false;
+        } else if (tambah_confpass_emp.length() == 0) {
+            tambah_confpass_emp.setError("Please insert this field");
+        } else {
+            confirmAdd();
+        }
+        // after all validation return true.
+        return true;
+
+    }
+
+    private void confirmAdd() {
+
+        final String nama = tambah_nama_emp.getText().toString().trim();
+        final String role1 = String.valueOf(role_save);
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext(), R.style.AlertDialogTheme);
+        alertDialogBuilder.setMessage("Are you sure want to update this data? " +
+                "\n Nama Employe : " + nama +
+                "\n Role      : " + role1
+        );
+
+        alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                addEmployee();
+            }
+        });
+
+        alertDialogBuilder.setNegativeButton("Cancel",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Tidak ngapa-ngapain
+                    }
+                });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+
+    }
+
 
 //    private boolean CheckAllFields() {
 //        if (message.length() == 0) {
@@ -139,11 +214,11 @@ public class AddEmployeeFragment extends Fragment implements View.OnClickListene
 //                Log.d("m:", messsage);
                 //clearText();
 
-//                if (messsage.equals("Berhasil Menambahkan Data Nasabah")){
-//                    showAlertDialog(R.layout.alert_succes);
-//                } else {
-//                    showAlertDialog(R.layout.alert_field);
-//                }
+                if (messsage.equals("Berhasil Menambahkan Data Pegawai")){
+                    showAlertDialog(R.layout.alert_field);
+                } else {
+                    showAlertDialog(R.layout.alert_succes);
+                }
 
                 AdminEmployeeFragment adminEmployeeFragment = new AdminEmployeeFragment();
                 FragmentManager fragmentManager = getFragmentManager();
@@ -156,5 +231,31 @@ public class AddEmployeeFragment extends Fragment implements View.OnClickListene
 
         AddCustomer addCustomer = new AddCustomer();
         addCustomer.execute();
+    }
+
+    private void showAlertDialog(int alert_succes) {
+
+        builderDialog = new AlertDialog.Builder(getContext());
+        View layoutView = getLayoutInflater().inflate(alert_succes, null);
+
+        AppCompatButton dialogButton = layoutView.findViewById(R.id.buttonOk);
+        builderDialog.setView(layoutView);
+        alertDialog = builderDialog.create();
+        alertDialog.show();
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+
+            }
+        }, 4000);
+
+        dialogButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alertDialog.dismiss();
+            }
+        });
+
     }
 }
