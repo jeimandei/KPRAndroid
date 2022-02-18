@@ -32,7 +32,7 @@
        <TextView
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           android:text="Your action performed successfully"
+           android:text="Your data has been added successfully"
            android:layout_marginTop="20dp"
            android:layout_gravity="center"
            android:textAlignment="center"
