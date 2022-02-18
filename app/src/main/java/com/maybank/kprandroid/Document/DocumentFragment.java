@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,6 +41,8 @@ public class DocumentFragment extends Fragment {
     String id_cust, cam_path;
     private ValueCallback<Uri> mUploadMessage;
     public ValueCallback<Uri[]> uploadMessage;
+    SwipeRefreshLayout refresh;
+
 
     public static DocumentFragment newInstance(String param1, String param2) {
         DocumentFragment fragment = new DocumentFragment();
@@ -98,6 +101,7 @@ public class DocumentFragment extends Fragment {
         id_cust = this.getArguments().getString("id_nsb");
 
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Customer Documents");
+        refresh = (SwipeRefreshLayout) viewGroup.findViewById(R.id.refresh);
 
         WebView webView = (WebView) viewGroup.findViewById(R.id.webViewDocument);
         webView.getSettings().setLoadsImagesAutomatically(true);
@@ -114,7 +118,12 @@ public class DocumentFragment extends Fragment {
         webView.getSettings().setAllowFileAccessFromFileURLs(true);
         webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
 
-
+        refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                webView.reload();
+            }
+        });
         webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
         webView.setWebViewClient(new WebViewClient(){
             private WebView view;
