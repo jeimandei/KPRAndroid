@@ -136,7 +136,7 @@ public class SearchCustomerFragment extends Fragment {
     private void displayAllParticipant() {
         JSONObject jsonObject = null;
         ArrayList<String> arrayList = new ArrayList<>();
-        ArrayList<HashMap<String, String>> arrayList1 = new ArrayList<HashMap<String, String>>();
+        ArrayList<String> arrayList1 = new ArrayList<String>();
 
         try {
             jsonObject = new JSONObject(JSON_STRING);
@@ -151,13 +151,9 @@ public class SearchCustomerFragment extends Fragment {
                 String phone = object.getString(ConfigCustomer.TAG_JSON_CST_HP );
                 String address = object.getString(ConfigCustomer.TAG_JSON_CST_ALAMAT);
 
-                HashMap<String, String> customer = new HashMap<>();
-                customer.put(ConfigCustomer.TAG_JSON_CST_ID, id);
-                customer.put(ConfigCustomer.TAG_JSON_CST_NAME, name);
-                customer.put(ConfigCustomer.TAG_JSON_CST_HP, phone);
-                customer.put(ConfigCustomer.TAG_JSON_CST_ALAMAT, address);
 
                 arrayList.add(name);
+                arrayList1.add(id);
                 Log.d("DataArr: ", String.valueOf(name));
             }
 
@@ -166,51 +162,28 @@ public class SearchCustomerFragment extends Fragment {
         }
 
 
-
         adapter = new ArrayAdapter(getContext(), R.layout.lv_search_cust, R.id.lv_search_customer_name, arrayList);
 
         Log.d("DataArray: ", String.valueOf(adapter));
         lv_custsearch.setAdapter(adapter);
 
-//        lv_custsearch.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                DetailCustomerFragment detailCustomerFragment = new DetailCustomerFragment();
-//                FragmentManager fragmentManager = getFragmentManager();
-//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//                fragmentTransaction.replace(R.id.framelayout,detailCustomerFragment);
-//
-//                HashMap<String, String> map = (HashMap) adapterView.getItemAtPosition(i);
-//                String nsbid = map.get(ConfigCustomer.TAG_JSON_CST_ID).toString();
-//                Bundle args = new Bundle();
-//                args.putString("id", nsbid);
-//                args.putString("id_emp_1", id_emp);
-//                detailCustomerFragment.setArguments(args);
-//            }
-//        });
+        lv_custsearch.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                DetailCustomerFragment detailCustomerFragment = new DetailCustomerFragment();
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.framelayout,detailCustomerFragment);
 
+                String a = arrayList1.get(i);
+                Bundle args = new Bundle();
+                args.putString("id", a);
+                Log.d("idm: ", String.valueOf(a));
+                args.putString("id_emp_1", id_emp);
+                detailCustomerFragment.setArguments(args);
+                fragmentTransaction.commit();
+            }
+        });
 
-//        lv_custsearch.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                DetailCustomerFragment detailCustomerFragment = new DetailCustomerFragment();
-//                FragmentManager fragmentManager = getFragmentManager();
-//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//                fragmentTransaction.replace(R.id.framelayout,detailCustomerFragment);
-//
-//
-//                ArrayList<String> map = (ArrayList<String>) adapterView.getItemAtPosition(i);
-//                String nsbid = map.get(Integer.parseInt(ConfigCustomer.TAG_JSON_CST_ID)).toString();
-//                Bundle args = new Bundle();
-//                args.putString("id", nsbid);
-//                args.putString("id_emp_1", id_emp);
-//                detailCustomerFragment.setArguments(args);
-//
-//
-//
-//                Log.d("Par: ", String.valueOf(args));
-//                fragmentTransaction.commit();
-//            }
-//        });
     }
 }
