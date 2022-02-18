@@ -9,12 +9,15 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -39,6 +42,7 @@ public class ManagerFragment extends Fragment {
     private ViewGroup viewGroup;
     private ListView listView;
     String id_emp;
+    EditText search;
     ArrayAdapter<String> adapter1;
 
     public ManagerFragment() {
@@ -62,11 +66,25 @@ public class ManagerFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         viewGroup = (ViewGroup) inflater.inflate(R.layout.fragment_manager, container, false);
+        search = viewGroup.findViewById(R.id.custAllSearch);
 
         listView = viewGroup.findViewById(R.id.lv_manager);
 
         getJSON();
+        search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                adapter1.getFilter().filter(charSequence);
+            }
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
+            }
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
 
         return viewGroup;
     }
