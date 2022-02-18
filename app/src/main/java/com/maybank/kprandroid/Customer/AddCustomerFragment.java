@@ -117,12 +117,11 @@ public class AddCustomerFragment extends Fragment implements View.OnClickListene
             public void run() {
                 alertDialog.dismiss();
             }
-        }, 2000);
+        }, 4000);
 
         dialogButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // dismis
 
             }
         });
@@ -242,7 +241,7 @@ public class AddCustomerFragment extends Fragment implements View.OnClickListene
                 if (messsage.equals("Berhasil Menambahkan Data Nasabah")){
                     showAlertDialog(R.layout.alert_succes);
                 } else {
-
+                    showAlertDialog(R.layout.alert_field);
                 }
 
                 CustomerFragment customerFragment = new CustomerFragment();
