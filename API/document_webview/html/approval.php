@@ -55,8 +55,8 @@
         if($row['status_dok']=='rejected' || $row['status_dok']=='pending'){
             $color = "red";
         }
-        echo "<div class='row' style = 'margin-left : 2px'>
-        <h4>".$row['tipe_dok']."</h4> &nbsp | | &nbsp<span id='status_dok' style = 'color:".$color."'><b> ".$row['status_dok']."</b></span>
+       echo "<div class='row' style = 'margin-left : 2px'>
+        <h4>".$row['tipe_dok']."</h4> &nbsp | | &nbsp<span id='status_dok' style = 'color:".$color."'><b> ".strtoupper($row['status_dok'])."</b></span>
         </div>";
         
         echo '<img src="../../image/'.$row['nama_dok'].'" style="max-width: 100%; height: auto;"/>';
