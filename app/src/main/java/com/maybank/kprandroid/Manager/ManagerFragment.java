@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -38,6 +39,7 @@ public class ManagerFragment extends Fragment {
     private ViewGroup viewGroup;
     private ListView listView;
     String id_emp;
+    ArrayAdapter<String> adapter1;
 
     public ManagerFragment() {
         // Required empty public constructor
@@ -112,6 +114,8 @@ public class ManagerFragment extends Fragment {
     private void displayAllParticipant() {
         JSONObject jsonObject = null;
         ArrayList<HashMap<String, String>> arrayList = new ArrayList<HashMap<String, String>>();
+        ArrayList<String> arrayList1 = new ArrayList<String>();
+        ArrayList<String> arrayList2 = new ArrayList<String>();
 
         try {
             jsonObject = new JSONObject(JSON_STRING);
@@ -122,7 +126,8 @@ public class ManagerFragment extends Fragment {
             for (int i=0;i<jsonArray.length(); i++){
                 JSONObject object = jsonArray.getJSONObject(i);
                 String id = object.getString(ConfigManager.TAG_JSON_MNG_NSB_ID);
-                String name = object.getString(ConfigManager.TAG_JSON_MNG_NAME);
+                String name = object.getString(ConfigManager.TAG_JSON_MNG_NAME) +
+                        "\n\n" + object.getString(ConfigManager.TAG_JSON_MNG_NAME_EMP);;
                 String emp = object.getString(ConfigManager.TAG_JSON_MNG_NAME_EMP);
 
                 HashMap<String, String> customer = new HashMap<>();
@@ -131,20 +136,22 @@ public class ManagerFragment extends Fragment {
                 customer.put(ConfigManager.TAG_JSON_MNG_NAME_EMP, emp);
 
                 arrayList.add(customer);
+                arrayList1.add(name);
+                arrayList2.add(id);
                 Log.d("DataArr: ", String.valueOf(customer));
             }
 
         }catch (Exception e){
             e.printStackTrace();
         }
-
-        ListAdapter adapter = new SimpleAdapter(
-                viewGroup.getContext(), arrayList, R.layout.lv_approval,
-                new String[] {ConfigManager.TAG_JSON_MNG_NAME, ConfigManager.TAG_JSON_MNG_NAME_EMP},
-                new int[] {R.id.lv_approve_nsb, R.id.lv_approve_emp}
-        );
-        Log.d("DataArray: ", String.valueOf(adapter));
-        listView.setAdapter(adapter);
+        adapter1 = new ArrayAdapter(getContext(), R.layout.lv_approval, R.id.lv_approve_nsb, arrayList1);
+//        ListAdapter adapter = new SimpleAdapter(
+//                viewGroup.getContext(), arrayList, R.layout.lv_approval,
+//                new String[] {ConfigManager.TAG_JSON_MNG_NAME, ConfigManager.TAG_JSON_MNG_NAME_EMP},
+//                new int[] {R.id.lv_approve_nsb, R.id.lv_approve_emp}
+//        );
+        Log.d("DataArray: ", String.valueOf(adapter1));
+        listView.setAdapter(adapter1);
 
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -157,10 +164,11 @@ public class ManagerFragment extends Fragment {
                 fragmentTransaction.replace(R.id.framelayout,detailDocumentFragment);
 
 
-                HashMap<String, String> map = (HashMap) adapterView.getItemAtPosition(i);
-                String nsbid = map.get(ConfigManager.TAG_JSON_MNG_NSB_ID).toString();
+//                HashMap<String, String> map = (HashMap) adapterView.getItemAtPosition(i);
+//                String nsbid = map.get(ConfigManager.TAG_JSON_MNG_NSB_ID).toString();
+                String a = arrayList2.get(i);
                 Bundle args = new Bundle();
-                args.putString("id_nsb", nsbid);
+                args.putString("id_nsb", a);
                 detailDocumentFragment.setArguments(args);
 
                 Log.d("Par: ", String.valueOf(args));

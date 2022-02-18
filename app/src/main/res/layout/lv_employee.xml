@@ -23,16 +23,6 @@
             android:textSize="18sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/lv_employee_role"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="8dp"
-            android:text="Employee Role"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            android:textAlignment="textEnd"/>
     </LinearLayout>
 
 </LinearLayout>

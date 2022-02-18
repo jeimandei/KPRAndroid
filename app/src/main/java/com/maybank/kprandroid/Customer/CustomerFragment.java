@@ -9,11 +9,15 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -40,6 +44,8 @@ public class CustomerFragment extends Fragment {
     private ListView listView;
     private FloatingActionButton floatingActionButton;
     String id_emp;
+    ArrayAdapter<String> adapter;
+    EditText search;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -54,9 +60,23 @@ public class CustomerFragment extends Fragment {
 
         floatingActionButton = viewGroup.findViewById(R.id.customer_add);
         listView = viewGroup.findViewById(R.id.lv_customer);
+        search = viewGroup.findViewById(R.id.custEMPSearch);
 
         id_emp = this.getArguments().getString("id_emp");
+        search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                adapter.getFilter().filter(charSequence);
+            }
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
+            }
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
 
         getJSON();
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
@@ -118,7 +138,9 @@ public class CustomerFragment extends Fragment {
 
     private void displayAllParticipant() {
         JSONObject jsonObject = null;
-        ArrayList<HashMap<String, String>> arrayList = new ArrayList<HashMap<String, String>>();
+        //ArrayList<HashMap<String, String>> arrayList = new ArrayList<HashMap<String, String>>();
+        ArrayList<String> arrayList = new ArrayList<>();
+        ArrayList<String> arrayList1 = new ArrayList<String>();
 
         try {
             jsonObject = new JSONObject(JSON_STRING);
@@ -129,9 +151,11 @@ public class CustomerFragment extends Fragment {
             for (int i=0;i<jsonArray.length(); i++){
                 JSONObject object = jsonArray.getJSONObject(i);
                 String id = object.getString(ConfigCustomer.TAG_JSON_CST_ID);
-                String name = object.getString(ConfigCustomer.TAG_JSON_CST_NAME);
+                String name = object.getString(ConfigCustomer.TAG_JSON_CST_NAME) +
+                        "\n\n" + object.getString(ConfigCustomer.TAG_JSON_CST_KTP);
                 String phone = object.getString(ConfigCustomer.TAG_JSON_CST_HP );
                 String address = object.getString(ConfigCustomer.TAG_JSON_CST_ALAMAT);
+                String ktp = object.getString(ConfigCustomer.TAG_JSON_CST_KTP);
 
                 HashMap<String, String> customer = new HashMap<>();
                 customer.put(ConfigCustomer.TAG_JSON_CST_ID, id);
@@ -139,7 +163,8 @@ public class CustomerFragment extends Fragment {
                 customer.put(ConfigCustomer.TAG_JSON_CST_HP, phone);
                 customer.put(ConfigCustomer.TAG_JSON_CST_ALAMAT, address);
 
-                arrayList.add(customer);
+                arrayList.add(name);
+                arrayList1.add(id);
                 Log.d("DataArr: ", String.valueOf(customer));
             }
 
@@ -147,12 +172,14 @@ public class CustomerFragment extends Fragment {
             e.printStackTrace();
         }
 
-        ListAdapter adapter = new SimpleAdapter(
-                viewGroup.getContext(), arrayList, R.layout.lv_customer,
-                new String[] {ConfigCustomer.TAG_JSON_CST_NAME, ConfigCustomer.TAG_JSON_CST_HP, ConfigCustomer.TAG_JSON_CST_ALAMAT},
-                new int[] {R.id.lv_customer_name, R.id.lv_customer_phone, R.id.lv_customer_address}
-        );
+//        ListAdapter adapter = new SimpleAdapter(
+//                viewGroup.getContext(), arrayList, R.layout.lv_customer,
+//                new String[] {ConfigCustomer.TAG_JSON_CST_NAME, ConfigCustomer.TAG_JSON_CST_HP, ConfigCustomer.TAG_JSON_CST_ALAMAT},
+//                new int[] {R.id.lv_customer_name, R.id.lv_customer_phone, R.id.lv_customer_address}
+//        );
         Log.d("DataArray: ", String.valueOf(adapter));
+
+        adapter = new ArrayAdapter(getContext(), R.layout.lv_customer, R.id.lv_customer_name, arrayList);
         listView.setAdapter(adapter);
 
 
@@ -165,10 +192,11 @@ public class CustomerFragment extends Fragment {
                 fragmentTransaction.replace(R.id.framelayout,detailCustomerFragment);
 
 
-                HashMap<String, String> map = (HashMap) adapterView.getItemAtPosition(i);
-                String nsbid = map.get(ConfigCustomer.TAG_JSON_CST_ID).toString();
+//                HashMap<String, String> map = (HashMap) adapterView.getItemAtPosition(i);
+//                String nsbid = map.get(ConfigCustomer.TAG_JSON_CST_ID).toString();
+                String a = arrayList1.get(i);
                 Bundle args = new Bundle();
-                args.putString("id", nsbid);
+                args.putString("id", a);
                 args.putString("id_emp_1", id_emp);
                 detailCustomerFragment.setArguments(args);
 

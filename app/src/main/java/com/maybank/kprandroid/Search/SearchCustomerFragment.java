@@ -189,7 +189,6 @@ public class SearchCustomerFragment extends Fragment {
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.framelayout,detailCustomerFragment);
-
                 String a = arrayList1.get(i);
                 Bundle args = new Bundle();
                 args.putString("id", a);
