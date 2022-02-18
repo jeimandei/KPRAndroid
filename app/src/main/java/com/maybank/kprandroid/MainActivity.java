@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private ActionBarDrawerToggle toggle;
     MenuItem manager;
     Toolbar toolbar;
-    String id, role;
+    String id, nama, role;
     EditText id_login,pass_login;
     TextView role_EMP, name_EMP;
 
@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
         Intent receiveIntent = getIntent();
         id = receiveIntent.getStringExtra(ConfigLogin.EMP_ID);
+        nama = receiveIntent.getStringExtra(ConfigLogin.EMP_NAME);
         role = receiveIntent.getStringExtra(ConfigLogin.EMP_ROLE);
 
         Log.d("id_main:", role);
@@ -132,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
         name_EMP = headerlayout.findViewById(R.id.nav_name);
 
         role_EMP.setText(role);
-        name_EMP.setText(id);
+        name_EMP.setText(nama);
 
         setSupportActionBar(binding.toolbar);
 
