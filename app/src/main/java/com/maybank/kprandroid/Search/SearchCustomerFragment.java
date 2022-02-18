@@ -135,6 +135,7 @@ public class SearchCustomerFragment extends Fragment {
 
     private void displayAllParticipant() {
         JSONObject jsonObject = null;
+        ArrayList<HashMap<String, String>> arrayList3 = new ArrayList<HashMap<String, String>>();
         ArrayList<String> arrayList = new ArrayList<>();
         ArrayList<String> arrayList1 = new ArrayList<String>();
 
@@ -150,10 +151,18 @@ public class SearchCustomerFragment extends Fragment {
                 String name = object.getString(ConfigCustomer.TAG_JSON_CST_NAME);
                 String phone = object.getString(ConfigCustomer.TAG_JSON_CST_HP );
                 String address = object.getString(ConfigCustomer.TAG_JSON_CST_ALAMAT);
+                String ktp = object.getString(ConfigCustomer.TAG_JSON_CST_KTP);
 
+                HashMap<String, String> customer = new HashMap<>();
+                customer.put(ConfigCustomer.TAG_JSON_CST_ID, id);
+                customer.put(ConfigCustomer.TAG_JSON_CST_NAME, name);
+                customer.put(ConfigCustomer.TAG_JSON_CST_HP, phone);
+                customer.put(ConfigCustomer.TAG_JSON_CST_ALAMAT, address);
+                customer.put(ConfigCustomer.TAG_JSON_CST_KTP, ktp);
 
                 arrayList.add(name);
                 arrayList1.add(id);
+                arrayList3.add(customer);
                 Log.d("DataArr: ", String.valueOf(name));
             }
 
@@ -161,8 +170,13 @@ public class SearchCustomerFragment extends Fragment {
             e.printStackTrace();
         }
 
+        ListAdapter adapter = new SimpleAdapter(
+                viewGroup.getContext(), arrayList3, R.layout.lv_search_cust,
+                new String[] {ConfigCustomer.TAG_JSON_CST_NAME, ConfigCustomer.TAG_JSON_CST_KTP},
+                new int[] {R.id.lv_search_customer_name, R.id.lv_search_customer_ktp}
+        );
 
-        adapter = new ArrayAdapter(getContext(), R.layout.lv_search_cust, R.id.lv_search_customer_name, arrayList);
+        //adapter = new ArrayAdapter(getContext(), R.layout.lv_search_cust, R.id.lv_search_customer_name, arrayList);
 
         Log.d("DataArray: ", String.valueOf(adapter));
         lv_custsearch.setAdapter(adapter);
