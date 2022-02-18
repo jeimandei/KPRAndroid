@@ -29,6 +29,7 @@ import com.maybank.kprandroid.Login.LoginActivity;
 import com.maybank.kprandroid.Manager.ManagerFragment;
 import com.maybank.kprandroid.Schedule.ScheduleFragment;
 import com.maybank.kprandroid.Search.SearchCustomerFragment;
+import com.maybank.kprandroid.Search.SearchDateFragment;
 import com.maybank.kprandroid.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
@@ -106,25 +107,20 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("cekIDS:", id);
                 callFragment(searchCustomerFragment);
                 break;
-
+            case R.id.id_search_date:
+                SearchDateFragment searchDateFragment = new SearchDateFragment();
+                getSupportActionBar().setTitle("Search Schedule");
+                binding.navDrawer.closeDrawer(GravityCompat.START);
+                Bundle arg1 = new Bundle();
+                arg1.putString("id_emp_1", id);
+                searchDateFragment.setArguments(arg1);
+                Log.d("cekIDS:", id);
+                callFragment(searchDateFragment);
+                break;
         }
 
         return super.onOptionsItemSelected(item);
     }
-
-//    @Override
-//    public boolean onPrepareOptionsMenu(Menu menu) {
-//        final MenuInflater inflater = getMenuInflater();
-//        inflater.inflate(R.menu.navbar_menu, menu);
-//        manager = menu.findItem(R.id.nav_manager);
-//        Log.d("id_man:", String.valueOf(manager));
-//
-//        if (role.equals("kpr")){
-//            manager.setEnabled(false);
-//        }
-//
-//        return true;
-//    }
 
     private void initView() {
 

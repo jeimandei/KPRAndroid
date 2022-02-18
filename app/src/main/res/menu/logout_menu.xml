@@ -22,7 +22,7 @@
                         android:title="Search Customer"
                         app:showAsAction="ifRoom" />
                     <item
-                        android:id="@+id/sub_menu2"
+                        android:id="@+id/id_search_date"
                         android:icon="@drawable/ic_baseline_content_paste_search_24"
                         android:title="Search Date"
                         app:showAsAction="ifRoom" />

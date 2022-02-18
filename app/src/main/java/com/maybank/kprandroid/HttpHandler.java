@@ -129,4 +129,26 @@ public class HttpHandler {
         }
         return sb.toString();
     }
+
+    public String sendGetRespDate(String responseUrl, String start, String end) {
+        StringBuilder sb = new StringBuilder();
+        try {
+            Uri.Builder builder = new Uri.Builder();
+            builder.appendQueryParameter("start", start).
+                    appendQueryParameter("end", end);
+            URL url = new URL(responseUrl + builder);
+            Log.d("url:", String.valueOf(builder));
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            BufferedReader reader = new BufferedReader(
+                    new InputStreamReader(connection.getInputStream())
+            );
+            String response;
+            while ((response = reader.readLine()) != null) {
+                sb.append(response + "\n");
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return sb.toString();
+    }
 }

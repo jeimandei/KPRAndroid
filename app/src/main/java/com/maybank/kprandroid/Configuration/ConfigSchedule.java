@@ -9,6 +9,7 @@ public class ConfigSchedule {
     public static final String URL_ADD_SCHEDULE = IP + "kpr/schedule/tambahSchedule.php";
     public static final String URL_UPDATE_SCHEDULE = IP + "kpr/schedule/updateSchedule.php";
     public static final String URL_DELETE_SCHEDULE = IP + "kpr/schedule/hapusSchedule.php?id_sch=";
+    public static final String URL_SEARCH_DATE = IP + "kpr/schedule/search_schedule.php";
 
     // key and value JSON yang muncul di browser
     public static final String KEY_SCH_ID = "id_jantem";
