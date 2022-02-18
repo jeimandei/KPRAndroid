@@ -72,9 +72,9 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.logout_menu, menu);
-        if (role.equals("kpr")){
-            menu.findItem(R.id.id_search_cus_man).setVisible(false);
-        }
+//        if (role.equals("kpr")){
+//            //menu.findItem(R.id.id_search_cus_man).setVisible(false);
+//        }
 
 
         return true;
@@ -105,26 +105,26 @@ public class MainActivity extends AppCompatActivity {
                 alertDialog.show();
 //                clearText();
                 break;
-            case R.id.id_search_cus_man:
-                SearchCustManagerFragment searchCustManagerFragment = new SearchCustManagerFragment();
-                getSupportActionBar().setTitle("Search Customer");
-                binding.navDrawer.closeDrawer(GravityCompat.START);
-                Bundle arg2 = new Bundle();
-                arg2.putString("id_emp_1", id);
-                searchCustManagerFragment.setArguments(arg2);
-                Log.d("cekIDS:", id);
-                callFragment(searchCustManagerFragment);
-                break;
-            case R.id.id_search_cus:
-                SearchCustomerFragment searchCustomerFragment = new SearchCustomerFragment();
-                getSupportActionBar().setTitle("Search Customer");
-                binding.navDrawer.closeDrawer(GravityCompat.START);
-                Bundle arg = new Bundle();
-                arg.putString("id_emp_1", id);
-                searchCustomerFragment.setArguments(arg);
-                Log.d("cekIDS:", id);
-                callFragment(searchCustomerFragment);
-                break;
+//            case R.id.id_search_cus_man:
+//                SearchCustManagerFragment searchCustManagerFragment = new SearchCustManagerFragment();
+//                getSupportActionBar().setTitle("Search Customer");
+//                binding.navDrawer.closeDrawer(GravityCompat.START);
+//                Bundle arg2 = new Bundle();
+//                arg2.putString("id_emp_1", id);
+//                searchCustManagerFragment.setArguments(arg2);
+//                Log.d("cekIDS:", id);
+//                callFragment(searchCustManagerFragment);
+//                break;
+//            case R.id.id_search_cus:
+//                SearchCustomerFragment searchCustomerFragment = new SearchCustomerFragment();
+//                getSupportActionBar().setTitle("Search Customer");
+//                binding.navDrawer.closeDrawer(GravityCompat.START);
+//                Bundle arg = new Bundle();
+//                arg.putString("id_emp_1", id);
+//                searchCustomerFragment.setArguments(arg);
+//                Log.d("cekIDS:", id);
+//                callFragment(searchCustomerFragment);
+//                break;
             case R.id.id_search_date:
                 SearchDateFragment searchDateFragment = new SearchDateFragment();
                 getSupportActionBar().setTitle("Search Schedule");

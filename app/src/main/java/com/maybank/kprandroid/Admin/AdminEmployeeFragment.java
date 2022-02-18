@@ -150,6 +150,7 @@ public class AdminEmployeeFragment extends Fragment {
         ArrayList<String> arrayList1 = new ArrayList<>();
         ArrayList<String> arrayList2 = new ArrayList<>();
 
+
         try {
             jsonObject = new JSONObject(JSON_STRING);
             JSONArray jsonArray = jsonObject.getJSONArray(ConfigAdmin.TAG_JSON_ARRAY);
@@ -159,10 +160,11 @@ public class AdminEmployeeFragment extends Fragment {
             for (int i=0;i<jsonArray.length(); i++){
                 JSONObject object = jsonArray.getJSONObject(i);
                 String id = object.getString(ConfigAdmin.TAG_JSON_EMP_ID);
-                String name = object.getString(ConfigAdmin.TAG_JSON_EMP_NAME) + "\n\n"
-                        + object.getString(ConfigAdmin.TAG_JSON_EMP_ROLE.toUpperCase());
-
                 String role = object.getString(ConfigAdmin.TAG_JSON_EMP_ROLE );
+                String name = object.getString(ConfigAdmin.TAG_JSON_EMP_NAME) + "\n\n"
+                        + role;
+
+
                 //String pass = object.getString(ConfigAdmin.TAG_JSON_EMP_PASS);
 
                 HashMap<String, String> customer = new HashMap<>();
