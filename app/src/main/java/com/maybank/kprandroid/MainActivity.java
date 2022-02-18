@@ -22,6 +22,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
+import com.maybank.kprandroid.Admin.AdminEmployeeFragment;
 import com.maybank.kprandroid.Configuration.ConfigLogin;
 import com.maybank.kprandroid.Customer.CustomerFragment;
 import com.maybank.kprandroid.Manager.ManagerFragment;
@@ -151,14 +152,7 @@ public class MainActivity extends AppCompatActivity {
 
         setSupportActionBar(binding.toolbar);
 
-        getSupportActionBar().setTitle("Schedule");
 
-        ScheduleFragment scheduleFragment = new ScheduleFragment();
-        Bundle arg = new Bundle();
-        arg.putString("id_emp_1", id);
-        scheduleFragment.setArguments(arg);
-        Log.d("cekIDS:", id);
-        callFragment(scheduleFragment);
 
 
 
@@ -166,6 +160,27 @@ public class MainActivity extends AppCompatActivity {
         binding.navbarView.setCheckedItem(R.id.nav_agenda);
         if (role.equals("kpr")){
             binding.navbarView.getMenu().removeItem(R.id.nav_manager);
+            binding.navbarView.getMenu().removeItem(R.id.nav_admin);
+
+            getSupportActionBar().setTitle("Schedule");
+
+            ScheduleFragment scheduleFragment = new ScheduleFragment();
+            Bundle arg = new Bundle();
+            arg.putString("id_emp_1", id);
+            scheduleFragment.setArguments(arg);
+            Log.d("cekIDS:", id);
+            callFragment(scheduleFragment);
+        }else if (role.equals("manager")){
+            binding.navbarView.getMenu().removeItem(R.id.nav_admin);
+        }else if (role.equals("admin")){
+            binding.navbarView.getMenu().removeItem(R.id.nav_agenda);
+            binding.navbarView.getMenu().removeItem(R.id.nav_nasabah);
+            binding.navbarView.getMenu().removeItem(R.id.nav_manager);
+
+            getSupportActionBar().setTitle("Administrator");
+
+            AdminEmployeeFragment adminEmployeeFragment = new AdminEmployeeFragment();
+            callFragment(adminEmployeeFragment);
         }
 
         toggle = new ActionBarDrawerToggle(this, binding.navDrawer, binding.toolbar, R.string.open, R.string.close);
@@ -208,6 +223,16 @@ public class MainActivity extends AppCompatActivity {
                         argw.putString("id_emp", id);
                         Log.d("cekID:", id);
                         fragments[0].setArguments(argw);
+                        callFragment(fragments[0]);
+                        break;
+                    case R.id.nav_admin:
+                        fragments[0] = new AdminEmployeeFragment();
+                        getSupportActionBar().setTitle("Administrator");
+                        binding.navDrawer.closeDrawer(GravityCompat.START);
+                        Bundle arg4 = new Bundle();
+                        arg4.putString("id_emp", id);
+                        Log.d("cekID:", id);
+                        fragments[0].setArguments(arg4);
                         callFragment(fragments[0]);
                         break;
                 }
