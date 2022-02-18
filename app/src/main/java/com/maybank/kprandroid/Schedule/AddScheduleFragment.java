@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -55,6 +56,8 @@ public class AddScheduleFragment extends Fragment implements View.OnClickListene
     private int c_nsb_id;
     String id_emp;
     boolean isAllFieldsChecked = false;
+    AlertDialog.Builder builderDialog;
+    AlertDialog alertDialog;
 
     final Calendar calendar = Calendar.getInstance();
 
@@ -278,9 +281,13 @@ public class AddScheduleFragment extends Fragment implements View.OnClickListene
             protected void onPostExecute(String messsage) {
                 super.onPostExecute(messsage);
                 loading.dismiss();
-                Toast.makeText(getContext(), messsage, Toast.LENGTH_LONG).show();
-                Log.d("m:", messsage);
                 clearText();
+
+                if (messsage.equals("Berhasil Menambahkan Data Janji Temu")){
+                    showAlertDialog(R.layout.alert_succes);
+                } else {
+                    showAlertDialog(R.layout.alert_succes);
+                }
 
                 ScheduleFragment scheduleFragment = new ScheduleFragment();
                 FragmentManager fragmentManager = getFragmentManager();
@@ -295,6 +302,32 @@ public class AddScheduleFragment extends Fragment implements View.OnClickListene
         SaveData saveData = new SaveData();
         saveData.execute();
 
+
+    }
+
+    private void showAlertDialog(int alert_succes) {
+
+        builderDialog = new AlertDialog.Builder(getContext());
+        View layoutView = getLayoutInflater().inflate(alert_succes, null);
+
+        AppCompatButton dialogButton = layoutView.findViewById(R.id.buttonOk);
+        builderDialog.setView(layoutView);
+        alertDialog = builderDialog.create();
+        alertDialog.show();
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                alertDialog.dismiss();
+            }
+        }, 4000);
+
+        dialogButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
 
     }
 }
