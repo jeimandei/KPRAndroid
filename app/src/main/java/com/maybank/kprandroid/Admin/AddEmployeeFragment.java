@@ -41,6 +41,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class AddEmployeeFragment extends Fragment implements View.OnClickListener {
 
@@ -94,9 +95,15 @@ public class AddEmployeeFragment extends Fragment implements View.OnClickListene
 
         tambah_emp.setOnClickListener(this);
 
-
         return viewGroup;
     }
+
+    private static final Pattern PASSWORD_PATTERN =
+            Pattern.compile("^" +
+                    "(?=.*[@#$%^&+=])" +     // at least 1 special character
+                    "(?=\\S+$)" +            // no white spaces
+                    ".{4,}" +                // at least 4 characters
+                    "$");
 
 
     @Override
@@ -130,7 +137,12 @@ public class AddEmployeeFragment extends Fragment implements View.OnClickListene
             cekLayout.setEndIconMode(TextInputLayout.END_ICON_CUSTOM);
             cekLayout.setEndIconDrawable(R.drawable.check);
             return false;
-        } else {
+        } else if (!PASSWORD_PATTERN.matcher(pass).matches())
+        {
+            tambah_pass_emp.setError("Password is too weak");
+            return false;
+        }   else
+        {
             confirmAdd();
         }
         // after all validation return true.
