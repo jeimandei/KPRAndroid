@@ -85,16 +85,20 @@ public class AddScheduleFragment extends Fragment implements View.OnClickListene
                 calendar.set(Calendar.YEAR, y);
                 calendar.set(Calendar.MONTH, m);
                 calendar.set(Calendar.DAY_OF_MONTH, d);
+
                 updateTextStart();
+
             }
         };
 
         tgl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DatePickerDialog datePickerDialog = new DatePickerDialog(view.getContext(), date_start, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+                DatePickerDialog datePickerDialog = new DatePickerDialog(view.getContext(),R.style.DialogDatePicker_Theme,date_start, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
                 datePickerDialog.show();
                 datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis()-1000);
+                datePickerDialog.setButton("set apply button text", datePickerDialog);
+
             }
         });
         getJSON();

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bggradient_list"
     tools:context=".Search.SearchDateFragment">
 
     <LinearLayout
@@ -21,6 +22,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Start Date"
                 android:layout_weight="1"
+                android:focusable="false"
                 android:inputType="text"
                 android:textAlignment="center"/>
             <EditText android:id="@+id/dateendSearch"
@@ -28,6 +30,7 @@
                 android:layout_height="wrap_content"
                 android:hint="End Date"
                 android:layout_weight="1"
+                android:focusable="false"
                 android:inputType="text"
                 android:textAlignment="center"/>
 
@@ -41,9 +44,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Search"
+
             android:layout_gravity="center"
             android:layout_margin="12dp"
-            android:backgroundTint="#9AD0EC"
+            android:backgroundTint="#CD853F"
             />
 
         <ListView
