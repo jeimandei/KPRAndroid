@@ -19,7 +19,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
@@ -39,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     String id, role;
     EditText id_login,pass_login;
+    TextView role_EMP, name_EMP;
 
 
     @Override
@@ -123,6 +126,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initView() {
+
+        View headerlayout = binding.navbarView.getHeaderView(0);
+        role_EMP = headerlayout.findViewById(R.id.nav_role);
+        name_EMP = headerlayout.findViewById(R.id.nav_name);
+
+        role_EMP.setText(role);
+        name_EMP.setText(id);
 
         setSupportActionBar(binding.toolbar);
 
