@@ -209,12 +209,12 @@ public class DetailCustomerFragment extends Fragment implements View.OnClickList
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext(), R.style.AlertDialogTheme);
         alertDialogBuilder.setMessage("Are you sure want to update this data? " +
-                "\n Name           :  " + name +
-                "\n ID Card        :  " + ktp +
-                "\n Place of Birth :  " + pb +
-                "\n Date of Birth  :  " + dob +
-                "\n Phone          :  " + ph +
-                "\n Addres         :  " + addr);
+                "\n Name\t\t\t\t\t\t\t\t:  " + name +
+                "\n ID Card\t\t\t\t\t\t\t:  " + ktp +
+                "\n Place of Birth\t:  " + pb +
+                "\n Date of Birth\t\t:  " + dob +
+                "\n Phone\t\t\t\t\t\t\t\t:  " + ph +
+                "\n Address\t\t\t\t\t\t:  " + addr);
 
         alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
@@ -340,12 +340,12 @@ public class DetailCustomerFragment extends Fragment implements View.OnClickList
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext(), R.style.AlertDialogTheme);
         alertDialogBuilder.setMessage("Are you sure want to delete this data? " +
-                "\n Name           :  " + name +
-                "\n ID Card        :  " + ktp +
-                "\n Place of Birth :  " + pb +
-                "\n Date of Birth  :  " + dob +
-                "\n Phone          :  " + ph +
-                "\n Addres         :  " + addr);
+                "\n Name\t\t\t\t\t\t\t\t:  " + name +
+                "\n ID Card\t\t\t\t\t\t\t:  " + ktp +
+                "\n Place of Birth\t:  " + pb +
+                "\n Date of Birth\t\t:  " + dob +
+                "\n Phone\t\t\t\t\t\t\t\t:  " + ph +
+                "\n Address\t\t\t\t\t\t:  " + addr);
 
         alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override

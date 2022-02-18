@@ -149,7 +149,7 @@ public class SearchCustomerFragment extends Fragment {
             for (int i=0;i<jsonArray.length(); i++){
                 JSONObject object = jsonArray.getJSONObject(i);
                 String id = object.getString(ConfigCustomer.TAG_JSON_CST_ID);
-                String name = object.getString(ConfigCustomer.TAG_JSON_CST_NAME);
+                String name = object.getString(ConfigCustomer.TAG_JSON_CST_NAME) + "\n\n"+ object.getString(ConfigCustomer.TAG_JSON_CST_KTP);
                 String phone = object.getString(ConfigCustomer.TAG_JSON_CST_HP );
                 String address = object.getString(ConfigCustomer.TAG_JSON_CST_ALAMAT);
                 String ktp = object.getString(ConfigCustomer.TAG_JSON_CST_KTP);

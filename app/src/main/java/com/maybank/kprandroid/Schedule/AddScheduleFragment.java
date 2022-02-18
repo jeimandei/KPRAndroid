@@ -228,9 +228,9 @@ public class AddScheduleFragment extends Fragment implements View.OnClickListene
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext(), R.style.AlertDialogTheme);
         alertDialogBuilder.setMessage("Are you sure want to add this data? " +
-                "\n Meeting Date : " + tgl_jantem +
-                "\n Message      : " + pesan +
-                "\n ID Customer  : " + id_nsb
+                "\n Meeting Date\t\t\t\t: " + tgl_jantem +
+                "\n Message\t\t\t\t\t\t\t: " + pesan +
+                "\n ID Customer\t\t\t\t: " + id_nsb
         );
 
         alertDialogBuilder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {

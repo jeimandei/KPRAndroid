@@ -141,12 +141,12 @@ public class AddCustomerFragment extends Fragment implements View.OnClickListene
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext(), R.style.AlertDialogTheme);
         alertDialogBuilder.setMessage("Are you sure want to add this data? " +
-                "\n Name          : " + nama +
-                "\n ID Card       : " + ktp +
-                "\n Place of Birth: " + tempat_lahir +
-                "\n Date of Birth : " + tgl_lahir +
-                "\n Phone         : " + hp +
-                "\n Address       : " + alamat
+                "\n Name\t\t\t\t\t\t\t\t:  " + nama +
+                "\n ID Card\t\t\t\t\t\t\t:  " + ktp +
+                "\n Place of Birth\t:  " + tempat_lahir +
+                "\n Date of Birth\t\t:  " + tgl_lahir +
+                "\n Phone\t\t\t\t\t\t\t\t:  " + hp +
+                "\n Address\t\t\t\t\t\t:  " + alamat
         );
 
         alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {

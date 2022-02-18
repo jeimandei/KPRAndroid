@@ -177,8 +177,8 @@ public class DetailScheduleFragment extends Fragment implements View.OnClickList
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext(), R.style.AlertDialogTheme);
         alertDialogBuilder.setMessage("Are you sure want to update this data? " +
-                "\n Meeting Date :  " + tanggal +
-                "\n Message      :  " + memo );
+                "\n Meeting Date\t\t:  " + tanggal +
+                "\n Message\t\t\t\t\t:  " + memo );
 
         alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
@@ -291,8 +291,8 @@ public class DetailScheduleFragment extends Fragment implements View.OnClickList
         final String memo = sch_msg.getText().toString().trim();
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext(), R.style.AlertDialogTheme);
         alertDialogBuilder.setMessage("Are you sure want to delete this data? " +
-                "\n Meeting Date :  " + tanggal_temu +
-                "\n Message      :  " + memo );
+                "\n Meeting Date\t\t:  " + tanggal_temu +
+                "\n Message\t\t\t\t\t:  " + memo );
 
         alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
