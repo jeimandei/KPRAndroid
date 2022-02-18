@@ -17,6 +17,11 @@
                 app:showAsAction="ifRoom">
                 <menu>
                     <item
+                        android:id="@+id/id_search_cus_man"
+                        android:icon="@drawable/ic_baseline_person_search_24"
+                        android:title="Search All Customer"
+                        app:showAsAction="ifRoom" />
+                    <item
                         android:id="@+id/id_search_cus"
                         android:icon="@drawable/ic_baseline_person_search_24"
                         android:title="Search Customer"

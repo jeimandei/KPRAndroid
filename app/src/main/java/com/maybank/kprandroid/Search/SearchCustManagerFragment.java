@@ -18,11 +18,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 
 import com.maybank.kprandroid.Configuration.ConfigCustomer;
+import com.maybank.kprandroid.Configuration.ConfigManager;
 import com.maybank.kprandroid.Customer.DetailCustomerFragment;
 import com.maybank.kprandroid.HttpHandler;
 import com.maybank.kprandroid.R;
@@ -35,27 +34,25 @@ import java.util.HashMap;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link SearchCustomerFragment#newInstance} factory method to
+ * Use the {@link SearchCustManagerFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SearchCustomerFragment extends Fragment {
+public class SearchCustManagerFragment extends Fragment {
+
     ViewGroup viewGroup;
     String JSON_STRING;
     EditText search;
-    ListView lv_custsearch;
+    ListView lv_custMansearch;
     ArrayAdapter<String> adapter1;
-    ListAdapter adapter;
     String id_emp;
 
-    public SearchCustomerFragment() {
+    public SearchCustManagerFragment() {
         // Required empty public constructor
     }
 
-    // TODO: Rename and change types and number of parameters
-    public static SearchCustomerFragment newInstance(String param1, String param2) {
-        SearchCustomerFragment fragment = new SearchCustomerFragment();
+    public static SearchCustManagerFragment newInstance(String param1, String param2) {
+        SearchCustManagerFragment fragment = new SearchCustManagerFragment();
         Bundle args = new Bundle();
-
         fragment.setArguments(args);
         return fragment;
     }
@@ -63,18 +60,19 @@ public class SearchCustomerFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        if (getArguments() != null) {
+        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        viewGroup = (ViewGroup) inflater.inflate(R.layout.fragment_search_customer, container, false);
+        viewGroup = (ViewGroup) inflater.inflate(R.layout.fragment_search_cust_manger, container, false);
 
         id_emp = this.getArguments().getString("id_emp_1");
-        search = viewGroup.findViewById(R.id.custSearch);
-        lv_custsearch = viewGroup.findViewById(R.id.lv_search_customer);
+        search = viewGroup.findViewById(R.id.custManSearch);
+        lv_custMansearch = viewGroup.findViewById(R.id.lv_search_man_customer);
 
         getJSON();
 
@@ -95,6 +93,7 @@ public class SearchCustomerFragment extends Fragment {
 
         return viewGroup;
     }
+
     private void getJSON() {
         class GetJSON extends AsyncTask<Void, Void, String> {
             ProgressDialog progressDialog;
@@ -108,7 +107,7 @@ public class SearchCustomerFragment extends Fragment {
             @Override
             protected String doInBackground(Void... voids) {
                 HttpHandler handler = new HttpHandler();
-                String result = handler.sendGetResp(ConfigCustomer.URL_GET_ALL_CUSTOMER, id_emp);
+                String result = handler.sendGetResp(ConfigManager.URL_GET_ALL_MANAGER);
                 Log.d("GetData", result);
                 return result;
             }
@@ -148,22 +147,17 @@ public class SearchCustomerFragment extends Fragment {
 
             for (int i=0;i<jsonArray.length(); i++){
                 JSONObject object = jsonArray.getJSONObject(i);
-                String id = object.getString(ConfigCustomer.TAG_JSON_CST_ID);
-                String name = object.getString(ConfigCustomer.TAG_JSON_CST_NAME);
-                String phone = object.getString(ConfigCustomer.TAG_JSON_CST_HP );
-                String address = object.getString(ConfigCustomer.TAG_JSON_CST_ALAMAT);
-                String ktp = object.getString(ConfigCustomer.TAG_JSON_CST_KTP);
+                String id = object.getString(ConfigManager.TAG_JSON_MNG_NSB_ID);
+                String name = object.getString(ConfigManager.TAG_JSON_MNG_NAME);
+                String emp = object.getString(ConfigManager.TAG_JSON_MNG_NAME_EMP);
 
                 HashMap<String, String> customer = new HashMap<>();
-                customer.put(ConfigCustomer.TAG_JSON_CST_ID, id);
-                customer.put(ConfigCustomer.TAG_JSON_CST_NAME, name);
-                customer.put(ConfigCustomer.TAG_JSON_CST_HP, phone);
-                customer.put(ConfigCustomer.TAG_JSON_CST_ALAMAT, address);
-                customer.put(ConfigCustomer.TAG_JSON_CST_KTP, ktp);
+                customer.put(ConfigManager.TAG_JSON_MNG_NSB_ID, id);
+                customer.put(ConfigManager.TAG_JSON_MNG_NAME, name);
+                customer.put(ConfigManager.TAG_JSON_MNG_NAME_EMP, emp);
 
                 arrayList.add(name);
                 arrayList1.add(id);
-                arrayList3.add(customer);
                 Log.d("DataArr: ", String.valueOf(name));
             }
 
@@ -171,18 +165,18 @@ public class SearchCustomerFragment extends Fragment {
             e.printStackTrace();
         }
 
-        adapter = new SimpleAdapter(
-                viewGroup.getContext(), arrayList3, R.layout.lv_search_cust,
-                new String[] {ConfigCustomer.TAG_JSON_CST_NAME, ConfigCustomer.TAG_JSON_CST_KTP},
-                new int[] {R.id.lv_search_customer_name, R.id.lv_search_customer_ktp}
-        );
+//        adapter = new SimpleAdapter(
+//                viewGroup.getContext(), arrayList3, R.layout.lv_search_cust,
+//                new String[] {ConfigCustomer.TAG_JSON_CST_NAME, ConfigCustomer.TAG_JSON_CST_KTP},
+//                new int[] {R.id.lv_search_customer_name, R.id.lv_search_customer_ktp}
+//        );
 
-        adapter1 = new ArrayAdapter(getContext(), R.layout.lv_search_cust, R.id.lv_search_customer_name, arrayList);
+        adapter1 = new ArrayAdapter(getContext(), R.layout.lv_search_cust_man, R.id.lv_search_customer_man_name, arrayList);
 
-        Log.d("DataArray: ", String.valueOf(adapter));
-        lv_custsearch.setAdapter(adapter1);
+        Log.d("DataArray: ", String.valueOf(adapter1));
+        lv_custMansearch.setAdapter(adapter1);
 
-        lv_custsearch.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lv_custMansearch.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 DetailCustomerFragment detailCustomerFragment = new DetailCustomerFragment();

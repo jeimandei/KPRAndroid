@@ -13,23 +13,20 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.maybank.kprandroid.Configuration.ConfigLogin;
 import com.maybank.kprandroid.Customer.CustomerFragment;
-import com.maybank.kprandroid.Login.LoginActivity;
 import com.maybank.kprandroid.Manager.ManagerFragment;
 import com.maybank.kprandroid.Schedule.ScheduleFragment;
+import com.maybank.kprandroid.Search.SearchCustManagerFragment;
 import com.maybank.kprandroid.Search.SearchCustomerFragment;
 import com.maybank.kprandroid.Search.SearchDateFragment;
 import com.maybank.kprandroid.databinding.ActivityMainBinding;
@@ -73,6 +70,11 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.logout_menu, menu);
+        if (role.equals("kpr")){
+            menu.findItem(R.id.id_search_cus_man).setVisible(false);
+        }
+
+
         return true;
     }
     @Override
@@ -101,6 +103,16 @@ public class MainActivity extends AppCompatActivity {
                 alertDialog.show();
 //                clearText();
                 break;
+            case R.id.id_search_cus_man:
+                SearchCustManagerFragment searchCustManagerFragment = new SearchCustManagerFragment();
+                getSupportActionBar().setTitle("Search Customer");
+                binding.navDrawer.closeDrawer(GravityCompat.START);
+                Bundle arg2 = new Bundle();
+                arg2.putString("id_emp_1", id);
+                searchCustManagerFragment.setArguments(arg2);
+                Log.d("cekIDS:", id);
+                callFragment(searchCustManagerFragment);
+                break;
             case R.id.id_search_cus:
                 SearchCustomerFragment searchCustomerFragment = new SearchCustomerFragment();
                 getSupportActionBar().setTitle("Search Customer");
@@ -121,6 +133,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("cekIDS:", id);
                 callFragment(searchDateFragment);
                 break;
+
         }
 
         return super.onOptionsItemSelected(item);
@@ -145,6 +158,8 @@ public class MainActivity extends AppCompatActivity {
         scheduleFragment.setArguments(arg);
         Log.d("cekIDS:", id);
         callFragment(scheduleFragment);
+
+
 
 //        getSupportFragmentManager().beginTransaction().replace(R.id.framelayout, new ScheduleFragment()).commit();
         binding.navbarView.setCheckedItem(R.id.nav_agenda);
@@ -193,7 +208,6 @@ public class MainActivity extends AppCompatActivity {
                         Log.d("cekID:", id);
                         fragments[0].setArguments(argw);
                         callFragment(fragments[0]);
-
                         break;
                 }
                 return true;
