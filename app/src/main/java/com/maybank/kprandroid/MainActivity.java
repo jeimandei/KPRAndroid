@@ -172,6 +172,18 @@ public class MainActivity extends AppCompatActivity {
             callFragment(scheduleFragment);
         }else if (role.equals("manager")){
             binding.navbarView.getMenu().removeItem(R.id.nav_admin);
+
+            binding.navbarView.getMenu().removeItem(R.id.nav_manager);
+            binding.navbarView.getMenu().removeItem(R.id.nav_admin);
+
+            getSupportActionBar().setTitle("Approval");
+
+            ManagerFragment managerFragment = new ManagerFragment();
+            Bundle arg = new Bundle();
+            arg.putString("id_emp_1", id);
+            managerFragment.setArguments(arg);
+            Log.d("cekIDS:", id);
+            callFragment(managerFragment);
         }else if (role.equals("admin")){
             binding.navbarView.getMenu().removeItem(R.id.nav_agenda);
             binding.navbarView.getMenu().removeItem(R.id.nav_nasabah);
