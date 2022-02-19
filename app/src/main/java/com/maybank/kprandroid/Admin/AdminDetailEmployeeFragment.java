@@ -211,7 +211,7 @@ public class AdminDetailEmployeeFragment extends Fragment implements View.OnClic
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext(), R.style.AlertDialogTheme);
         alertDialogBuilder.setMessage("Are you sure want to delete this data? " +
                 "\n Name\t\t\t:  " + nama +
-                "\n Role\t\t\t:  " + role1);
+                "\n Role\t\t\t\t\t:  " + role1);
 
         alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
@@ -330,8 +330,8 @@ public class AdminDetailEmployeeFragment extends Fragment implements View.OnClic
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext(), R.style.AlertDialogTheme);
         alertDialogBuilder.setMessage("Are you sure want to update this data? " +
-                "\n Nama Employe : " + nama +
-                "\n Role      : " + role1
+                "\n Name\t\t\t:  " + nama +
+                "\n Role\t\t\t\t\t:  " + role1
         );
 
         alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {

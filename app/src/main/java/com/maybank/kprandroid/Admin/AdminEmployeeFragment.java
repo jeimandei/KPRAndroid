@@ -161,8 +161,7 @@ public class AdminEmployeeFragment extends Fragment {
                 JSONObject object = jsonArray.getJSONObject(i);
                 String id = object.getString(ConfigAdmin.TAG_JSON_EMP_ID);
                 String role = object.getString(ConfigAdmin.TAG_JSON_EMP_ROLE );
-                String name = object.getString(ConfigAdmin.TAG_JSON_EMP_NAME) + "\n\n"
-                        + role;
+                String name = object.getString(ConfigAdmin.TAG_JSON_EMP_NAME);
 
 
                 //String pass = object.getString(ConfigAdmin.TAG_JSON_EMP_PASS);
@@ -172,7 +171,7 @@ public class AdminEmployeeFragment extends Fragment {
                 customer.put(ConfigAdmin.TAG_JSON_EMP_NAME, name);
                 customer.put(ConfigAdmin.TAG_JSON_EMP_ROLE, role);
                 //customer.put(ConfigAdmin.TAG_JSON_EMP_PASS, pass);
-                arrayList1.add(name);
+                arrayList1.add(name + "                                                                     "+role);
                 arrayList2.add(id);
                 Log.d("DataArr: ", String.valueOf(customer));
             }

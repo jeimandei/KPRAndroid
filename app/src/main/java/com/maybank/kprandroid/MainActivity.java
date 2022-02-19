@@ -263,7 +263,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        new AlertDialog.Builder(this)
+        new AlertDialog.Builder(this, R.style.AlertDialogTheme)
                 .setIcon(R.mipmap.ic_launcher)
                 .setTitle(R.string.app_name)
                 .setMessage("Are you sure you want to exit?")
