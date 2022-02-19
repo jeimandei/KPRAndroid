@@ -11,11 +11,15 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EdgeEffect;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.maybank.kprandroid.Configuration.ConfigLogin;
@@ -35,15 +39,29 @@ public class LoginActivity extends AppCompatActivity {
     boolean isAllFieldsChecked = false;
     AlertDialog.Builder builderDialog;
     AlertDialog alertDialog;
+    CheckBox showPass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        showPass = findViewById(R.id.showPass1);
         btnLogin = findViewById(R.id.btnLogin);
         id_emp = findViewById(R.id.id_emp);
         password = findViewById(R.id.password);
+
+        showPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (showPass.isChecked()) {
+                    password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+
+                } else {
+                    password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                }
+
+            }
+        });
 //        btnLogin.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
