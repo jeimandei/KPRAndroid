@@ -127,6 +127,7 @@ public class LoginActivity extends AppCompatActivity {
                     String code = object.getString("code");
                     Log.d("id_em:", String.valueOf(result));
 
+
                     // SHARED PREFERENCED
                     if (code.equals("login_false")){
 
