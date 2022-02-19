@@ -139,7 +139,7 @@ public class SearchDateFragment extends Fragment {
             @Override
             protected String doInBackground(Void... voids) {
                 HttpHandler handler = new HttpHandler();
-                String result = handler.sendGetRespDate(ConfigSchedule.URL_SEARCH_DATE, start, end);
+                String result = handler.sendGetRespDate(ConfigSchedule.URL_SEARCH_DATE, start, end, id_emp);
                 Log.d("res:", result);
                 Log.d("start:", start);
                 Log.d("end:", end);

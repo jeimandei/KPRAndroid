@@ -41,6 +41,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class AddEmployeeFragment extends Fragment implements View.OnClickListener {
 
@@ -94,9 +95,15 @@ public class AddEmployeeFragment extends Fragment implements View.OnClickListene
 
         tambah_emp.setOnClickListener(this);
 
-
         return viewGroup;
     }
+
+    private static final Pattern PASSWORD_PATTERN =
+            Pattern.compile("^" +
+                    "(?=.*[@#$%^&+=])" +     // at least 1 special character
+                    "(?=\\S+$)" +            // no white spaces
+                    ".{4,}" +                // at least 4 characters
+                    "$");
 
 
     @Override
@@ -108,24 +115,34 @@ public class AddEmployeeFragment extends Fragment implements View.OnClickListene
 
     private boolean CheckAllFields() {
 
+        String pass = tambah_pass_emp.getText().toString();
+        String passConf = tambah_confpass_emp.getText().toString();
+
         if (tambah_nama_emp.length() == 0) {
             tambah_nama_emp.setError("Please insert this field");
             return false;
         } else if (tambah_pass_emp.length() < 8) {
             tambah_pass_emp.setError("Password minimum 8 characters");
             return false;
+        } else if (tambah_confpass_emp.length() == 0) {
+            tambah_confpass_emp.setError("Please confirm password ");
+            return false;
+        } else if (tambah_confpass_emp.length() == 0) {
+            tambah_confpass_emp.setError("Please insert this field");
+        } else if (!pass.equals(passConf)) {
+            tambah_confpass_emp.setError("Password don't match");
         } else if (tambah_pass_emp.equals(tambah_confpass_emp)) {
             Toast.makeText(getContext(), "Password matches", Toast.LENGTH_SHORT).show();
             TextInputLayout cekLayout = viewGroup.findViewById(R.id.edit_pass_conf);
             cekLayout.setEndIconMode(TextInputLayout.END_ICON_CUSTOM);
             cekLayout.setEndIconDrawable(R.drawable.check);
             return false;
-        } else if (tambah_confpass_emp.length() == 0) {
-            tambah_confpass_emp.setError("Please confirm password ");
+        } else if (!PASSWORD_PATTERN.matcher(pass).matches())
+        {
+            tambah_pass_emp.setError("Password is too weak");
             return false;
-        } else if (tambah_confpass_emp.length() == 0) {
-            tambah_confpass_emp.setError("Please insert this field");
-        } else {
+        }   else
+        {
             confirmAdd();
         }
         // after all validation return true.
@@ -139,9 +156,9 @@ public class AddEmployeeFragment extends Fragment implements View.OnClickListene
         final String role1 = String.valueOf(role_save);
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext(), R.style.AlertDialogTheme);
-        alertDialogBuilder.setMessage("Are you sure want to update this data? " +
-                "\n Nama Employe : " + nama +
-                "\n Role      : " + role1
+        alertDialogBuilder.setMessage("Are you sure want to add this data? " +
+                "\n Employee Name\t: " + nama +
+                "\n Role\t\t\t\t\t\t\t\t\t\t\t\t: " + role1
         );
 
         alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
@@ -210,11 +227,11 @@ public class AddEmployeeFragment extends Fragment implements View.OnClickListene
             protected void onPostExecute(String messsage) {
                 super.onPostExecute(messsage);
                 loading.dismiss();
-//                Toast.makeText(getContext(), messsage, Toast.LENGTH_LONG).show();
-//                Log.d("m:", messsage);
-                //clearText();
+////                Toast.makeText(getContext(), messsage, Toast.LENGTH_LONG).show();
+////                Log.d("m:", messsage);
+//                clearText();
 
-                if (messsage.equals("Berhasil Menambahkan Data Pegawai")){
+                if (messsage.equals("Berhasil Menambahkan Data Pegawai")) {
                     showAlertDialog(R.layout.alert_field);
                 } else {
                     showAlertDialog(R.layout.alert_succes);

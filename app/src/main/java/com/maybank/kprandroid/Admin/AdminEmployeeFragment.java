@@ -9,11 +9,15 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -38,7 +42,9 @@ public class AdminEmployeeFragment extends Fragment {
     private ViewGroup viewGroup;
     private ListView listView;
     private FloatingActionButton floatingActionButton;
+    ArrayAdapter<String> adapter1;
     String id_emp;
+    EditText search;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -54,8 +60,23 @@ public class AdminEmployeeFragment extends Fragment {
 
         floatingActionButton = viewGroup.findViewById(R.id.employee_add);
         listView = viewGroup.findViewById(R.id.lv_employee);
+        search = viewGroup.findViewById(R.id.empSearch);
 
         getJSON();
+        search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                adapter1.getFilter().filter(charSequence);
+            }
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
 
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,6 +147,9 @@ public class AdminEmployeeFragment extends Fragment {
     private void displayAllParticipant() {
         JSONObject jsonObject = null;
         ArrayList<HashMap<String, String>> arrayList = new ArrayList<HashMap<String, String>>();
+        ArrayList<String> arrayList1 = new ArrayList<>();
+        ArrayList<String> arrayList2 = new ArrayList<>();
+
 
         try {
             jsonObject = new JSONObject(JSON_STRING);
@@ -136,8 +160,11 @@ public class AdminEmployeeFragment extends Fragment {
             for (int i=0;i<jsonArray.length(); i++){
                 JSONObject object = jsonArray.getJSONObject(i);
                 String id = object.getString(ConfigAdmin.TAG_JSON_EMP_ID);
-                String name = object.getString(ConfigAdmin.TAG_JSON_EMP_NAME);
                 String role = object.getString(ConfigAdmin.TAG_JSON_EMP_ROLE );
+                String name = object.getString(ConfigAdmin.TAG_JSON_EMP_NAME) + "\n\n"
+                        + role;
+
+
                 //String pass = object.getString(ConfigAdmin.TAG_JSON_EMP_PASS);
 
                 HashMap<String, String> customer = new HashMap<>();
@@ -145,8 +172,8 @@ public class AdminEmployeeFragment extends Fragment {
                 customer.put(ConfigAdmin.TAG_JSON_EMP_NAME, name);
                 customer.put(ConfigAdmin.TAG_JSON_EMP_ROLE, role);
                 //customer.put(ConfigAdmin.TAG_JSON_EMP_PASS, pass);
-
-                arrayList.add(customer);
+                arrayList1.add(name);
+                arrayList2.add(id);
                 Log.d("DataArr: ", String.valueOf(customer));
             }
 
@@ -154,13 +181,15 @@ public class AdminEmployeeFragment extends Fragment {
             e.printStackTrace();
         }
 
-        ListAdapter adapter = new SimpleAdapter(
-                viewGroup.getContext(), arrayList, R.layout.lv_employee,
-                new String[] {ConfigAdmin.TAG_JSON_EMP_NAME, ConfigAdmin.TAG_JSON_EMP_ROLE},
-                new int[] {R.id.lv_employee_name, R.id.lv_employee_role}
-        );
-        Log.d("DataArray: ", String.valueOf(adapter));
-        listView.setAdapter(adapter);
+//        ListAdapter adapter = new SimpleAdapter(
+//                viewGroup.getContext(), arrayList, R.layout.lv_employee,
+//                new String[] {ConfigAdmin.TAG_JSON_EMP_NAME, ConfigAdmin.TAG_JSON_EMP_ROLE},
+//                new int[] {R.id.lv_employee_name, R.id.lv_employee_role}
+//        );
+
+        adapter1 = new ArrayAdapter(getContext(), R.layout.lv_employee, R.id.lv_employee_name, arrayList1);
+        Log.d("DataArray: ", String.valueOf(adapter1));
+        listView.setAdapter(adapter1);
 
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -172,10 +201,11 @@ public class AdminEmployeeFragment extends Fragment {
                 fragmentTransaction.replace(R.id.framelayout,adminDetailEmployeeFragment);
 
 
-                HashMap<String, String> map = (HashMap) adapterView.getItemAtPosition(i);
-                String empid = map.get(ConfigAdmin.TAG_JSON_EMP_ID).toString();
+                //HashMap<String, String> map = (HashMap) adapterView.getItemAtPosition(i);
+                //String empid = map.get(ConfigAdmin.TAG_JSON_EMP_ID).toString();
+                String a = arrayList2.get(i);
                 Bundle args = new Bundle();
-                args.putString("id", empid);
+                args.putString("id", a);
                 adminDetailEmployeeFragment.setArguments(args);
 
 
