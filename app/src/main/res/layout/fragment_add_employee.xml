@@ -115,6 +115,17 @@
                         android:textStyle="bold"
                         app:passwordToggleEnabled="true"
                         app:errorEnabled="true"/>
+                    <CheckBox
+                        android:id="@+id/showPass3"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="5dp"
+                        android:alpha=".5"
+                        android:onClick="ShowHidePass"
+                        android:padding="5dp"
+                        android:src="@drawable/check" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -147,6 +158,16 @@
                         android:textColor="#320202"
                         android:textSize="16sp"
                         android:textStyle="bold" />
+                    <CheckBox
+                        android:id="@+id/showPass4"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="5dp"
+                        android:alpha=".5"
+                        android:onClick="ShowHidePass"
+                        android:padding="5dp" />
                 </LinearLayout>
 
 
