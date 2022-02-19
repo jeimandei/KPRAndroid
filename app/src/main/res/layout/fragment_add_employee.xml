@@ -125,6 +125,8 @@
                     android:paddingLeft="16dp"
                     android:paddingRight="16dp">
 
+
+
                     <TextView
                         android:id="@+id/textView7"
                         android:layout_width="wrap_content"
