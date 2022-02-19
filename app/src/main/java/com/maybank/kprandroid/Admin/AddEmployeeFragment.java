@@ -13,6 +13,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Handler;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +22,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -56,6 +59,7 @@ public class AddEmployeeFragment extends Fragment implements View.OnClickListene
     boolean isAllFieldsChecked = false;
     AlertDialog.Builder builderDialog;
     AlertDialog alertDialog;
+    private CheckBox showPass, showPassConf;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -75,6 +79,33 @@ public class AddEmployeeFragment extends Fragment implements View.OnClickListene
         tambah_pass_emp = viewGroup.findViewById(R.id.tambah_pass_emp);
 
         tambah_emp = viewGroup.findViewById(R.id.btn_tambah_emp);
+        showPass = viewGroup.findViewById(R.id.showPass1);
+        showPassConf = viewGroup.findViewById(R.id.showPass4);
+
+        showPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (showPass.isChecked()) {
+                    tambah_pass_emp.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+
+                } else {
+                    tambah_pass_emp.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                }
+
+            }
+        });
+
+        showPassConf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (showPassConf.isChecked()) {
+                    tambah_confpass_emp.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                } else {
+                    tambah_confpass_emp.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                }
+            }
+        });
+
 
         String[] role = new String[]{"KPR", "MANAGER"};
         List<String> roleList = new ArrayList<>(Arrays.asList(role));
