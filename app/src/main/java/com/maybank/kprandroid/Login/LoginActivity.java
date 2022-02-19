@@ -1,17 +1,22 @@
 package com.maybank.kprandroid.Login;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EdgeEffect;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.maybank.kprandroid.Configuration.ConfigLogin;
 import com.maybank.kprandroid.HttpHandler;
@@ -28,6 +33,8 @@ public class LoginActivity extends AppCompatActivity {
     private Button btnLogin;
     private EditText id_emp, password;
     boolean isAllFieldsChecked = false;
+    AlertDialog.Builder builderDialog;
+    AlertDialog alertDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,8 +117,41 @@ public class LoginActivity extends AppCompatActivity {
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
                 loading.dismiss();
-                displayDetailLogin(s);
-                clearText();
+//                displayDetailLogin(s);
+//                clearText();
+
+                try {
+                    JSONObject jsonObject = new JSONObject(s);
+                    JSONArray result = jsonObject.getJSONArray(ConfigLogin.TAG_JSON_ARRAY_LOGIN);
+                    JSONObject object = result.getJSONObject(0);
+                    String code = object.getString("code");
+                    Log.d("id_em:", String.valueOf(result));
+
+                    // SHARED PREFERENCED
+                    if (code.equals("login_false")){
+
+                        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(LoginActivity.this,R.style.AlertDialogTheme);
+                        alertDialogBuilder.setMessage("Wrong ID or password"
+                        );
+
+                        alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                            }
+                        });
+
+                        AlertDialog alertDialog = alertDialogBuilder.create();
+                        alertDialog.show();
+                    } else {
+                        displayDetailLogin(s);
+                        clearText();
+                    }
+
+
+                } catch (Exception ex){
+                    ex.printStackTrace();
+                }
+
             }
 
         }
