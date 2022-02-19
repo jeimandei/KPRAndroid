@@ -114,7 +114,8 @@
                         android:textSize="16sp"
                         android:textStyle="bold"
                         app:passwordToggleEnabled="true"
-                        app:errorEnabled="true"/>
+                        app:errorEnabled="true"
+                        android:inputType="textPassword"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -146,7 +147,8 @@
                         android:ems="13"
                         android:textColor="#320202"
                         android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:inputType="textPassword"/>
                 </LinearLayout>
 
 
