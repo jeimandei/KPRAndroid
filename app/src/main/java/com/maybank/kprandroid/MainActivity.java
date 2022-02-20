@@ -22,7 +22,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
+import com.maybank.kprandroid.Admin.AdminDetailEmployeeFragment;
 import com.maybank.kprandroid.Admin.AdminEmployeeFragment;
+import com.maybank.kprandroid.Admin.EmployeeDetailsFragment;
 import com.maybank.kprandroid.Configuration.ConfigLogin;
 import com.maybank.kprandroid.Customer.CustomerFragment;
 import com.maybank.kprandroid.Manager.ManagerFragment;
@@ -104,6 +106,16 @@ public class MainActivity extends AppCompatActivity {
                 AlertDialog alertDialog = alertDialogBuilder.create();
                 alertDialog.show();
 //                clearText();
+                break;
+            case R.id.id_profile:
+                EmployeeDetailsFragment employeeDetailsFragment = new EmployeeDetailsFragment();
+                getSupportActionBar().setTitle("Profile");
+                binding.navDrawer.closeDrawer(GravityCompat.START);
+                Bundle arg2 = new Bundle();
+                arg2.putString("id", id);
+                employeeDetailsFragment.setArguments(arg2);
+                Log.d("cekIDS:", id);
+                callFragment(employeeDetailsFragment);
                 break;
 //            case R.id.id_search_cus_man:
 //                SearchCustManagerFragment searchCustManagerFragment = new SearchCustManagerFragment();
