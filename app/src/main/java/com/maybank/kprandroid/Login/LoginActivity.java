@@ -20,6 +20,7 @@ import android.widget.CheckBox;
 import android.widget.EdgeEffect;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.maybank.kprandroid.Configuration.ConfigLogin;
@@ -39,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
     boolean isAllFieldsChecked = false;
     AlertDialog.Builder builderDialog;
     AlertDialog alertDialog;
-    CheckBox showPass;
+    Switch showPass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
