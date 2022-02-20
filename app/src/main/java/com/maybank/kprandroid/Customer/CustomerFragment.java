@@ -21,19 +21,18 @@ import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.maybank.kprandroid.Configuration.ConfigCustomer;
 import com.maybank.kprandroid.HttpHandler;
 import com.maybank.kprandroid.R;
-import com.maybank.kprandroid.Schedule.AddScheduleFragment;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class CustomerFragment extends Fragment {
 
@@ -44,8 +43,14 @@ public class CustomerFragment extends Fragment {
     private ListView listView;
     private FloatingActionButton floatingActionButton;
     String id_emp;
+    String a = null;
+    String b;
+    String[] c;
     ArrayAdapter<String> adapter;
+    ListAdapter adapter1;
     EditText search;
+    ArrayList<String> arrayList1;
+    Bundle args = new Bundle();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -67,6 +72,7 @@ public class CustomerFragment extends Fragment {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 adapter.getFilter().filter(charSequence);
+
             }
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -138,9 +144,9 @@ public class CustomerFragment extends Fragment {
 
     private void displayAllParticipant() {
         JSONObject jsonObject = null;
-        //ArrayList<HashMap<String, String>> arrayList = new ArrayList<HashMap<String, String>>();
+        ArrayList<HashMap<String, String>> arrayList3 = new ArrayList<HashMap<String, String>>();
         ArrayList<String> arrayList = new ArrayList<>();
-        ArrayList<String> arrayList1 = new ArrayList<String>();
+        arrayList1 = new ArrayList<String>();
 
         try {
             jsonObject = new JSONObject(JSON_STRING);
@@ -152,7 +158,9 @@ public class CustomerFragment extends Fragment {
                 JSONObject object = jsonArray.getJSONObject(i);
                 String id = object.getString(ConfigCustomer.TAG_JSON_CST_ID);
                 String name = object.getString(ConfigCustomer.TAG_JSON_CST_NAME) +
-                        "\n\n" + object.getString(ConfigCustomer.TAG_JSON_CST_KTP);
+                        "\n\n" + object.getString(ConfigCustomer.TAG_JSON_CST_KTP) +
+                        "\n\n" + object.getString(ConfigCustomer.TAG_JSON_CST_ID) ;
+
                 String phone = object.getString(ConfigCustomer.TAG_JSON_CST_HP );
                 String address = object.getString(ConfigCustomer.TAG_JSON_CST_ALAMAT);
                 String ktp = object.getString(ConfigCustomer.TAG_JSON_CST_KTP);
@@ -163,20 +171,24 @@ public class CustomerFragment extends Fragment {
                 customer.put(ConfigCustomer.TAG_JSON_CST_HP, phone);
                 customer.put(ConfigCustomer.TAG_JSON_CST_ALAMAT, address);
 
+                arrayList3.add(customer);
                 arrayList.add(name);
                 arrayList1.add(id);
+
                 Log.d("DataArr: ", String.valueOf(customer));
+                Log.d("DataArr: ", String.valueOf(arrayList1));
             }
 
         }catch (Exception e){
             e.printStackTrace();
         }
 
-//        ListAdapter adapter = new SimpleAdapter(
-//                viewGroup.getContext(), arrayList, R.layout.lv_customer,
-//                new String[] {ConfigCustomer.TAG_JSON_CST_NAME, ConfigCustomer.TAG_JSON_CST_HP, ConfigCustomer.TAG_JSON_CST_ALAMAT},
-//                new int[] {R.id.lv_customer_name, R.id.lv_customer_phone, R.id.lv_customer_address}
-//        );
+        adapter1 = new SimpleAdapter(
+                viewGroup.getContext(), arrayList3, R.layout.lv_customer,
+                new String[] {ConfigCustomer.TAG_JSON_CST_NAME, ConfigCustomer.TAG_JSON_CST_HP, ConfigCustomer.TAG_JSON_CST_ALAMAT},
+                new int[] {R.id.lv_customer_name}
+        );
+
         Log.d("DataArray: ", String.valueOf(adapter));
 
         adapter = new ArrayAdapter(getContext(), R.layout.lv_customer, R.id.lv_customer_name, arrayList);
@@ -192,13 +204,25 @@ public class CustomerFragment extends Fragment {
                 fragmentTransaction.replace(R.id.framelayout,detailCustomerFragment);
 
 
-//                HashMap<String, String> map = (HashMap) adapterView.getItemAtPosition(i);
+//                HashMap<String, String> map = (HashMap) adapter1.getItem(b);
 //                String nsbid = map.get(ConfigCustomer.TAG_JSON_CST_ID).toString();
-                String a = arrayList1.get(i);
-                Bundle args = new Bundle();
+
+
+                if (a == null) {
+                    a = arrayList1.get(i);
+                }
+
+                b = adapter.getItem(i);
+                c = b.split("\n\n");
+                a = String.valueOf(c[2]);
+
                 args.putString("id", a);
                 args.putString("id_emp_1", id_emp);
                 detailCustomerFragment.setArguments(args);
+                Log.d("post", String.valueOf(a));
+                Log.d("post", String.valueOf(a));
+                Log.d("idddd", String.valueOf(arrayList1));
+
 
 
 

@@ -44,6 +44,9 @@ public class ManagerFragment extends Fragment {
     String id_emp;
     EditText search;
     ArrayAdapter<String> adapter1, adapter2;
+    String a = null;
+    String b;
+    String[] c;
 
     public ManagerFragment() {
         // Required empty public constructor
@@ -145,7 +148,8 @@ public class ManagerFragment extends Fragment {
                 JSONObject object = jsonArray.getJSONObject(i);
                 String id = object.getString(ConfigManager.TAG_JSON_MNG_NSB_ID);
                 String name = object.getString(ConfigManager.TAG_JSON_MNG_NAME) +
-                        "\n\n" + object.getString(ConfigManager.TAG_JSON_MNG_NAME_EMP);;
+                        "\n\n" + object.getString(ConfigManager.TAG_JSON_MNG_NAME_EMP) +
+                        "\n\n" + object.getString(ConfigManager.TAG_JSON_MNG_NSB_ID);
                 String emp = object.getString(ConfigManager.TAG_JSON_MNG_NAME_EMP);
 
                 HashMap<String, String> customer = new HashMap<>();
@@ -180,11 +184,18 @@ public class ManagerFragment extends Fragment {
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.framelayout,detailDocumentFragment);
+                callFragment(detailDocumentFragment);
 
 
 //                HashMap<String, String> map = (HashMap) adapterView.getItemAtPosition(i);
 //                String nsbid = map.get(ConfigManager.TAG_JSON_MNG_NSB_ID).toString();
-                String a = arrayList2.get(i);
+                if (a == null) {
+                    a = arrayList2.get(i);
+                }
+
+                b = adapter1.getItem(i);
+                c = b.split("\n\n");
+                a = String.valueOf(c[2]);
                 Bundle args = new Bundle();
                 args.putString("id_nsb", a);
                 detailDocumentFragment.setArguments(args);

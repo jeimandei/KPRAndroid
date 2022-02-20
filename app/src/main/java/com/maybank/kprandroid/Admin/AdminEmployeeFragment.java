@@ -45,6 +45,9 @@ public class AdminEmployeeFragment extends Fragment {
     ArrayAdapter<String> adapter1;
     String id_emp;
     EditText search;
+    String a = null;
+    String b;
+    String[] c;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -67,6 +70,7 @@ public class AdminEmployeeFragment extends Fragment {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 adapter1.getFilter().filter(charSequence);
+
             }
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -161,7 +165,9 @@ public class AdminEmployeeFragment extends Fragment {
                 JSONObject object = jsonArray.getJSONObject(i);
                 String id = object.getString(ConfigAdmin.TAG_JSON_EMP_ID);
                 String role = object.getString(ConfigAdmin.TAG_JSON_EMP_ROLE );
-                String name = object.getString(ConfigAdmin.TAG_JSON_EMP_NAME);
+                String name = object.getString(ConfigAdmin.TAG_JSON_EMP_NAME) +
+                        "\n\n" + object.getString(ConfigAdmin.TAG_JSON_EMP_ROLE) +
+                        "\n\n" + object.getString(ConfigAdmin.TAG_JSON_EMP_ID);
 
 
                 //String pass = object.getString(ConfigAdmin.TAG_JSON_EMP_PASS);
@@ -171,7 +177,7 @@ public class AdminEmployeeFragment extends Fragment {
                 customer.put(ConfigAdmin.TAG_JSON_EMP_NAME, name);
                 customer.put(ConfigAdmin.TAG_JSON_EMP_ROLE, role);
                 //customer.put(ConfigAdmin.TAG_JSON_EMP_PASS, pass);
-                arrayList1.add(name + "                                                                     "+role);
+                arrayList1.add(name);
                 arrayList2.add(id);
                 Log.d("DataArr: ", String.valueOf(customer));
             }
@@ -202,9 +208,16 @@ public class AdminEmployeeFragment extends Fragment {
 
                 //HashMap<String, String> map = (HashMap) adapterView.getItemAtPosition(i);
                 //String empid = map.get(ConfigAdmin.TAG_JSON_EMP_ID).toString();
-                String a = arrayList2.get(i);
+                if (a == null) {
+                    a = arrayList2.get(i);
+                }
+
+                b = adapter1.getItem(i);
+                c = b.split("\n\n");
+                a = String.valueOf(c[2]);
                 Bundle args = new Bundle();
                 args.putString("id", a);
+                Log.d("post", String.valueOf(a));
                 adminDetailEmployeeFragment.setArguments(args);
 
 
