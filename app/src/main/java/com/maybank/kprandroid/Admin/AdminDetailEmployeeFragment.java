@@ -28,6 +28,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -61,7 +62,7 @@ public class AdminDetailEmployeeFragment extends Fragment implements View.OnClic
     boolean isAllFieldsChecked = false;
     AlertDialog.Builder builderDialog;
     AlertDialog alertDialog;
-    private CheckBox showPass, showPassConf;
+    private Switch showPass, showPassConf;
 
 
     @Override

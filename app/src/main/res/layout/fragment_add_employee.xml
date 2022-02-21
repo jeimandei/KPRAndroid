@@ -93,7 +93,7 @@
 
                     <TextView
                         android:id="@+id/textView5"
-                        android:layout_width="wrap_content"
+                        android:layout_width="109dp"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="6dp"
                         android:layout_weight="1"
@@ -101,32 +101,31 @@
                         android:textAllCaps="false"
                         android:textColor="#050505"
                         android:textSize="16sp"
-                        android:textStyle="bold"
-                        />
+                        android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/tambah_pass_emp"
-                        android:layout_width="wrap_content"
+                        android:layout_width="190dp"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
                         android:ems="13"
+                        android:inputType="textPassword"
                         android:textColor="#320202"
                         android:textSize="16sp"
                         android:textStyle="bold"
-                        app:passwordToggleEnabled="true"
                         app:errorEnabled="true"
-                        android:inputType="textPassword"/>
-                    <CheckBox
+                        app:passwordToggleEnabled="true" />
+
+                    <Switch
                         android:id="@+id/showPass1"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="50dp"
+                        android:layout_height="30dp"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginRight="5dp"
                         android:alpha=".5"
-                        android:onClick="ShowHidePass"
-                        android:padding="5dp"
-                        android:src="@drawable/check" />
+                        android:onClick="ShowHidePass">
+                    </Switch>
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -154,25 +153,23 @@
 
                     <EditText
                         android:id="@+id/tambah_pass_conf"
-                        android:layout_width="wrap_content"
+                        android:layout_width="193dp"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
                         android:ems="13"
+                        android:inputType="textPassword"
                         android:textColor="#320202"
                         android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:inputType="textPassword"/>
-                    <CheckBox
+                        android:textStyle="bold" />
+                    <Switch
                         android:id="@+id/showPass4"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="50dp"
+                        android:layout_height="30dp"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginRight="5dp"
                         android:alpha=".5"
-                        android:onClick="ShowHidePass"
-                        android:padding="5dp"
-                        />
+                        android:onClick="ShowHidePass">
+                    </Switch>
                 </LinearLayout>
 
 

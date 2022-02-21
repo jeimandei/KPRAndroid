@@ -140,26 +140,24 @@
 
                     <EditText
                         android:id="@+id/edit_pass_emp"
-                        android:layout_width="wrap_content"
+                        android:layout_width="189dp"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
                         android:ems="13"
+                        android:inputType="textPassword"
                         android:textColor="#320202"
                         android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:inputType="textPassword"/>
+                        android:textStyle="bold" />
 
-                    <CheckBox
+                    <Switch
                         android:id="@+id/showPass"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="50dp"
+                        android:layout_height="30dp"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginRight="5dp"
                         android:alpha=".5"
-                        android:onClick="ShowHidePass"
-                        android:padding="5dp"
-                        android:src="@drawable/check" />
+                        android:onClick="ShowHidePass">
+                    </Switch>
                 </LinearLayout>
 
                 <LinearLayout
@@ -186,25 +184,24 @@
 
                     <EditText
                         android:id="@+id/edit_pass_conf"
-                        android:layout_width="wrap_content"
+                        android:layout_width="188dp"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
                         android:ems="13"
+                        android:inputType="textPassword"
                         android:textColor="#320202"
                         android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:inputType="textPassword"/>
+                        android:textStyle="bold" />
 
-                    <CheckBox
+                    <Switch
                         android:id="@+id/showPass1"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="50dp"
+                        android:layout_height="30dp"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginRight="5dp"
                         android:alpha=".5"
-                        android:onClick="ShowHidePass"
-                        android:padding="5dp" />
+                        android:onClick="ShowHidePass">
+                    </Switch>
 
                 </LinearLayout>
 
