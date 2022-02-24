@@ -26,6 +26,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -59,7 +60,7 @@ public class AddEmployeeFragment extends Fragment implements View.OnClickListene
     boolean isAllFieldsChecked = false;
     AlertDialog.Builder builderDialog;
     AlertDialog alertDialog;
-    private CheckBox showPass, showPassConf;
+    private Switch showPass, showPassConf;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
